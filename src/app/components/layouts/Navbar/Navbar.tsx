@@ -9,51 +9,73 @@ import { NAVBAR_CONTENT } from "./Navbar.data";
 
 import { BsChevronCompactUp } from "react-icons/bs";
 import { BsChevronCompactDown } from "react-icons/bs";
+import { CiMenuBurger } from "react-icons/ci";
+import { VscClose } from "react-icons/vsc";
+import { SlUser } from "react-icons/sl";
 
 import { PanelKey } from "@/app/types/common";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { useMobileMenu } from "@/app/contexts/MobileMenuContext";
 
+import Image from "next/image";
+
+type ActiviteKey = "art" | "eco" | "nature";
+
+type DecouverteKey = "libreville" | "oyem" | "mayumba" | "lambarene";
+
 export default function Navbar() {
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
+  const [selectedActivite, setSelectedActivite] = useState<ActiviteKey | null>(
+    null
+  );
+
+  const [selectedDecouverte, setSelectedDecouverte] =
+    useState<DecouverteKey | null>(null);
+
+  // Images pour activité
+  const activiteImageMap: Record<ActiviteKey, { src: string; alt: string }> = {
+    art: {
+      src: "/assets/images/activites/art-culture.jpg",
+      alt: "Art & culture au Gabon",
+    },
+    eco: {
+      src: "/assets/images/activites/ecotourisme-balneaire.jpg",
+      alt: "Ecotourisme & balnéaire au Gabon",
+    },
+    nature: {
+      src: "/assets/images/activites/nature-decouverte.jpg",
+      alt: "Nature & Découverte au Gabon",
+    },
+  };
+
+  // Images pour decouverte
+  const decouverteImageMap: Record<
+    DecouverteKey,
+    { src: string; alt: string }
+  > = {
+    libreville: {
+      src: "/assets/images/activites/art-culture.jpg",
+      alt: "Art & culture au Gabon",
+    },
+    lambarene: {
+      src: "/assets/images/activites/ecotourisme-balneaire.jpg",
+      alt: "Ecotourisme & balnéaire au Gabon",
+    },
+    mayumba: {
+      src: "/assets/images/activites/nature-decouverte.jpg",
+      alt: "Nature & Découverte au Gabon",
+    },
+    oyem: {
+      src: "/assets/images/activites/nature-decouverte.jpg",
+      alt: "Nature & Découverte au Gabon",
+    },
+  };
 
   const pathname = usePathname();
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
-
-  const activitéMessage = isActive("/activité/art-et-culture")
-    ? "Inspire, partage, fais grandir les autres en t’amusant."
-    : isActive("/activité/nature-et-decouverte")
-    ? "Ensemble, changeons les choses, un geste à la fois."
-    : "Ton soutien fait battre le cœur de La Culotte Rouge.";
-
-  const decouverteMessage = isActive("/voyage-decouverte/libreville")
-    ? "Une équipe de cœurs engagés pour un monde plus juste et solidaire."
-    : "Nos valeurs guident chacune de nos actions : humanité, solidarité, dignité.";
-
-  const actionsMessageMap: Record<string, string> = {
-    "/actions/ateliers-ludiques":
-      "Apprendre, créer, s’amuser… pour grandir ensemble autrement.",
-    "/actions/sensibilisation":
-      "Parce que chaque échange peut semer une graine de changement.",
-    "/actions/formations": "Se former pour mieux agir, ensemble.",
-    "/actions/conferences":
-      "Des paroles qui éveillent, des idées qui font bouger les lignes.",
-    "/actions/initiatives-locales":
-      "Le changement commence ici, dans nos quartiers et nos villages.",
-    "/actions/initiatives-a-l-etranger":
-      "Solidaires sans frontières, unis par la même humanité.",
-  };
-
-  // On cherche le premier slug qui matche la route courante,
-  // sinon on renvoie un message par défaut.
-  const matchedAction = Object.entries(actionsMessageMap).find(([href]) =>
-    isActive(href)
-  );
-  const actionsMessage =
-    matchedAction?.[1] ?? "Nos actions sur le terrain, toute l’année.";
 
   const panelLinkClass = (href: string) =>
     twMerge("text-black text-sm", isActive(href) && "text-red-500");
@@ -64,28 +86,6 @@ export default function Navbar() {
   const isOpen = activePanel !== null;
 
   const closePanel = () => setActivePanel(null);
-
-  const subMenuArray = [
-    "/activité/nature-et-decouverte",
-    "/activité/art-et-culture",
-    "/activité/ecotourisme-et-balneaire",
-  ];
-
-  const subMenuArray2 = [
-    "/actions/ateliers-ludiques",
-    "/actions/sensibilisation",
-    "/actions/formations",
-    "/actions/conferences",
-    "/actions/initiatives-locales",
-    "/actions/initiatives-a-l-etranger",
-  ];
-
-  const subMenuArray3 = [
-    "/voyage-decouverte/libreville",
-    "/voyage-decouverte/lambarene",
-    "/voyage-decouverte/mayumba",
-    "/voyage-decouverte/oyem",
-  ];
 
   const handleNavClick = () => {
     closePanel();
@@ -106,13 +106,35 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isOpen]);
 
+  useEffect(() => {
+    // --- Activités ---
+    if (isActive("/activité/art-et-culture")) {
+      setSelectedActivite("art");
+    } else if (isActive("/activité/ecotourisme-et-balneaire")) {
+      setSelectedActivite("eco");
+    } else if (isActive("/activité/nature-et-decouverte")) {
+      setSelectedActivite("nature");
+    }
+
+    // --- Découvrir ---
+    if (isActive("/voyage-decouverte/libreville")) {
+      setSelectedDecouverte("libreville");
+    } else if (isActive("/voyage-decouverte/lambarene")) {
+      setSelectedDecouverte("lambarene");
+    } else if (isActive("/voyage-decouverte/mayumba")) {
+      setSelectedDecouverte("mayumba");
+    } else if (isActive("/voyage-decouverte/oyem")) {
+      setSelectedDecouverte("oyem");
+    }
+  }, [pathname]);
+
   return (
     <header className='sticky top-0 sup-md:px-0 z-50 pl-4 flex flex-col items-center justify-between'>
       <section className='w-full'>
         <div className='border-b border-gray-200 h-[81px] flex items-center justify-between sup-md:px-14'>
           <Link
             href='/'
-            aria-label='Aller a la page d accueil'
+            aria-label='Se rendre a la page daccueil'
             onClick={() => setMobileMenuOpen(false)}
             className='flex justify-center items-center text-2xl sup-md:text-3xl font-display ml-5'
           >
@@ -120,8 +142,8 @@ export default function Navbar() {
           </Link>
 
           <section className='flex w-2xs items-center gap-4 justify-center'>
-            <p>Login</p>
-            <p>Switch EN/FR</p>
+            <SlUser />
+            <p>EN / FR</p>
           </section>
         </div>
       </section>
@@ -130,11 +152,6 @@ export default function Navbar() {
         <nav aria-label='Navigation principale'>
           <ul className='flex items-center'>
             {NAVBAR_CONTENT.map((item) => {
-              const isActive =
-                item.link === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.link);
-
               return (
                 <Link
                   key={item.label}
@@ -226,15 +243,10 @@ export default function Navbar() {
               onClick={toggleMobileMenu}
               type='button'
             >
-              {/* <CloseIcon className='text-red-500 h-6 w-16 cursor-pointer duration-500 ease-in-out transition-all' /> */}
+              <VscClose />
             </button>
           ) : (
-            // <BurgerMenuIcon
-            //   aria-label='Ouvrir le menu mobile'
-            //   onClick={toggleMobileMenu}
-            //   className='h-11 duration-500 transition ease-in-out text-red-500 cursor-pointer w-16'
-            // />
-            <p>B</p>
+            <CiMenuBurger />
           )}
         </nav>
       </section>
@@ -281,38 +293,71 @@ export default function Navbar() {
                         <li>
                           <Link
                             href='/activité/art-et-culture'
-                            className={panelLinkClass("/art-et-culture")}
+                            className={
+                              (panelLinkClass("/activité/art-et-culture"),
+                              "hover:font-bold")
+                            }
                             onClick={handleNavClick}
+                            onMouseEnter={() => setSelectedActivite("art")}
+                            onFocus={() => setSelectedActivite("art")}
                           >
                             Art & culture
                           </Link>
                         </li>
                         <li>
                           <Link
-                            className={panelLinkClass(
-                              "/ecotourisme-et-balneaire"
-                            )}
+                            className={
+                              (panelLinkClass(
+                                "/activité/ecotourisme-et-balneaire"
+                              ),
+                              "hover:font-bold")
+                            }
                             href='/activité/ecotourisme-et-balneaire'
                             onClick={handleNavClick}
+                            onMouseEnter={() => setSelectedActivite("eco")}
+                            onFocus={() => setSelectedActivite("eco")}
                           >
                             Ecotourisme & balnéaire
                           </Link>
                         </li>
                         <li>
                           <Link
-                            className={panelLinkClass("/nature-et-decouverte")}
+                            className={
+                              (panelLinkClass("/activité/nature-et-decouverte"),
+                              "hover:font-bold")
+                            }
                             href='/activité/nature-et-decouverte'
                             onClick={handleNavClick}
+                            onMouseEnter={() => setSelectedActivite("nature")}
+                            onFocus={() => setSelectedActivite("nature")}
                           >
                             Nature & Découverte
                           </Link>
                         </li>
                       </ul>
                     </div>
-                    <div className='sup-md:px-14 w-[60%] px-4 py-4'>
-                      <p className='text-red-500 text-sm italic'>
-                        {activitéMessage}
-                      </p>
+                    <div className='sup-md:px-14 w-full bg-amber-200'>
+                      {selectedActivite ? (
+                        <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
+                          <Image
+                            src={activiteImageMap[selectedActivite].src}
+                            alt={activiteImageMap[selectedActivite].alt}
+                            fill
+                            sizes='(max-width: 768px) 100vw, 70vw'
+                            className='object-cover'
+                            priority
+                          />
+                        </div>
+                      ) : (
+                        <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
+                          <Image
+                            src='/assets/images/activites/art-culture.jpg'
+                            alt='Activités'
+                            fill
+                            className='object-cover'
+                          />
+                        </div>
+                      )}
                     </div>
                   </>
                 ) : activePanel === "asso" ? (
@@ -321,22 +366,32 @@ export default function Navbar() {
                       <ul className='flex flex-col gap-4'>
                         <li>
                           <Link
-                            className={panelLinkClass(
-                              "/voyage-decouverte/libreville"
-                            )}
+                            className={
+                              (panelLinkClass("/voyage-decouverte/libreville"),
+                              "hover:font-bold")
+                            }
                             href='/voyage-decouverte/libreville'
                             onClick={handleNavClick}
+                            onMouseEnter={() =>
+                              setSelectedDecouverte("libreville")
+                            }
+                            onFocus={() => setSelectedDecouverte("libreville")}
                           >
-                            Partir a la découverte de libreville
+                            Partir à la découverte de libreville
                           </Link>
                         </li>
                         <li>
                           <Link
-                            className={panelLinkClass(
-                              "/voyage-decouverte/lambarene"
-                            )}
+                            className={
+                              (panelLinkClass("/voyage-decouverte/lambarene"),
+                              "hover:font-bold")
+                            }
                             href='/voyage-decouverte/lambarene'
                             onClick={handleNavClick}
+                            onMouseEnter={() =>
+                              setSelectedDecouverte("lambarene")
+                            }
+                            onFocus={() => setSelectedDecouverte("lambarene")}
                           >
                             Visitez Lambaréné, le cœur battant du Gabon
                           </Link>
@@ -344,22 +399,30 @@ export default function Navbar() {
 
                         <li>
                           <Link
-                            className={panelLinkClass(
-                              "/voyage-decouverte/mayumba"
-                            )}
+                            className={
+                              (panelLinkClass("/voyage-decouverte/mayumba"),
+                              "hover:font-bold")
+                            }
                             href='/voyage-decouverte/mayumba'
                             onClick={handleNavClick}
+                            onMouseEnter={() =>
+                              setSelectedDecouverte("mayumba")
+                            }
+                            onFocus={() => setSelectedDecouverte("mayumba")}
                           >
                             Explorez Mayumba, un joyau du Gabon
                           </Link>
                         </li>
                         <li>
                           <Link
-                            className={panelLinkClass(
-                              "/voyage-decouverte/oyem"
-                            )}
+                            className={
+                              (panelLinkClass("/voyage-decouverte/oyem"),
+                              "hover:font-bold")
+                            }
                             href='/voyage-decouverte/oyem'
                             onClick={handleNavClick}
+                            onMouseEnter={() => setSelectedDecouverte("oyem")}
+                            onFocus={() => setSelectedDecouverte("oyem")}
                           >
                             À la découverte de Oyem, entre traditions et
                             modernité
@@ -367,10 +430,28 @@ export default function Navbar() {
                         </li>
                       </ul>
                     </div>
-                    <div className='sup-md:px-14 w-[60%] px-4 py-4'>
-                      <p className='text-red-500 text-sm italic'>
-                        {decouverteMessage}
-                      </p>
+                    <div className='sup-md:px-14 w-full px-4 py-4 bg-red-200'>
+                      {selectedDecouverte ? (
+                        <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
+                          <Image
+                            src={decouverteImageMap[selectedDecouverte].src}
+                            alt={decouverteImageMap[selectedDecouverte].alt}
+                            fill
+                            sizes='(max-width: 768px) 100vw, 70vw'
+                            className='object-cover'
+                            priority
+                          />
+                        </div>
+                      ) : (
+                        <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
+                          <Image
+                            src='/assets/images/activites/art-culture.jpg'
+                            alt='Activités'
+                            fill
+                            className='object-cover'
+                          />
+                        </div>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -381,9 +462,10 @@ export default function Navbar() {
                           <Link
                             href='/actions/ateliers-ludiques'
                             onClick={handleNavClick}
-                            className={panelLinkClass(
-                              "/actions/ateliers-ludiques"
-                            )}
+                            className={
+                              (panelLinkClass("/actions/ateliers-ludiques"),
+                              "hover:font-bold")
+                            }
                           >
                             Nos ateliers ludiques
                           </Link>
@@ -392,9 +474,10 @@ export default function Navbar() {
                           <Link
                             href='/actions/sensibilisation'
                             onClick={handleNavClick}
-                            className={panelLinkClass(
-                              "/actions/sensibilisation"
-                            )}
+                            className={
+                              (panelLinkClass("/actions/sensibilisation"),
+                              "hover:font-bold")
+                            }
                           >
                             Nos stands de sensibilisation
                           </Link>
@@ -403,7 +486,10 @@ export default function Navbar() {
                           <Link
                             href='/actions/formations'
                             onClick={handleNavClick}
-                            className={panelLinkClass("/actions/formations")}
+                            className={
+                              (panelLinkClass("/actions/formations"),
+                              "hover:font-bold")
+                            }
                           >
                             Nos formations
                           </Link>
@@ -412,7 +498,10 @@ export default function Navbar() {
                           <Link
                             href='/actions/conferences'
                             onClick={handleNavClick}
-                            className={panelLinkClass("/actions/conferences")}
+                            className={
+                              (panelLinkClass("/actions/conferences"),
+                              "hover:font-bold")
+                            }
                           >
                             Nos conferences
                           </Link>
@@ -421,9 +510,10 @@ export default function Navbar() {
                           <Link
                             href='/actions/initiatives-locales'
                             onClick={handleNavClick}
-                            className={panelLinkClass(
-                              "/actions/initiatives-locales"
-                            )}
+                            className={
+                              (panelLinkClass("/actions/initiatives-locales"),
+                              "hover:font-bold")
+                            }
                           >
                             Nos initiatives locales
                           </Link>
@@ -432,9 +522,12 @@ export default function Navbar() {
                           <Link
                             href='/actions/initiatives-a-l-etranger'
                             onClick={handleNavClick}
-                            className={panelLinkClass(
-                              "/actions/initiatives-a-l-etranger"
-                            )}
+                            className={
+                              (panelLinkClass(
+                                "/actions/initiatives-a-l-etranger"
+                              ),
+                              "hover:font-bold")
+                            }
                           >
                             Nos initiatives à l&#39;étranger
                           </Link>
@@ -442,9 +535,9 @@ export default function Navbar() {
                       </ul>
                     </div>
 
-                    <div className='sup-md:px-14 w-[60%] px-4 py-4'>
+                    <div className='sup-md:px-14 w-full px-4 py-4 bg-blue-200'>
                       <p className='text-red-500 text-sm italic'>
-                        {actionsMessage}
+                        {/* {actionsMessage} */}
                       </p>
                     </div>
                   </>
