@@ -1,18 +1,18 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contactez nous pour plus d'information | La Culotte Rouge",
+  title: "Contactez-nous pour plus d'information | Gabon Decouverte",
   description:
-    "Contactez l’association La Culotte Rouge pour en savoir plus sur nos actions d’éducation menstruelle et nos ressources autour du cycle menstruel.",
+    "Contactez Gabon Decouverte pour en savoir plus sur nos activités.",
   keywords: [
-    "éducation menstruelle",
-    "cycle menstruel",
+    "activité nautique",
+    "contact",
     "informations règles",
-    "pédagogie menstruelle",
-    "santé des femmes",
-    "sensibilisation cycle",
-    "La Culotte Rouge association",
-    "Contact",
+    "restauration",
+    "voyages",
+    "activites",
+    "gabon",
+    "organisation de voyages",
   ],
   alternates: {
     canonical: "https://www.decouvertegabon.com/contact",
