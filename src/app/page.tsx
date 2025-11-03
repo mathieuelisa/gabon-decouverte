@@ -38,5 +38,9 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <p>COUCOU WORLD</p>;
+  return (
+    <section className='h-[600px] bg-white'>
+      <p>COUCOU WORLD</p>
+    </section>
+  );
 }
