@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
 import { SlUser } from 'react-icons/sl'
@@ -12,10 +13,13 @@ import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
 
 import { useMobileMenu } from '@/contexts/MobileMenuContext'
+import i18n from '@/i18n'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
+	const { t } = useTranslation()
+	const [language, setLanguage] = useState('fr')
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
@@ -77,6 +81,9 @@ export default function Navbar() {
 		setActivePanel((prev) => (prev === key ? null : key))
 	}
 
+	// useEffect(() => {
+	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
+	// }, [])
 	useEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') closePanel()
@@ -123,7 +130,17 @@ export default function Navbar() {
 
 					<section className='flex w-2xs items-center justify-center gap-4'>
 						<SlUser />
-						<p>EN / FR</p>
+						<p>{t('common:login')}</p>
+						<button
+							onClick={() => {
+								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
+									setLanguage(i18n.language)
+								})
+							}}
+							type='button'
+						>
+							change langue {language}
+						</button>
 					</section>
 				</div>
 			</section>
