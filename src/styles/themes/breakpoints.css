@@ -1,0 +1,7 @@
+@theme {
+	--breakpoint-sup-sm: 640px;
+	--breakpoint-sup-md: 768px;
+	--breakpoint-sup-lg: 1024px;
+	--breakpoint-sup-xl: 1280px;
+	--breakpoint-sup-xxl: 1440px;
+}

@@ -1,0 +1,22 @@
+lefthook: pnpm lefthook
+#lefthook: |
+#  cd app
+#  LEFTHOOK_VERBOSE=1 pnpm lefthook
+
+# git config --unset core.hooksPath
+
+pre-commit:
+  parallel: true
+  commands:
+    check:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: mkdir -p reports && pnpm biome check --diagnostic-level=error --no-errors-on-unmatched --write {staged_files} 2> reports/report-check.log
+      stage_fixed: true
+    format:
+      run: mkdir -p reports && pnpm biome format --diagnostic-level=error --no-errors-on-unmatched --write {staged_files} 2> reports/report-format.log
+      stage_fixed: true
+
+pre-push:
+  commands:
+    lint ts:
+      run: pnpm tsc --pretty --noEmit
