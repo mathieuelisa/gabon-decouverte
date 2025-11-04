@@ -8,7 +8,9 @@ export type Pricing = {
   title: string;
 };
 
-export type PanelKey = "agir" | "asso" | "actions";
+export type PanelKey = "activité" | "decouverte";
+export type ActiviteKey = "art" | "eco" | "nature";
+export type DecouverteKey = "libreville" | "oyem" | "mayumba" | "lambarene";
 
 export type Slide = {
   id: number;

@@ -13,27 +13,22 @@ import { CiMenuBurger } from "react-icons/ci";
 import { VscClose } from "react-icons/vsc";
 import { SlUser } from "react-icons/sl";
 
-import { PanelKey } from "@/app/types/common";
+import { ActiviteKey, DecouverteKey, PanelKey } from "@/app/types/common";
 import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { useMobileMenu } from "@/app/contexts/MobileMenuContext";
 
 import Image from "next/image";
 
-type ActiviteKey = "art" | "eco" | "nature";
-
-type DecouverteKey = "libreville" | "oyem" | "mayumba" | "lambarene";
-
 export default function Navbar() {
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
   const [selectedActivite, setSelectedActivite] = useState<ActiviteKey | null>(
     null
   );
-
   const [selectedDecouverte, setSelectedDecouverte] =
     useState<DecouverteKey | null>(null);
 
-  // Images pour activité
+  // Images de couverture pour activité part
   const activiteImageMap: Record<ActiviteKey, { src: string; alt: string }> = {
     art: {
       src: "/assets/images/activites/art-culture.jpg",
@@ -49,7 +44,7 @@ export default function Navbar() {
     },
   };
 
-  // Images pour decouverte
+  // Images de couverture pour decouverte part
   const decouverteImageMap: Record<
     DecouverteKey,
     { src: string; alt: string }
@@ -168,16 +163,16 @@ export default function Navbar() {
             <li className='flex items-center justify-center gap-2'>
               <button
                 type='button'
-                onClick={() => togglePanel("agir")}
-                aria-expanded={isOpen && activePanel === "agir"}
+                onClick={() => togglePanel("activité")}
+                aria-expanded={isOpen && activePanel === "activité"}
                 aria-controls='navbar-extended-panel'
                 className={twMerge(
                   "text-black cursor-pointer flex items-center gap-2 text-sm uppercase ml-5 duration-300 font-display",
-                  isOpen && activePanel === "agir" ? "text-black" : ""
+                  isOpen && activePanel === "activité" ? "text-black" : ""
                 )}
               >
                 Activités
-                {activePanel === "agir" ? (
+                {activePanel === "activité" ? (
                   <BsChevronCompactDown />
                 ) : (
                   <BsChevronCompactUp />
@@ -187,35 +182,16 @@ export default function Navbar() {
             <li className='flex items-center justify-center gap-2'>
               <button
                 type='button'
-                onClick={() => togglePanel("asso")}
-                aria-expanded={isOpen && activePanel === "asso"}
+                onClick={() => togglePanel("decouverte")}
+                aria-expanded={isOpen && activePanel === "decouverte"}
                 aria-controls='navbar-extended-panel'
                 className={twMerge(
                   "text-black cursor-pointer text-sm flex  items-center gap-2 uppercase ml-5 duration-300 font-display",
-                  isOpen && activePanel === "asso" ? "text-black" : ""
+                  isOpen && activePanel === "decouverte" ? "text-black" : ""
                 )}
               >
                 Découvrir
-                {activePanel === "asso" ? (
-                  <BsChevronCompactDown />
-                ) : (
-                  <BsChevronCompactUp />
-                )}
-              </button>
-            </li>
-            <li className='flex items-center justify-center gap-2'>
-              <button
-                type='button'
-                onClick={() => togglePanel("actions")}
-                aria-expanded={isOpen && activePanel === "actions"}
-                aria-controls='navbar-extended-panel'
-                className={twMerge(
-                  "text-black cursor-pointer text-sm flex items-center gap-2 uppercase ml-5 duration-300 font-display",
-                  isOpen && activePanel === "actions" ? "text-black" : ""
-                )}
-              >
-                Nos actions
-                {activePanel === "actions" ? (
+                {activePanel === "decouverte" ? (
                   <BsChevronCompactDown />
                 ) : (
                   <BsChevronCompactUp />
@@ -227,10 +203,10 @@ export default function Navbar() {
               href='/contact'
               onClick={handleNavClick}
               className={twMerge(
-                "text-black text-sm uppercase ml-5 duration-500 ease-in-out transition-all font-display"
+                "text-black text-sm uppercase ml-5 font-display"
               )}
             >
-              Bavardons ensemble
+              Contact
             </Link>
           </ul>
         </nav>
@@ -246,20 +222,13 @@ export default function Navbar() {
               <VscClose />
             </button>
           ) : (
-            <CiMenuBurger />
+            <CiMenuBurger
+              aria-label='Ouvrir le menu mobile'
+              onClick={toggleMobileMenu}
+            />
           )}
         </nav>
       </section>
-
-      {/* Overlay cliquable (click-outside) */}
-      {isOpen && (
-        <button
-          type='button'
-          aria-label='Fermer le panneau'
-          onClick={closePanel}
-          className='fixed inset-0 z-40 cursor-default'
-        />
-      )}
 
       {/* Panneau extensible qui s'ouvre EN DESSOUS de la navbar */}
       <AnimatePresence initial={false}>
@@ -286,7 +255,7 @@ export default function Navbar() {
                 transition={{ duration: 0.25 }}
                 className='flex w-full'
               >
-                {activePanel === "agir" ? (
+                {activePanel === "activité" ? (
                   <>
                     <div className='sup-md:px-14 border-r border-red-500 px-4 py-4 w-[30%]'>
                       <ul className='flex flex-col gap-4'>
@@ -336,7 +305,7 @@ export default function Navbar() {
                         </li>
                       </ul>
                     </div>
-                    <div className='sup-md:px-14 w-full bg-amber-200'>
+                    <div className='relative sup-md:px-14 w-full bg-amber-200'>
                       {selectedActivite ? (
                         <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
                           <Image
@@ -349,6 +318,7 @@ export default function Navbar() {
                           />
                         </div>
                       ) : (
+                        // Image par defaut
                         <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
                           <Image
                             src='/assets/images/activites/art-culture.jpg'
@@ -358,189 +328,116 @@ export default function Navbar() {
                           />
                         </div>
                       )}
-                    </div>
-                  </>
-                ) : activePanel === "asso" ? (
-                  <>
-                    <div className='sup-md:px-14 border-r border-red-500 px-4 py-4 w-[30%]'>
-                      <ul className='flex flex-col gap-4'>
-                        <li>
-                          <Link
-                            className={
-                              (panelLinkClass("/voyage-decouverte/libreville"),
-                              "hover:font-bold")
-                            }
-                            href='/voyage-decouverte/libreville'
-                            onClick={handleNavClick}
-                            onMouseEnter={() =>
-                              setSelectedDecouverte("libreville")
-                            }
-                            onFocus={() => setSelectedDecouverte("libreville")}
-                          >
-                            Partir à la découverte de libreville
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            className={
-                              (panelLinkClass("/voyage-decouverte/lambarene"),
-                              "hover:font-bold")
-                            }
-                            href='/voyage-decouverte/lambarene'
-                            onClick={handleNavClick}
-                            onMouseEnter={() =>
-                              setSelectedDecouverte("lambarene")
-                            }
-                            onFocus={() => setSelectedDecouverte("lambarene")}
-                          >
-                            Visitez Lambaréné, le cœur battant du Gabon
-                          </Link>
-                        </li>
 
-                        <li>
-                          <Link
-                            className={
-                              (panelLinkClass("/voyage-decouverte/mayumba"),
-                              "hover:font-bold")
-                            }
-                            href='/voyage-decouverte/mayumba'
-                            onClick={handleNavClick}
-                            onMouseEnter={() =>
-                              setSelectedDecouverte("mayumba")
-                            }
-                            onFocus={() => setSelectedDecouverte("mayumba")}
-                          >
-                            Explorez Mayumba, un joyau du Gabon
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            className={
-                              (panelLinkClass("/voyage-decouverte/oyem"),
-                              "hover:font-bold")
-                            }
-                            href='/voyage-decouverte/oyem'
-                            onClick={handleNavClick}
-                            onMouseEnter={() => setSelectedDecouverte("oyem")}
-                            onFocus={() => setSelectedDecouverte("oyem")}
-                          >
-                            À la découverte de Oyem, entre traditions et
-                            modernité
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className='sup-md:px-14 w-full px-4 py-4 bg-red-200'>
-                      {selectedDecouverte ? (
-                        <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
-                          <Image
-                            src={decouverteImageMap[selectedDecouverte].src}
-                            alt={decouverteImageMap[selectedDecouverte].alt}
-                            fill
-                            sizes='(max-width: 768px) 100vw, 70vw'
-                            className='object-cover'
-                            priority
-                          />
-                        </div>
-                      ) : (
-                        <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
-                          <Image
-                            src='/assets/images/activites/art-culture.jpg'
-                            alt='Activités'
-                            fill
-                            className='object-cover'
-                          />
-                        </div>
-                      )}
+                      <button
+                        type='button'
+                        className='absolute cursor-pointer bottom-56 font-display transition-all ease-in-out duration-400 bg-black hover:bg-shark-800 text-white font-bold px-7 py-2'
+                      >
+                        DECOUVRIR NOS ACTIVITES
+                      </button>
                     </div>
                   </>
                 ) : (
-                  <>
-                    <div className='sup-md:px-14 border-r border-red-500 px-4 py-4 w-[30%]'>
-                      <ul className='flex flex-col gap-4'>
-                        <li>
-                          <Link
-                            href='/actions/ateliers-ludiques'
-                            onClick={handleNavClick}
-                            className={
-                              (panelLinkClass("/actions/ateliers-ludiques"),
-                              "hover:font-bold")
-                            }
-                          >
-                            Nos ateliers ludiques
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href='/actions/sensibilisation'
-                            onClick={handleNavClick}
-                            className={
-                              (panelLinkClass("/actions/sensibilisation"),
-                              "hover:font-bold")
-                            }
-                          >
-                            Nos stands de sensibilisation
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href='/actions/formations'
-                            onClick={handleNavClick}
-                            className={
-                              (panelLinkClass("/actions/formations"),
-                              "hover:font-bold")
-                            }
-                          >
-                            Nos formations
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href='/actions/conferences'
-                            onClick={handleNavClick}
-                            className={
-                              (panelLinkClass("/actions/conferences"),
-                              "hover:font-bold")
-                            }
-                          >
-                            Nos conferences
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href='/actions/initiatives-locales'
-                            onClick={handleNavClick}
-                            className={
-                              (panelLinkClass("/actions/initiatives-locales"),
-                              "hover:font-bold")
-                            }
-                          >
-                            Nos initiatives locales
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href='/actions/initiatives-a-l-etranger'
-                            onClick={handleNavClick}
-                            className={
-                              (panelLinkClass(
-                                "/actions/initiatives-a-l-etranger"
-                              ),
-                              "hover:font-bold")
-                            }
-                          >
-                            Nos initiatives à l&#39;étranger
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
+                  activePanel === "decouverte" && (
+                    <>
+                      <div className='sup-md:px-14 border-r border-red-500 px-4 py-4 w-[30%]'>
+                        <ul className='flex flex-col gap-4'>
+                          <li>
+                            <Link
+                              className={
+                                (panelLinkClass(
+                                  "/voyage-decouverte/libreville"
+                                ),
+                                "hover:font-bold")
+                              }
+                              href='/voyage-decouverte/libreville'
+                              onClick={handleNavClick}
+                              onMouseEnter={() =>
+                                setSelectedDecouverte("libreville")
+                              }
+                              onFocus={() =>
+                                setSelectedDecouverte("libreville")
+                              }
+                            >
+                              Partir à la découverte de libreville
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={
+                                (panelLinkClass("/voyage-decouverte/lambarene"),
+                                "hover:font-bold")
+                              }
+                              href='/voyage-decouverte/lambarene'
+                              onClick={handleNavClick}
+                              onMouseEnter={() =>
+                                setSelectedDecouverte("lambarene")
+                              }
+                              onFocus={() => setSelectedDecouverte("lambarene")}
+                            >
+                              Visitez Lambaréné, le cœur battant du Gabon
+                            </Link>
+                          </li>
 
-                    <div className='sup-md:px-14 w-full px-4 py-4 bg-blue-200'>
-                      <p className='text-red-500 text-sm italic'>
-                        {/* {actionsMessage} */}
-                      </p>
-                    </div>
-                  </>
+                          <li>
+                            <Link
+                              className={
+                                (panelLinkClass("/voyage-decouverte/mayumba"),
+                                "hover:font-bold")
+                              }
+                              href='/voyage-decouverte/mayumba'
+                              onClick={handleNavClick}
+                              onMouseEnter={() =>
+                                setSelectedDecouverte("mayumba")
+                              }
+                              onFocus={() => setSelectedDecouverte("mayumba")}
+                            >
+                              Explorez Mayumba, un joyau du Gabon
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              className={
+                                (panelLinkClass("/voyage-decouverte/oyem"),
+                                "hover:font-bold")
+                              }
+                              href='/voyage-decouverte/oyem'
+                              onClick={handleNavClick}
+                              onMouseEnter={() => setSelectedDecouverte("oyem")}
+                              onFocus={() => setSelectedDecouverte("oyem")}
+                            >
+                              À la découverte de Oyem, entre traditions et
+                              modernité
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className='sup-md:px-14 w-full px-4 py-4 bg-red-200'>
+                        {selectedDecouverte ? (
+                          <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
+                            <Image
+                              src={decouverteImageMap[selectedDecouverte].src}
+                              alt={decouverteImageMap[selectedDecouverte].alt}
+                              fill
+                              sizes='(max-width: 768px) 100vw, 70vw'
+                              className='object-cover'
+                              priority
+                            />
+                          </div>
+                        ) : (
+                          // Image par defaut
+                          <div className='relative w-full h-full sup-md:h-[420px] rounded-xl overflow-hidden'>
+                            <Image
+                              src='/assets/images/activites/art-culture.jpg'
+                              alt='Activités'
+                              fill
+                              className='object-cover'
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  )
                 )}
               </motion.div>
             </AnimatePresence>
