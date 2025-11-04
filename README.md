@@ -3,7 +3,9 @@
 First, run the development server:
 
 ```bash
-npm run dev
+pnpm install
+pnpm lefthook install
+pnpm dev
 ```
 
 Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir le résultat.
