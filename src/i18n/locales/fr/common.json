@@ -1,16 +1,3 @@
 {
-	"cancel": "Annuler",
-	"close": "Fermer",
-	"confirmation": "Confirmation",
-	"dontShowAgain": "Ne plus afficher",
-	"emailAddress": "Adresse email",
-	"identifier": "Identifiant",
-	"logIn": "Se connecter",
-	"password": "Mot de passe",
-	"phoneNumber": "Numéro de téléphone",
-	"placeholder": {
-		"emailSample": "prenom.nom@entreprise.com"
-	},
-	"setMyPassword": "Définir mon mot de passe",
-	"validate": "Valider"
+	"login": "connexion"
 }
