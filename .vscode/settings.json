@@ -18,8 +18,8 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"biome_lsp.trace.server": "messages",
-	"biome.configurationPath": "app/biome.jsonc",
-	"biome.lsp.bin": "app/node_modules/@biomejs/biome/bin/biome",
+	"biome.configurationPath": "biome.jsonc",
+	"biome.lsp.bin": "node_modules/@biomejs/biome/bin/biome",
 	"biome.lsp.trace.server": "verbose",
 	"biome.suggestInstallingGlobally": false,
 	"editor.codeActionsOnSave": {

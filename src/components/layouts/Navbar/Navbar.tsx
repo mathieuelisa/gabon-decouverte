@@ -19,6 +19,7 @@ import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
 	const { t } = useTranslation()
+
 	const [language, setLanguage] = useState('fr')
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
@@ -44,19 +45,19 @@ export default function Navbar() {
 	const decouverteImageMap: Record<TDecouverteKey, { src: string; alt: string }> = {
 		lambarene: {
 			alt: 'Ecotourisme & balnéaire au Gabon',
-			src: '/assets/images/activites/ecotourisme-balneaire.jpg'
+			src: '/assets/images/decouverte/sunset.jpg'
 		},
 		libreville: {
 			alt: 'Art & culture au Gabon',
-			src: '/assets/images/activites/art-culture.jpg'
+			src: '/assets/images/decouverte/homme_african.jpg'
 		},
 		mayumba: {
 			alt: 'Nature & Découverte au Gabon',
-			src: '/assets/images/activites/nature-decouverte.jpg'
+			src: '/assets/images/decouverte/girafe.jpg'
 		},
 		oyem: {
 			alt: 'Nature & Découverte au Gabon',
-			src: '/assets/images/activites/nature-decouverte.jpg'
+			src: '/assets/images/decouverte/africa.jpg'
 		}
 	}
 
@@ -135,6 +136,7 @@ export default function Navbar() {
 							onClick={() => {
 								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
 									setLanguage(i18n.language)
+									// localStorage.setItem('language', i18n.language)
 								})
 							}}
 							type='button'
@@ -223,7 +225,7 @@ export default function Navbar() {
 			<AnimatePresence initial={false}>
 				{isOpen && (
 					<motion.div
-						animate={{ height: 'calc(100vh - 177px)', opacity: 1 }}
+						animate={{ height: 'calc(100vh - 163px)', opacity: 1 }}
 						className='fixed top-41 z-60 flex w-full overflow-hidden rounded-b-2xl bg-white'
 						exit={{ height: 0, opacity: 0 }}
 						id='navbar-extended-panel'
@@ -292,9 +294,9 @@ export default function Navbar() {
 												</li>
 											</ul>
 										</div>
-										<div className='relative w-full bg-amber-200 sup-md:px-14'>
+										<div className='relative w-full bg-amber-200'>
 											{selectedActivite ? (
-												<div className='relative h-full sup-md:h-[420px] w-full overflow-hidden rounded-xl'>
+												<div className='relative h-full w-full overflow-hidden'>
 													<Image
 														alt={activiteImageMap[selectedActivite].alt}
 														className='object-cover'
@@ -306,7 +308,7 @@ export default function Navbar() {
 												</div>
 											) : (
 												// Image par defaut
-												<div className='relative h-full sup-md:h-[420px] w-full overflow-hidden rounded-xl'>
+												<div className='relative h-full w-full overflow-hidden'>
 													<Image
 														alt='Activités'
 														className='object-cover'
@@ -316,12 +318,13 @@ export default function Navbar() {
 												</div>
 											)}
 
-											<button
-												className='absolute bottom-56 cursor-pointer bg-black px-7 py-2 font-bold font-display text-white transition-all duration-400 ease-in-out hover:bg-shark-800'
+											<Link
+												className='absolute right-7 bottom-7 cursor-pointer rounded-sm bg-black px-7 py-2 font-bold font-display text-white transition-all duration-400 ease-in-out hover:bg-shark-800'
+												href={'/activité'}
 												type='button'
 											>
 												DECOUVRIR NOS ACTIVITES
-											</button>
+											</Link>
 										</div>
 									</>
 								) : (
@@ -388,9 +391,9 @@ export default function Navbar() {
 													</li>
 												</ul>
 											</div>
-											<div className='w-full bg-red-200 px-4 sup-md:px-14 py-4'>
+											<div className='w-full bg-red-200'>
 												{selectedDecouverte ? (
-													<div className='relative h-full sup-md:h-[420px] w-full overflow-hidden rounded-xl'>
+													<div className='relative h-full w-full overflow-hidden'>
 														<Image
 															alt={decouverteImageMap[selectedDecouverte].alt}
 															className='object-cover'
@@ -402,15 +405,23 @@ export default function Navbar() {
 													</div>
 												) : (
 													// Image par defaut
-													<div className='relative h-full sup-md:h-[420px] w-full overflow-hidden rounded-xl'>
+													<div className='relative h-full w-full overflow-hidden'>
 														<Image
 															alt='Activités'
 															className='object-cover'
 															fill
-															src='/assets/images/activites/art-culture.jpg'
+															src='/assets/images/decouverte/africa.jpg'
 														/>
 													</div>
 												)}
+
+												<Link
+													className='absolute right-7 bottom-7 cursor-pointer rounded-sm bg-black px-7 py-2 font-bold font-display text-white transition-all duration-400 ease-in-out hover:bg-shark-800'
+													href={'/activité'}
+													type='button'
+												>
+													DECOUVRIR NOS DESTINATIONS
+												</Link>
 											</div>
 										</>
 									)

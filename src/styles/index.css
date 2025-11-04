@@ -1,7 +1,7 @@
 @import "tailwindcss";
-
 @import "./variant.css";
 @import "./globals.css";
 @import "./base.css";
 
 @import "./shadcn.css";
+@import "./themes/index.css";
