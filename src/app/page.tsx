@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import Banner from '@/components/Banner'
+
 export const metadata: Metadata = {
 	alternates: {
 		canonical: 'https://www.decouvertegabon.com/'
@@ -40,6 +42,7 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<section className='h-[600px] bg-white'>
+			<Banner />
 			<p>COUCOU WORLD</p>
 		</section>
 	)
