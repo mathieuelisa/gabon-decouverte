@@ -29,15 +29,15 @@ export default function Navbar() {
 	const activiteImageMap: Record<TActiviteKey, { src: string; alt: string }> = {
 		art: {
 			alt: 'Art & culture au Gabon',
-			src: '/assets/images/activites/art-culture.jpg'
+			src: '/assets/images/activites/art-culture.avif'
 		},
 		eco: {
 			alt: 'Ecotourisme & balnéaire au Gabon',
-			src: '/assets/images/activites/ecotourisme-balneaire.jpg'
+			src: '/assets/images/activites/ecotourisme-balneaire.avif'
 		},
 		nature: {
 			alt: 'Nature & Découverte au Gabon',
-			src: '/assets/images/activites/nature-decouverte.jpg'
+			src: '/assets/images/activites/nature-decouverte.avif'
 		}
 	}
 
@@ -45,19 +45,19 @@ export default function Navbar() {
 	const decouverteImageMap: Record<TDecouverteKey, { src: string; alt: string }> = {
 		lambarene: {
 			alt: 'Ecotourisme & balnéaire au Gabon',
-			src: '/assets/images/decouverte/sunset.jpg'
+			src: '/assets/images/decouverte/sunset.avif'
 		},
 		libreville: {
 			alt: 'Art & culture au Gabon',
-			src: '/assets/images/decouverte/homme_african.jpg'
+			src: '/assets/images/decouverte/homme_african.avif'
 		},
 		mayumba: {
 			alt: 'Nature & Découverte au Gabon',
-			src: '/assets/images/decouverte/girafe.jpg'
+			src: '/assets/images/decouverte/girafe.avif'
 		},
 		oyem: {
 			alt: 'Nature & Découverte au Gabon',
-			src: '/assets/images/decouverte/africa.jpg'
+			src: '/assets/images/decouverte/africa.avif'
 		}
 	}
 
@@ -65,7 +65,7 @@ export default function Navbar() {
 
 	const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
-	const panelLinkClass = (href: string) => twMerge('text-black text-sm', isActive(href) && 'text-red-500')
+	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-red-500')
 
 	const { isMobileMenuOpen, toggleMobileMenu, setMobileMenuOpen } = useMobileMenu()
 
@@ -119,7 +119,7 @@ export default function Navbar() {
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0 pl-4'>
 			<section className='w-full'>
-				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b sup-md:px-14'>
+				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white sup-md:px-14'>
 					<Link
 						aria-label='Se rendre a la page daccueil'
 						className='ml-5 flex items-center justify-center font-display sup-md:text-3xl text-2xl'
@@ -147,14 +147,14 @@ export default function Navbar() {
 				</div>
 			</section>
 
-			<section className='pl- sticky top-0 z-50 flex h-24 w-full items-center justify-between bg-white sup-md:px-14'>
+			<section className='-top-0.5 sticky z-50 flex h-24 w-full items-center justify-between bg-white sup-md:px-12'>
 				<nav aria-label='Navigation principale'>
 					<ul className='flex items-center'>
 						{NAVBAR_CONTENT.map((item) => {
 							return (
 								<Link
 									className={twMerge(
-										'ml-5 font-display text-black text-sm uppercase transition-all duration-500 ease-in-out'
+										'mr-5 font-display text-black text-lg uppercase transition-all duration-500 ease-in-out'
 									)}
 									href={item.link}
 									key={item.label}
@@ -169,7 +169,7 @@ export default function Navbar() {
 								aria-controls='navbar-extended-panel'
 								aria-expanded={isOpen && activePanel === 'activité'}
 								className={twMerge(
-									'ml-5 flex cursor-pointer items-center gap-2 font-display text-black text-sm uppercase duration-300',
+									'mr-5 flex cursor-pointer items-center gap-2 font-display text-black text-lg uppercase duration-300',
 									isOpen && activePanel === 'activité' ? 'text-black' : ''
 								)}
 								onClick={() => togglePanel('activité')}
@@ -184,7 +184,7 @@ export default function Navbar() {
 								aria-controls='navbar-extended-panel'
 								aria-expanded={isOpen && activePanel === 'decouverte'}
 								className={twMerge(
-									'ml-5 flex cursor-pointer items-center gap-2 font-display text-black text-sm uppercase duration-300',
+									'mr-5 flex cursor-pointer items-center gap-2 font-display text-black text-lg uppercase duration-300',
 									isOpen && activePanel === 'decouverte' ? 'text-black' : ''
 								)}
 								onClick={() => togglePanel('decouverte')}
@@ -196,7 +196,7 @@ export default function Navbar() {
 						</li>
 
 						<Link
-							className={twMerge('ml-5 font-display text-black text-sm uppercase')}
+							className={twMerge('mr-5 font-display text-black text-lg uppercase')}
 							href='/contact'
 							onClick={handleNavClick}
 						>
@@ -226,7 +226,7 @@ export default function Navbar() {
 				{isOpen && (
 					<motion.div
 						animate={{ height: 'calc(100vh - 163px)', opacity: 1 }}
-						className='fixed top-41 z-60 flex w-full overflow-hidden rounded-b-2xl bg-white'
+						className='fixed top-41 z-60 flex w-full overflow-hidden bg-white'
 						exit={{ height: 0, opacity: 0 }}
 						id='navbar-extended-panel'
 						initial={{ height: 0, opacity: 0 }}
@@ -248,7 +248,7 @@ export default function Navbar() {
 							>
 								{activePanel === 'activité' ? (
 									<>
-										<div className='w-[30%] border-red-500 border-r px-4 sup-md:px-14 py-4'>
+										<div className='flex w-[30%] flex-col gap-14 px-4 sup-md:px-12 py-4'>
 											<ul className='flex flex-col gap-4'>
 												<li>
 													<Link
@@ -293,8 +293,16 @@ export default function Navbar() {
 													</Link>
 												</li>
 											</ul>
+
+											<Link
+												className='flex cursor-pointer justify-center rounded-sm bg-blueny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-blueny-50'
+												href={'/activities'}
+												type='button'
+											>
+												DECOUVRIR NOS ACTIVITES
+											</Link>
 										</div>
-										<div className='relative w-full bg-amber-200'>
+										<div className='relative w-full'>
 											{selectedActivite ? (
 												<div className='relative h-full w-full overflow-hidden'>
 													<Image
@@ -313,24 +321,16 @@ export default function Navbar() {
 														alt='Activités'
 														className='object-cover'
 														fill
-														src='/assets/images/activites/art-culture.jpg'
+														src='/assets/images/activites/art-culture.avif'
 													/>
 												</div>
 											)}
-
-											<Link
-												className='absolute right-7 bottom-7 cursor-pointer rounded-sm bg-black px-7 py-2 font-bold font-display text-white transition-all duration-400 ease-in-out hover:bg-shark-800'
-												href={'/activité'}
-												type='button'
-											>
-												DECOUVRIR NOS ACTIVITES
-											</Link>
 										</div>
 									</>
 								) : (
 									activePanel === 'decouverte' && (
 										<>
-											<div className='w-[30%] border-red-500 border-r px-4 sup-md:px-14 py-4'>
+											<div className='flex w-[30%] flex-col gap-14 px-4 sup-md:px-12 py-4'>
 												<ul className='flex flex-col gap-4'>
 													<li>
 														<Link
@@ -390,8 +390,16 @@ export default function Navbar() {
 														</Link>
 													</li>
 												</ul>
+
+												<Link
+													className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+													href={'/destinations'}
+													type='button'
+												>
+													DECOUVRIR NOS DESTINATIONS
+												</Link>
 											</div>
-											<div className='w-full bg-red-200'>
+											<div className='w-full'>
 												{selectedDecouverte ? (
 													<div className='relative h-full w-full overflow-hidden'>
 														<Image
@@ -410,18 +418,10 @@ export default function Navbar() {
 															alt='Activités'
 															className='object-cover'
 															fill
-															src='/assets/images/decouverte/africa.jpg'
+															src='/assets/images/decouverte/africa.avif'
 														/>
 													</div>
 												)}
-
-												<Link
-													className='absolute right-7 bottom-7 cursor-pointer rounded-sm bg-black px-7 py-2 font-bold font-display text-white transition-all duration-400 ease-in-out hover:bg-shark-800'
-													href={'/activité'}
-													type='button'
-												>
-													DECOUVRIR NOS DESTINATIONS
-												</Link>
 											</div>
 										</>
 									)
