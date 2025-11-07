@@ -41,7 +41,7 @@ export default function Navbar() {
 		}
 	}
 
-	// Images de couverture pour decouverte part
+	// Images de couverture pour decouverte part.
 	const decouverteImageMap: Record<TDecouverteKey, { src: string; alt: string }> = {
 		lambarene: {
 			alt: 'Ecotourisme & balnéaire au Gabon',
