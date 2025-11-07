@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import Banner from '@/components/Banner'
+import HightLights from '@/components/HighLights'
 
 export const metadata: Metadata = {
 	alternates: {
@@ -43,6 +44,7 @@ export default function Home() {
 	return (
 		<section className='h-[600px] bg-white'>
 			<Banner />
+			<HightLights />
 			<p>COUCOU WORLD</p>
 		</section>
 	)

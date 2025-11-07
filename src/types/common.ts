@@ -17,3 +17,9 @@ export type TSlide = {
 	image: string
 	title?: string
 }
+
+export type THighlight = {
+	description: string
+	id: number
+	title: string
+}
