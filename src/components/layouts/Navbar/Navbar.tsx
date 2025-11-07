@@ -41,7 +41,7 @@ export default function Navbar() {
 		}
 	}
 
-	// Images de couverture pour decouverte part
+	// Images de couverture pour decouverte part.
 	const decouverteImageMap: Record<TDecouverteKey, { src: string; alt: string }> = {
 		lambarene: {
 			alt: 'Ecotourisme & balnéaire au Gabon',
@@ -119,10 +119,10 @@ export default function Navbar() {
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0 pl-4'>
 			<section className='w-full'>
-				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white sup-md:px-14'>
+				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white sup-md:px-12'>
 					<Link
 						aria-label='Se rendre a la page daccueil'
-						className='ml-5 flex items-center justify-center font-display sup-md:text-3xl text-2xl'
+						className='flex items-center justify-center font-display sup-md:text-3xl text-2xl'
 						href='/public'
 						onClick={() => setMobileMenuOpen(false)}
 					>
