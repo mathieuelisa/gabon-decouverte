@@ -129,7 +129,7 @@ export default function Navbar() {
 						GABON DECOUVERTE
 					</Link>
 
-					<section className='flex w-2xs items-center justify-center gap-4'>
+					<section className='flex w-sm items-center justify-center gap-4'>
 						<SlUser />
 						<p>{t('common:login')}</p>
 						<button
@@ -143,6 +143,7 @@ export default function Navbar() {
 						>
 							change langue {language}
 						</button>
+						<Link href={'/'}>Devenir prestataire</Link>
 					</section>
 				</div>
 			</section>
