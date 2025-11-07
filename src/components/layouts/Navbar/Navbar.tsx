@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
+import { PiHandshake } from 'react-icons/pi'
 import { SlUser } from 'react-icons/sl'
 import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
@@ -117,19 +118,19 @@ export default function Navbar() {
 	}, [pathname])
 
 	return (
-		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0 pl-4'>
+		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
-				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white sup-md:px-12'>
+				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white'>
 					<Link
 						aria-label='Se rendre a la page daccueil'
-						className='flex items-center justify-center font-display sup-md:text-3xl text-2xl'
-						href='/public'
+						className='flex items-center justify-center pl-14 font-display sup-md:text-3xl text-2xl text-black'
+						href='/'
 						onClick={() => setMobileMenuOpen(false)}
 					>
 						GABON DECOUVERTE
 					</Link>
 
-					<section className='flex w-sm items-center justify-center gap-4'>
+					<section className='flex w-[400px] items-center justify-center gap-4 pr-3.5 text-black'>
 						<SlUser />
 						<p>{t('common:login')}</p>
 						<button
@@ -143,14 +144,20 @@ export default function Navbar() {
 						>
 							change langue {language}
 						</button>
-						<Link href={'/'}>Devenir prestataire</Link>
+						{/* TODO: Gerer le hidden et le block */}
+						<Link className='block sup-sm:hidden' href={'/devenir-prestataire'}>
+							<PiHandshake className='h-5 w-5' />
+						</Link>
+						<Link className='sup-sm:block hidden' href={'/devenir-prestataire'}>
+							Devenir prestataire
+						</Link>
 					</section>
 				</div>
 			</section>
 
-			<section className='-top-0.5 sticky z-50 flex h-24 w-full items-center justify-between bg-white sup-md:px-12'>
+			<section className='-top-0.5 sticky z-50 flex h-24 w-full items-center justify-between bg-white'>
 				<nav aria-label='Navigation principale'>
-					<ul className='flex items-center'>
+					<ul className='flex items-center pl-14'>
 						{NAVBAR_CONTENT.map((item) => {
 							return (
 								<Link
