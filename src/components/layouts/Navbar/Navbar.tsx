@@ -428,7 +428,7 @@ export default function Navbar() {
 														/>
 													</div>
 												) : (
-													// Image par defaut
+													// Image par defaut.
 													<div className='relative h-full w-full overflow-hidden'>
 														<Image
 															alt='Activités'
