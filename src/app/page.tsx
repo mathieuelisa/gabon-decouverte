@@ -45,7 +45,7 @@ export default function Home() {
 		<section className='h-[600px] bg-white'>
 			<Banner />
 			<HightLights />
-			<p>COUCOU WORLD</p>
+			<p>coucou</p>
 		</section>
 	)
 }

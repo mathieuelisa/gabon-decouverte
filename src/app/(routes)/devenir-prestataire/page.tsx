@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import BecomePartner from '@/components/BecomePartner'
+
 export const metadata: Metadata = {
 	alternates: {
 		canonical: 'https://www.decouvertegabon.com/contact'
@@ -11,20 +13,22 @@ export const metadata: Metadata = {
 		'informations règles',
 		'restauration',
 		'voyages',
+		'recrutement',
 		'activites',
 		'gabon',
+		'prestataire',
 		'organisation de voyages'
 	],
 	openGraph: {
 		description: 'Bla bla',
 		locale: 'fr_FR',
-		title: 'Contact | Decouverte Gabon',
+		title: 'Devenir prestataire | Decouverte Gabon',
 		type: 'website',
 		url: 'https://www.decouvertegabon.com/contact'
 	},
-	title: "Contactez-nous pour plus d'information | Gabon Decouverte"
+	title: 'Devenir prestataire | Gabon Decouverte'
 }
 
-export default function ContactPage() {
-	return <p>Page de contact</p>
+export default function BecomePartnerPage() {
+	return <BecomePartner />
 }

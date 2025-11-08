@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
+import { PiHandshake } from 'react-icons/pi'
 import { SlUser } from 'react-icons/sl'
 import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
@@ -117,19 +118,27 @@ export default function Navbar() {
 	}, [pathname])
 
 	return (
-		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0 pl-4'>
+		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
-				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white sup-md:px-12'>
+				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white'>
 					<Link
 						aria-label='Se rendre a la page daccueil'
-						className='flex items-center justify-center font-display sup-md:text-3xl text-2xl'
-						href='/public'
+						className='flex items-center justify-center pl-14 font-display sup-md:text-3xl text-2xl text-black'
+						href='/'
 						onClick={() => setMobileMenuOpen(false)}
 					>
+						<Image
+							alt='logo gabon decouverte'
+							className='relative'
+							height={60}
+							priority
+							src='/assets/images/logo.png'
+							width={60}
+						/>
 						GABON DECOUVERTE
 					</Link>
 
-					<section className='flex w-2xs items-center justify-center gap-4'>
+					<section className='flex w-[400px] items-center justify-center gap-4 pr-3.5 text-black'>
 						<SlUser />
 						<p>{t('common:login')}</p>
 						<button
@@ -143,13 +152,20 @@ export default function Navbar() {
 						>
 							change langue {language}
 						</button>
+						{/* TODO: Gerer le hidden et le block */}
+						<Link className='block sup-sm:hidden' href={'/devenir-prestataire'}>
+							<PiHandshake className='h-5 w-5' />
+						</Link>
+						<Link className='sup-sm:block hidden' href={'/devenir-prestataire'} onClick={handleNavClick}>
+							Devenir prestataire
+						</Link>
 					</section>
 				</div>
 			</section>
 
-			<section className='-top-0.5 sticky z-50 flex h-24 w-full items-center justify-between bg-white sup-md:px-12'>
+			<section className='-top-0.5 sticky z-50 flex h-24 w-full items-center justify-between bg-white'>
 				<nav aria-label='Navigation principale'>
-					<ul className='flex items-center'>
+					<ul className='flex items-center pl-14'>
 						{NAVBAR_CONTENT.map((item) => {
 							return (
 								<Link
@@ -254,7 +270,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/art-et-culture'),
-															'hover:font-bold'
+															'text-lg hover:font-bold'
 														)}
 														href='/activité/art-et-culture'
 														onClick={handleNavClick}
@@ -268,7 +284,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/ecotourisme-et-balneaire'),
-															'hover:font-bold'
+															'text-lg hover:font-bold'
 														)}
 														href='/activité/ecotourisme-et-balneaire'
 														onClick={handleNavClick}
@@ -282,7 +298,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/nature-et-decouverte'),
-															'hover:font-bold'
+															'text-lg hover:font-bold'
 														)}
 														href='/activité/nature-et-decouverte'
 														onClick={handleNavClick}
@@ -296,7 +312,7 @@ export default function Navbar() {
 
 											<Link
 												className='flex cursor-pointer justify-center rounded-sm bg-blueny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-blueny-50'
-												href={'/activities'}
+												href={'/experiences?type=activite'}
 												type='button'
 											>
 												DECOUVRIR NOS ACTIVITES
@@ -336,7 +352,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/libreville'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/libreville'
 															onClick={handleNavClick}
@@ -350,7 +366,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/lambarene'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/lambarene'
 															onClick={handleNavClick}
@@ -365,7 +381,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/mayumba'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/mayumba'
 															onClick={handleNavClick}
@@ -379,7 +395,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/oyem'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/oyem'
 															onClick={handleNavClick}
@@ -393,7 +409,7 @@ export default function Navbar() {
 
 												<Link
 													className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
-													href={'/destinations'}
+													href={'/experience?type=decouverte'}
 													type='button'
 												>
 													DECOUVRIR NOS DESTINATIONS
