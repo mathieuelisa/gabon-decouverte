@@ -129,7 +129,7 @@ export default function Navbar() {
 					>
 						<Image
 							alt='logo gabon decouverte'
-							className='relative object-contain'
+							className='relative'
 							height={60}
 							priority
 							src='/assets/images/logo.png'
@@ -270,7 +270,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/art-et-culture'),
-															'hover:font-bold'
+															'text-lg hover:font-bold'
 														)}
 														href='/activité/art-et-culture'
 														onClick={handleNavClick}
@@ -284,7 +284,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/ecotourisme-et-balneaire'),
-															'hover:font-bold'
+															'text-lg hover:font-bold'
 														)}
 														href='/activité/ecotourisme-et-balneaire'
 														onClick={handleNavClick}
@@ -298,7 +298,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/nature-et-decouverte'),
-															'hover:font-bold'
+															'text-lg hover:font-bold'
 														)}
 														href='/activité/nature-et-decouverte'
 														onClick={handleNavClick}
@@ -352,7 +352,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/libreville'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/libreville'
 															onClick={handleNavClick}
@@ -366,7 +366,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/lambarene'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/lambarene'
 															onClick={handleNavClick}
@@ -381,7 +381,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/mayumba'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/mayumba'
 															onClick={handleNavClick}
@@ -395,7 +395,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/oyem'),
-																'hover:font-bold'
+																'text-lg hover:font-bold'
 															)}
 															href='/voyage-decouverte/oyem'
 															onClick={handleNavClick}
