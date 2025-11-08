@@ -127,6 +127,14 @@ export default function Navbar() {
 						href='/'
 						onClick={() => setMobileMenuOpen(false)}
 					>
+						<Image
+							alt='logo gabon decouverte'
+							className='relative object-contain'
+							height={60}
+							priority
+							src='/assets/images/logo.png'
+							width={60}
+						/>
 						GABON DECOUVERTE
 					</Link>
 
@@ -148,7 +156,7 @@ export default function Navbar() {
 						<Link className='block sup-sm:hidden' href={'/devenir-prestataire'}>
 							<PiHandshake className='h-5 w-5' />
 						</Link>
-						<Link className='sup-sm:block hidden' href={'/devenir-prestataire'}>
+						<Link className='sup-sm:block hidden' href={'/devenir-prestataire'} onClick={handleNavClick}>
 							Devenir prestataire
 						</Link>
 					</section>
@@ -304,7 +312,7 @@ export default function Navbar() {
 
 											<Link
 												className='flex cursor-pointer justify-center rounded-sm bg-blueny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-blueny-50'
-												href={'/activities'}
+												href={'/experiences?type=activite'}
 												type='button'
 											>
 												DECOUVRIR NOS ACTIVITES
@@ -401,7 +409,7 @@ export default function Navbar() {
 
 												<Link
 													className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
-													href={'/destinations'}
+													href={'/experience?type=decouverte'}
 													type='button'
 												>
 													DECOUVRIR NOS DESTINATIONS

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function BecomePartner() {
 	return (
@@ -14,7 +15,15 @@ export default function BecomePartner() {
 					/>
 				</div>
 
-				<section className='flex sup-md:w-2/5 w-full flex-col justify-between gap-12 sup-md:gap-0 px-5 sup-md:px-0'>
+				<section className='relative flex sup-md:w-2/5 w-full flex-col justify-between gap-12 sup-md:gap-0 px-5 sup-md:px-0'>
+					<Image
+						alt='logo_background'
+						className='-z-1 absolute opacity-20'
+						height={600}
+						priority
+						src='/assets/images/logo_grey.png'
+						width={900}
+					/>
 					<div className='flex flex-col items-center gap-5'>
 						<h1 className='text-center sup-md:text-start text-4xl'>
 							Ensemble, construisons un partenariat durable
@@ -32,12 +41,13 @@ export default function BecomePartner() {
 					</div>
 
 					<section className='flex w-full sup-md:justify-end justify-center'>
-						<button
+						<Link
 							className='mr-0 cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+							href={'/contact'}
 							type='button'
 						>
 							REJOIGNEZ-NOUS
-						</button>
+						</Link>
 					</section>
 				</section>
 			</section>
