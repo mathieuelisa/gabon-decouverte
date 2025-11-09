@@ -192,7 +192,7 @@ export default function Navbar() {
 								type='button'
 							>
 								Activités
-								{activePanel === 'activité' ? <BsChevronCompactDown /> : <BsChevronCompactUp />}
+								{activePanel === 'activité' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
 							</button>
 						</li>
 						<li className='flex items-center justify-center gap-2'>
@@ -207,7 +207,7 @@ export default function Navbar() {
 								type='button'
 							>
 								Découvrir
-								{activePanel === 'decouverte' ? <BsChevronCompactDown /> : <BsChevronCompactUp />}
+								{activePanel === 'decouverte' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
 							</button>
 						</li>
 
@@ -406,14 +406,6 @@ export default function Navbar() {
 														</Link>
 													</li>
 												</ul>
-
-												<Link
-													className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
-													href={'/experience?type=decouverte'}
-													type='button'
-												>
-													DECOUVRIR NOS DESTINATIONS
-												</Link>
 											</div>
 											<div className='w-full'>
 												{selectedDecouverte ? (

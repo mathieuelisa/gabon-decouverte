@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
 	return (
-		<section className='h-[600px] bg-white'>
+		<section className='bg-white'>
 			<Banner />
 			<HightLights />
 			<p>coucou</p>
