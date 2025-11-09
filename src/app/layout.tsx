@@ -1,6 +1,6 @@
 import Base from '@/components/layouts/Base'
-import '@/styles/index.css'
 import '@/i18n/index'
+import '@/styles/index.css'
 
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
