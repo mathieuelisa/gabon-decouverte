@@ -311,7 +311,7 @@ export default function Navbar() {
 											</ul>
 
 											<Link
-												className='flex cursor-pointer justify-center rounded-sm bg-blueny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-blueny-50'
+												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 												href={'/experiences?type=activite'}
 												type='button'
 											>

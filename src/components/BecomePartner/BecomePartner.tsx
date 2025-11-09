@@ -5,10 +5,10 @@ export default function BecomePartner() {
 	return (
 		<section className='h-[722px] sup-md:px-40'>
 			<section className='flex sup-md:flex-row flex-col gap-10 pt-32'>
-				<div className='relative sup-md:block hidden h-[400px] w-3/5'>
+				<div className='relative sup-md:block hidden h-[400px] w-3/5 border border-shark-200'>
 					<Image
 						alt='savane africaine'
-						className='relative object-contain'
+						className='relative object-cover'
 						fill
 						priority
 						src='/assets/images/handshake.avif'
