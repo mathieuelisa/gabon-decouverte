@@ -66,7 +66,7 @@ export default function Navbar() {
 
 	const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
-	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-red-500')
+	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-greeny-50')
 
 	const { isMobileMenuOpen, toggleMobileMenu, setMobileMenuOpen } = useMobileMenu()
 
@@ -123,7 +123,7 @@ export default function Navbar() {
 				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white'>
 					<Link
 						aria-label='Se rendre a la page daccueil'
-						className='flex items-center justify-center pl-14 font-display sup-md:text-3xl text-2xl text-black'
+						className='flex items-center justify-center pl-14 font-caviarDreams sup-md:text-3xl text-2xl text-black'
 						href='/'
 						onClick={() => setMobileMenuOpen(false)}
 					>
@@ -170,7 +170,7 @@ export default function Navbar() {
 							return (
 								<Link
 									className={twMerge(
-										'mr-5 font-display text-black text-lg uppercase transition-all duration-500 ease-in-out'
+										'mr-5 font-caviarDreams text-black text-lg uppercase transition-all duration-500 ease-in-out'
 									)}
 									href={item.link}
 									key={item.label}
@@ -185,14 +185,14 @@ export default function Navbar() {
 								aria-controls='navbar-extended-panel'
 								aria-expanded={isOpen && activePanel === 'activité'}
 								className={twMerge(
-									'mr-5 flex cursor-pointer items-center gap-2 font-display text-black text-lg uppercase duration-300',
+									'mr-5 flex cursor-pointer items-center gap-2 font-caviarDreams text-black text-lg uppercase duration-300',
 									isOpen && activePanel === 'activité' ? 'text-black' : ''
 								)}
 								onClick={() => togglePanel('activité')}
 								type='button'
 							>
 								Activités
-								{activePanel === 'activité' ? <BsChevronCompactDown /> : <BsChevronCompactUp />}
+								{activePanel === 'activité' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
 							</button>
 						</li>
 						<li className='flex items-center justify-center gap-2'>
@@ -200,19 +200,19 @@ export default function Navbar() {
 								aria-controls='navbar-extended-panel'
 								aria-expanded={isOpen && activePanel === 'decouverte'}
 								className={twMerge(
-									'mr-5 flex cursor-pointer items-center gap-2 font-display text-black text-lg uppercase duration-300',
+									'mr-5 flex cursor-pointer items-center gap-2 font-caviarDreams text-black text-lg uppercase duration-300',
 									isOpen && activePanel === 'decouverte' ? 'text-black' : ''
 								)}
 								onClick={() => togglePanel('decouverte')}
 								type='button'
 							>
 								Découvrir
-								{activePanel === 'decouverte' ? <BsChevronCompactDown /> : <BsChevronCompactUp />}
+								{activePanel === 'decouverte' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
 							</button>
 						</li>
 
 						<Link
-							className={twMerge('mr-5 font-display text-black text-lg uppercase')}
+							className={twMerge('mr-5 font-caviarDreams text-black text-lg uppercase')}
 							href='/contact'
 							onClick={handleNavClick}
 						>
@@ -270,9 +270,12 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/art-et-culture'),
-															'text-lg hover:font-bold'
+															'text-lg'
 														)}
-														href='/activité/art-et-culture'
+														href={{
+															pathname: '/activite',
+															query: { type: 'art-et-culture' }
+														}}
 														onClick={handleNavClick}
 														onFocus={() => setSelectedActivite('art')}
 														onMouseEnter={() => setSelectedActivite('art')}
@@ -284,9 +287,12 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/ecotourisme-et-balneaire'),
-															'text-lg hover:font-bold'
+															'text-lg'
 														)}
-														href='/activité/ecotourisme-et-balneaire'
+														href={{
+															pathname: '/activite',
+															query: { type: 'ecotourisme-et-balneaire' }
+														}}
 														onClick={handleNavClick}
 														onFocus={() => setSelectedActivite('eco')}
 														onMouseEnter={() => setSelectedActivite('eco')}
@@ -298,9 +304,12 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/nature-et-decouverte'),
-															'text-lg hover:font-bold'
+															'text-lg'
 														)}
-														href='/activité/nature-et-decouverte'
+														href={{
+															pathname: '/activite',
+															query: { type: 'nature-et-decouverte' }
+														}}
 														onClick={handleNavClick}
 														onFocus={() => setSelectedActivite('nature')}
 														onMouseEnter={() => setSelectedActivite('nature')}
@@ -311,7 +320,7 @@ export default function Navbar() {
 											</ul>
 
 											<Link
-												className='flex cursor-pointer justify-center rounded-sm bg-blueny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-blueny-50'
+												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 												href={'/experiences?type=activite'}
 												type='button'
 											>
@@ -352,7 +361,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/libreville'),
-																'text-lg hover:font-bold'
+																'text-lg'
 															)}
 															href='/voyage-decouverte/libreville'
 															onClick={handleNavClick}
@@ -366,7 +375,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/lambarene'),
-																'text-lg hover:font-bold'
+																'text-lg'
 															)}
 															href='/voyage-decouverte/lambarene'
 															onClick={handleNavClick}
@@ -381,7 +390,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/mayumba'),
-																'text-lg hover:font-bold'
+																'text-lg'
 															)}
 															href='/voyage-decouverte/mayumba'
 															onClick={handleNavClick}
@@ -395,7 +404,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/oyem'),
-																'text-lg hover:font-bold'
+																'text-lg'
 															)}
 															href='/voyage-decouverte/oyem'
 															onClick={handleNavClick}
@@ -406,14 +415,6 @@ export default function Navbar() {
 														</Link>
 													</li>
 												</ul>
-
-												<Link
-													className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
-													href={'/experience?type=decouverte'}
-													type='button'
-												>
-													DECOUVRIR NOS DESTINATIONS
-												</Link>
 											</div>
 											<div className='w-full'>
 												{selectedDecouverte ? (
@@ -428,7 +429,7 @@ export default function Navbar() {
 														/>
 													</div>
 												) : (
-													// Image par defaut
+													// Image par defaut.
 													<div className='relative h-full w-full overflow-hidden'>
 														<Image
 															alt='Activités'

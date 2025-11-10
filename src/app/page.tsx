@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import AboutUs from '@/components/AboutUs'
 import Banner from '@/components/Banner'
 import HightLights from '@/components/HighLights'
 
@@ -42,10 +43,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
 	return (
-		<section className='h-[600px] bg-white'>
+		<section className='bg-white'>
 			<Banner />
+			<AboutUs />
 			<HightLights />
-			<p>coucou</p>
 		</section>
 	)
 }

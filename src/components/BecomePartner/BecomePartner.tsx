@@ -5,10 +5,10 @@ export default function BecomePartner() {
 	return (
 		<section className='h-[722px] sup-md:px-40'>
 			<section className='flex sup-md:flex-row flex-col gap-10 pt-32'>
-				<div className='relative sup-md:block hidden h-[400px] w-3/5'>
+				<div className='relative sup-md:block hidden h-[400px] w-3/5 border border-shark-200'>
 					<Image
 						alt='savane africaine'
-						className='relative object-contain'
+						className='relative object-cover'
 						fill
 						priority
 						src='/assets/images/handshake.avif'
@@ -42,7 +42,7 @@ export default function BecomePartner() {
 
 					<section className='flex w-full sup-md:justify-end justify-center'>
 						<Link
-							className='mr-0 cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-display text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+							className='mr-0 cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 							href={'/contact'}
 							type='button'
 						>
