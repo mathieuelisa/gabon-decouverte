@@ -32,7 +32,7 @@ export default function Footer() {
 						src='/assets/images/logo_grey.png'
 						width={100}
 					/>
-					<h2 className='font-display text-white text-xl opacity-60'>GABON DECOUVERTE</h2>
+					<h2 className='font-caviarDreams text-white text-xl opacity-60'>GABON DECOUVERTE</h2>
 				</div>
 				<div className='h-px w-full bg-white opacity-20' />
 			</div>

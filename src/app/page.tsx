@@ -47,7 +47,6 @@ export default function Home() {
 			<Banner />
 			<AboutUs />
 			<HightLights />
-			<p>coucou</p>
 		</section>
 	)
 }
