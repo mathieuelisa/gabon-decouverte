@@ -19,5 +19,8 @@
 
 @theme {
 	--font-display: "Caviar Dreams", sans-serif;
-	--font-toxic: "Toxic Genesis", sans-serif;
+	--font-caviarDreams: "CaviarDreams", sans-serif;
+	--font-caviarDreams-bold: "CaviarDreamsBold", sans-serif;
+	--font-louisGeorgeCafe-light: "LouisGeorgeCafeLight", sans-serif;
+	--font-toxic: "Toxigenesis", sans-serif;
 }

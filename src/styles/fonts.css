@@ -1,0 +1,35 @@
+/*@import "toxigenesis.css";*/
+/*@import "louisgeorgecafelight.css";*/
+/*@import "caviardreamsbold.css";*/
+/*@import "caviardreams.css";*/
+@font-face {
+	font-family: Toxigenesis;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/Toxigenesis.otf") format("opentype");
+}
+
+@font-face {
+	font-family: LouisGeorgeCafeLight;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/LouisGeorgeCafeLight.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: CaviarDreamsBold;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/CaviarDreams_Bold.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: CaviarDreams;
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("/fonts/CaviarDreams.ttf") format("truetype");
+}

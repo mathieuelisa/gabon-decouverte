@@ -1,6 +1,6 @@
 export default function AboutUs() {
 	return (
-		<section className='flex h-screen items-center px-5 sup-md:px-40'>
+		<section className='flex h-screen items-center px-5 sup-md:px-40 font-toxic'>
 			<h2 className='text-5xl'>
 				Découvrez le Gabon autrement avec Gabon Découverte.
 				<br /> Plongez dans ses eaux turquoise, goûtez à sa cuisine vibrante, explorez ses galeries et

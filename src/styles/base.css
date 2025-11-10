@@ -5,7 +5,7 @@ body {
 }
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: LouisGeorgeCafeLight, Arial, Helvetica, sans-serif;
 	color: var(--foreground);
 	background: var(--background);
 }
