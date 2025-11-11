@@ -60,7 +60,7 @@ export default function FavoriteExplorer() {
 					transition={{ duration: 0.25, type: 'tween' }}
 					whileHover={{ y: -8 }}
 				>
-					<Link className='flex justify-center' href={`/activity/${fav.slug}`}>
+					<Link className='flex justify-center' href={`/activite/${fav.slug}`}>
 						<ActivityExplorerItem
 							description={fav.description}
 							imgSrc={fav.imgSrc}
