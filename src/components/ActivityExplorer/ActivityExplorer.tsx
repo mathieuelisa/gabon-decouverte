@@ -40,7 +40,7 @@ export default function ActivityExplorer() {
 			'Entre nature préservée et aventures inattendues, vivez des moments de découverte inoubliables.'
 	}
 
-	// Filtered list of activities based on the currently selected category
+	// Filtered list of activities based on the currently selected category.
 	// useMemo prevents re-filtering on every render unless dependencies change
 	const items = useMemo(() => ACTVITY_MOCK_DATA.filter((e) => e.type === activeLink), [ACTVITY_MOCK_DATA, activeLink])
 
