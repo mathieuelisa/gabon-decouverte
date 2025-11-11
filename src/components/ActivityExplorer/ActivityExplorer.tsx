@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 import { twJoin } from 'tailwind-merge'
 
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
@@ -130,6 +131,16 @@ export default function ActivityExplorer() {
 					</motion.div>
 				</AnimatePresence>
 			</div>
+			<ToastContainer
+				autoClose={2000}
+				hideProgressBar={true}
+				icon={false}
+				toastStyle={{
+					borderRadius: '10px',
+					boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+					color: '#121212'
+				}}
+			/>
 		</section>
 	)
 }
