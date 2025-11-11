@@ -38,12 +38,16 @@ export default function ActivityExplorer() {
 		'art-et-culture': 'Explorez l’essence de l’art et de la culture à travers des expériences inspirantes.',
 		'ecotourisme-et-balneaire': 'Entre nature préservée et rivages apaisants, vivez l’écotourisme autrement.',
 		'nature-et-decouverte':
-			'Entre nature préservée et aventures inattendues, vivez des moments de découverte inoubliables.'
+			'Entre nature préservée et aventures inattendues, vivez des moments de découverte inoubliables.',
+		'toutes-nos-activites': 'Explorez toutes nos activités et voyages.'
 	}
 
 	// Filtered list of activities based on the currently selected category.
-	// useMemo prevents re-filtering on every render unless dependencies change
-	const items = useMemo(() => ACTVITY_MOCK_DATA.filter((e) => e.type === activeLink), [ACTVITY_MOCK_DATA, activeLink])
+	// Return all the items if activeLink === "toutes-nos-activites"
+	const items = useMemo(() => {
+		if (!activeLink || activeLink === 'toutes-nos-activites') return ACTVITY_MOCK_DATA
+		return ACTVITY_MOCK_DATA.filter((e) => e.type === activeLink)
+	}, [activeLink])
 
 	return (
 		<section className='mb-10 sup-md:px-12'>
@@ -94,6 +98,21 @@ export default function ActivityExplorer() {
 						/>
 					)}
 					<span className={btnText}>Nature & découverte</span>
+				</button>
+				{/* Bouton 4 */}
+				<button
+					className={twJoin(btnBase, activeLink === 'toutes-nos-activites' ? 'text-white' : 'text-gray-700')}
+					onClick={() => handleSelectType('toutes-nos-activites')}
+					type='button'
+				>
+					{activeLink === 'toutes-nos-activites' && (
+						<motion.span
+							className='absolute inset-0 rounded-4xl bg-greeny-100'
+							layoutId='active-pill'
+							transition={pillTransition}
+						/>
+					)}
+					<span className={btnText}>Toutes nos activités</span>
 				</button>
 			</div>
 

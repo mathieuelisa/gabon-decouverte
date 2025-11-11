@@ -79,7 +79,13 @@ export default function ActivityExplorerItem({
 
 	return (
 		<section className='relative min-h-[420px] min-w-[200px] max-w-[300px] cursor-pointer rounded-lg'>
-			<Image alt='Balade sur le lac Oguemoué' className='rounded-t-md' height={300} src={imgSrc} width={400} />
+			<Image
+				alt='Balade sur le lac Oguemoué'
+				className='h-[200px] rounded-t-md object-cover'
+				height={300}
+				src={imgSrc}
+				width={400}
+			/>
 
 			<button
 				aria-label='Ajouter aux favoris'

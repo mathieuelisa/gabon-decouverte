@@ -104,6 +104,8 @@ export default function Navbar() {
 			setSelectedActivite('eco')
 		} else if (isActive('/activité/nature-et-decouverte')) {
 			setSelectedActivite('nature')
+		} else if (isActive('/activité/toutes-nos-activites')) {
+			setSelectedActivite(null)
 		}
 
 		// --- Découvrir ---
@@ -143,7 +145,7 @@ export default function Navbar() {
 						<SlUser />
 						<p>{t('common:login')}</p>
 						<button
-							className='flex items-center gap-2'
+							className='flex cursor-pointer items-center gap-2'
 							onClick={() => {
 								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
 									setLanguage(i18n.language)
@@ -331,7 +333,13 @@ export default function Navbar() {
 
 											<Link
 												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
-												href={'/experiences?type=activite'}
+												href={{
+													pathname: '/activite',
+													query: { type: 'toutes-nos-activites' }
+												}}
+												onClick={handleNavClick}
+												onFocus={() => setSelectedActivite('nature')}
+												onMouseEnter={() => setSelectedActivite('nature')}
 												type='button'
 											>
 												DECOUVRIR NOS ACTIVITES
