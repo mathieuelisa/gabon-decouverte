@@ -35,6 +35,9 @@ export type TActivity = {
 	title: string
 	img: string
 	slug: string
+	duration: string
+	price_eur: number
+	price_cfa: number
 }
 
 export type TFavorite = {

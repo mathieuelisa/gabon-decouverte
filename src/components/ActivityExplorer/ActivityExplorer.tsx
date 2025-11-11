@@ -136,7 +136,7 @@ export default function ActivityExplorer() {
 									transition={{ duration: 0.25, type: 'tween' }}
 									whileHover={{ y: -8 }}
 								>
-									<Link className='flex justify-center' href={`/activity/${el.slug}`}>
+									<Link className='flex justify-center' href={`/activite/${el.slug}`}>
 										<ActivityExplorerItem
 											description={el.short_description}
 											imgSrc={el.img}

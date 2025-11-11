@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import Contact from '@/components/Contact'
+import ActivityDetails from '@/components/ActivityDetails'
 
 export const metadata: Metadata = {
 	alternates: {
@@ -27,6 +27,6 @@ export const metadata: Metadata = {
 	title: "Contactez-nous pour plus d'information | Gabon Decouverte"
 }
 
-export default function ContactPage() {
-	return <Contact />
+export default function ActivityDetailsPage() {
+	return <ActivityDetails />
 }
