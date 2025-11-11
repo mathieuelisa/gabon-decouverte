@@ -97,7 +97,7 @@ export default function ActivityExplorer() {
 			</div>
 
 			{/* Contenu animé */}
-			<div className='mt-6 min-h-[120px]'>
+			<div className='mt-6 min-h-[120px] px-12'>
 				<AnimatePresence mode='wait'>
 					<motion.div
 						animate={{ opacity: 1, y: 0 }}
@@ -116,7 +116,7 @@ export default function ActivityExplorer() {
 									transition={{ duration: 0.25, type: 'tween' }}
 									whileHover={{ y: -8 }}
 								>
-									<Link className='block' href={`/activity/${el.slug}`}>
+									<Link className='flex justify-center' href={`/activity/${el.slug}`}>
 										<ActivityExplorerItem
 											description={el.short_description}
 											imgSrc={el.img}
