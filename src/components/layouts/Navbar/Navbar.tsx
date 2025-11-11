@@ -6,9 +6,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
+import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
-import { PiHandshake } from 'react-icons/pi'
+import { IoMdHeartEmpty } from 'react-icons/io'
+import { LiaHandshake } from 'react-icons/lia'
 import { SlUser } from 'react-icons/sl'
 import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
@@ -103,6 +104,8 @@ export default function Navbar() {
 			setSelectedActivite('eco')
 		} else if (isActive('/activité/nature-et-decouverte')) {
 			setSelectedActivite('nature')
+		} else if (isActive('/activité/toutes-nos-activites')) {
+			setSelectedActivite(null)
 		}
 
 		// --- Découvrir ---
@@ -142,6 +145,7 @@ export default function Navbar() {
 						<SlUser />
 						<p>{t('common:login')}</p>
 						<button
+							className='flex cursor-pointer items-center gap-2'
 							onClick={() => {
 								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
 									setLanguage(i18n.language)
@@ -150,14 +154,22 @@ export default function Navbar() {
 							}}
 							type='button'
 						>
-							change langue {language}
+							<BsFlag className='h-4 w-4' />
+							{language}
 						</button>
 						{/* TODO: Gerer le hidden et le block */}
-						<Link className='block sup-sm:hidden' href={'/devenir-prestataire'}>
-							<PiHandshake className='h-5 w-5' />
+						<Link
+							className='flex items-center gap-2'
+							href={'/devenir-prestataire'}
+							onClick={handleNavClick}
+						>
+							<LiaHandshake className='h-5 w-5' />
+							Prestataire
 						</Link>
-						<Link className='sup-sm:block hidden' href={'/devenir-prestataire'} onClick={handleNavClick}>
-							Devenir prestataire
+
+						<Link className='flex items-center gap-2' href='/favoris'>
+							<IoMdHeartEmpty className='h-5 w-5' />
+							Favoris
 						</Link>
 					</section>
 				</div>
@@ -321,7 +333,13 @@ export default function Navbar() {
 
 											<Link
 												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
-												href={'/experiences?type=activite'}
+												href={{
+													pathname: '/activite',
+													query: { type: 'toutes-nos-activites' }
+												}}
+												onClick={handleNavClick}
+												onFocus={() => setSelectedActivite('nature')}
+												onMouseEnter={() => setSelectedActivite('nature')}
 												type='button'
 											>
 												DECOUVRIR NOS ACTIVITES

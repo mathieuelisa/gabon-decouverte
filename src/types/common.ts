@@ -36,3 +36,12 @@ export type TActivity = {
 	img: string
 	slug: string
 }
+
+export type TFavorite = {
+	key: string
+	title: string
+	description: string
+	imgSrc: string
+	rating: number | string
+	slug?: string
+}
