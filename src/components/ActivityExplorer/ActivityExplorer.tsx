@@ -4,7 +4,7 @@ import type { Transition } from 'framer-motion'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
 
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
@@ -17,18 +17,32 @@ export default function ActivityExplorer() {
 
 	const [activeLink, setActiveLink] = useState(type)
 
-	// console.log('type', type)
-
+	// Function to update the currently selected activity type
 	const handleSelectType = (type: string) => {
 		setActiveLink(type)
 	}
 
+	// Base styles for the category buttons of the filter
 	const btnBase = 'relative min-w-[200px] px-1 py-2 rounded-4xl cursor-pointer select-none'
 	const btnText = 'relative z-10'
 
+	// Animation settings for the active "pill" (the green highlight behind the selected button)
+	// If the user prefers reduced motion (accessibility setting), use a simple tween instead of a spring
 	const pillTransition: Transition = prefersReduced
 		? { duration: 0, type: 'tween' }
 		: { damping: 40, mass: 0.3, stiffness: 500, type: 'spring' }
+
+	// Title text displayed for each activity category
+	const TITLES = {
+		'art-et-culture': 'Explorez l’essence de l’art et de la culture à travers des expériences inspirantes.',
+		'ecotourisme-et-balneaire': 'Entre nature préservée et rivages apaisants, vivez l’écotourisme autrement.',
+		'nature-et-decouverte':
+			'Entre nature préservée et aventures inattendues, vivez des moments de découverte inoubliables.'
+	}
+
+	// Filtered list of activities based on the currently selected category
+	// useMemo prevents re-filtering on every render unless dependencies change
+	const items = useMemo(() => ACTVITY_MOCK_DATA.filter((e) => e.type === activeLink), [ACTVITY_MOCK_DATA, activeLink])
 
 	return (
 		<section className='mb-10 sup-md:px-12'>
@@ -90,34 +104,29 @@ export default function ActivityExplorer() {
 						exit={{ opacity: 0, y: -8 }}
 						initial={{ opacity: 0, y: 8 }}
 						key={activeLink}
-						transition={prefersReduced ? { duration: 0 } : { duration: 0.18 }}
+						transition={{ duration: 0.18 }}
 					>
-						{activeLink === 'art-et-culture' && (
-							<>
-								<h3 className='mb-5'>
-									Explorez l’essence de l’art et de la culture à travers des expériences inspirantes.
-								</h3>
-								<div className='grid grid-cols-1 sup-lg:grid-cols-3 sup-sm:grid-cols-2 sup-xl:grid-cols-4 gap-6'>
-									{ACTVITY_MOCK_DATA.map((element, index) => (
-										<Link
-											className='hover:-translate-y-2 transition-transform duration-400'
-											href={`/activity/${element.slug}`}
-											key={index}
-										>
-											<ActivityExplorerItem
-												description={element.short_description}
-												imgSrc={element.img}
-												key={index}
-												rating={element.rating}
-												title={element.title}
-											/>
-										</Link>
-									))}
-								</div>
-							</>
-						)}
-						{activeLink === 'ecotourisme-et-balneaire' && <div>Contenu Écotourisme & balnéaire</div>}
-						{activeLink === 'nature-et-decouverte' && <div>Contenu Nature & découverte</div>}
+						<h3 className='mb-5'>{TITLES[activeLink]}</h3>
+
+						<div className='grid grid-cols-1 sup-lg:grid-cols-3 sup-sm:grid-cols-2 sup-xl:grid-cols-4 gap-6'>
+							{items.map((el) => (
+								<motion.div
+									className='transform-gpu will-change-transform'
+									key={el.slug}
+									transition={{ duration: 0.25, type: 'tween' }}
+									whileHover={{ y: -8 }}
+								>
+									<Link className='block' href={`/activity/${el.slug}`}>
+										<ActivityExplorerItem
+											description={el.short_description}
+											imgSrc={el.img}
+											rating={el.rating}
+											title={el.title}
+										/>
+									</Link>
+								</motion.div>
+							))}
+						</div>
 					</motion.div>
 				</AnimatePresence>
 			</div>
