@@ -88,17 +88,20 @@ export default function ActivityExplorerItem({
 				type='button'
 			>
 				{isFav ? (
-					<IoMdHeart className='h-6 w-6 text-red-700 transition-all hover:h-7 hover:w-7' />
+					<IoMdHeart className='h-6 w-6 stroke-1 stroke-white text-red-700 transition-all hover:h-7 hover:w-7' />
 				) : (
-					<IoMdHeartEmpty className='h-6 w-6 fill-black/50 text-white transition-all hover:h-7 hover:w-7' />
+					<div className='relative h-7 w-7'>
+						<IoMdHeart className='absolute inset-0 h-7 w-7 text-black/50' />
+						<IoMdHeartEmpty className='absolute inset-0 h-7 w-7 text-white drop-shadow-[0_0_2px_white]' />
+					</div>
 				)}
 			</button>
 
 			<div className='mt-2 flex items-center justify-between'>
-				<h2 className='font-caviarDreams-bold'>{title}</h2>
+				<h2 className='font-caviarDreams-bold text-greeny-100'>{title}</h2>
 				<div className='flex items-center gap-1'>
-					<MdOutlineStar />
-					<p>{rating}</p>
+					<MdOutlineStar className='text-greeny-100' />
+					<p className='font-caviarDreams-bold text-greeny-100 text-sm'>{rating}</p>
 				</div>
 			</div>
 
