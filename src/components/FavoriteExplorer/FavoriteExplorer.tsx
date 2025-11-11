@@ -39,7 +39,7 @@ export default function FavoriteExplorer() {
 
 	if (items === null) {
 		return (
-			<div className='mt-2 grid min-h-screen grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+			<div className='mt-2 grid min-h-screen grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
 				{Array.from({ length: 5 }).map((_, i) => (
 					<div className='m-4 flex justify-center' key={i}>
 						<ActivityExplorerSkeleton key={i} />
@@ -52,7 +52,7 @@ export default function FavoriteExplorer() {
 	if (items.length === 0) return <div>Aucun favori pour le moment.</div>
 
 	return (
-		<div className='mt-5 grid min-h-screen grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+		<div className='mt-5 grid min-h-screen grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
 			{items.map((fav) => (
 				<motion.div
 					className='transform-gpu will-change-transform'

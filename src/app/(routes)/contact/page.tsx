@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import Contact from '@/components/Contact'
+
 export const metadata: Metadata = {
 	alternates: {
 		canonical: 'https://www.decouvertegabon.com/contact'
@@ -26,5 +28,5 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
-	return <p>Page de contact.</p>
+	return <Contact />
 }
