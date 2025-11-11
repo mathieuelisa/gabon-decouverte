@@ -65,7 +65,7 @@ export default function ActivityExplorerItem({
 			const next = favs.filter((f) => f.key !== key)
 			localStorage.setItem('favorites', JSON.stringify(next))
 			setIsFav(false)
-			notify('Retiré de vos favoris 💔')
+			notify('Supprimé de vos favoris 💔')
 			onToggleFav?.(key, false)
 		} else {
 			const fav: TFavorite = { description, imgSrc, key, rating, slug, title }
