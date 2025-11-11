@@ -66,14 +66,14 @@ export default function ActivityExplorerItem({
 			localStorage.setItem('favorites', JSON.stringify(next))
 			setIsFav(false)
 			notify('Retiré de vos favoris 💔')
-			onToggleFav?.(key, false) // ← informe le parent qu'on a retiré
+			onToggleFav?.(key, false)
 		} else {
 			const fav: TFavorite = { description, imgSrc, key, rating, slug, title }
 			const next = [...favs, fav]
 			localStorage.setItem('favorites', JSON.stringify(next))
 			setIsFav(true)
 			notify('Ajouté à vos favoris ❤️')
-			onToggleFav?.(key, true) // ← informe le parent qu'on a ajouté
+			onToggleFav?.(key, true)
 		}
 	}
 

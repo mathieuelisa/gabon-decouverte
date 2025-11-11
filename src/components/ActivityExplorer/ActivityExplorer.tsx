@@ -122,6 +122,7 @@ export default function ActivityExplorer() {
 											description={el.short_description}
 											imgSrc={el.img}
 											rating={el.rating}
+											slug={el.slug}
 											title={el.title}
 										/>
 									</Link>
