@@ -23,3 +23,16 @@ export type THighlight = {
 	id: number
 	title: string
 }
+
+export type TActivity = {
+	id: number
+	long_description: string
+	presentation_organizer: string
+	proposed_by: string
+	rating: number
+	short_description: string
+	type: string
+	title: string
+	img: string
+	slug: string
+}
