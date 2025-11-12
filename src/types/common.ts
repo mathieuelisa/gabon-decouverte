@@ -38,6 +38,7 @@ export type TActivity = {
 	duration: string
 	price_eur: number
 	price_cfa: number
+	city: string
 }
 
 export type TFavorite = {
