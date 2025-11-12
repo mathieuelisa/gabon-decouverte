@@ -10,7 +10,7 @@ import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs
 import { CiMenuBurger } from 'react-icons/ci'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { LiaHandshake } from 'react-icons/lia'
-import { SlUser } from 'react-icons/sl'
+import { SlBasket, SlUser } from 'react-icons/sl'
 import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
 
@@ -170,6 +170,10 @@ export default function Navbar() {
 						<Link className='flex items-center gap-2' href='/favoris'>
 							<IoMdHeartEmpty className='h-5 w-5' />
 							Favoris
+						</Link>
+
+						<Link className='flex items-center gap-2' href='/favoris'>
+							<SlBasket className='h-5 w-5' />
 						</Link>
 					</section>
 				</div>
