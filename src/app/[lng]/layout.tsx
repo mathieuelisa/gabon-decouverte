@@ -1,5 +1,6 @@
+import { languages } from '@/app/i18n/settings'
 import Base from '@/components/layouts/Base'
-import '@/i18n/index'
+import '@/app/i18n/client'
 import '@/styles/index.css'
 
 import type { Metadata } from 'next'
@@ -9,13 +10,13 @@ export const metadata: Metadata = {
 	title: 'Create Next App'
 }
 
-export default function RootLayout({
-	children
-}: Readonly<{
-	children: React.ReactNode
-}>) {
+export async function generateStaticParams() {
+	return languages.map((lng) => ({ lng }))
+}
+
+export default function RootLayout({ children, params: { lng } }) {
 	return (
-		<html data-lt-installed='true' lang='fr' suppressHydrationWarning>
+		<html data-lt-installed='true' lang={lng} suppressHydrationWarning>
 			<body className='font-louisGeorgeCafe-light antialiased'>
 				<Base>{children}</Base>
 			</body>

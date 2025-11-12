@@ -1,9 +1,14 @@
-// utils
 import type { Resource } from 'i18next'
 import { merge, partial, spread } from 'lodash'
 
-// locales
+import en from './locales/en'
 import fr from './locales/fr'
+
+export const fallbackLng = 'fr'
+export const languages = [fallbackLng, 'en'] as const
+
+export const defaultNS = 'common'
+export const cookieName = 'i18next'
 
 // ----------------------------------------------------------------------
 
@@ -13,7 +18,7 @@ const loadedNameSpaces = {
 
 export const defaultNameSpace: TNameSpacesKey = 'common'
 type SupportedLocale = 'fr'
-
+export type TLocales = (typeof languages)[number]
 export const defaultLanguage: SupportedLocale = 'fr'
 export const keySeparator = '.'
 
@@ -48,7 +53,7 @@ export type RecursiveKeyOf<TObj extends Record<string, unknown>> = {
 			: `${TKey}`
 }[keyof TObj & (string | number)]
 
-export const resources = { ...fr } as const
+export const resourcesFr = { ...fr } as const
 export const nameSpaceNames = Object.keys(loadedNameSpaces) as TNameSpacesKey[]
 
 // create an instance for nameSpace which contains keys as values, to simplify accessibility to nameSpaces
@@ -58,5 +63,33 @@ export const nameSpaces: Record<TNameSpacesKey, TNameSpacesKey> = nameSpaceNames
 	{} as Record<TNameSpacesKey, TNameSpacesKey>
 )
 
-export type TNameSpaceResources<NAME_SPACE extends TNameSpacesKey> = (typeof resources)[NAME_SPACE]
+export type TNameSpaceResources<NAME_SPACE extends TNameSpacesKey> = (typeof resourcesFr)[NAME_SPACE]
 export type TTranslationKey<E extends TNameSpacesKey = 'common'> = RecursiveKeyOf<TNameSpaceResources<E>>
+
+export const resources = {
+	en,
+	fr
+} as const
+export function getOptions(lng = fallbackLng, ns: TNameSpacesKey = defaultNS) {
+	return {
+		debug: false,
+		defaultNS,
+		fallbackLng,
+		fallbackNS: defaultNS,
+		interpolation: {
+			escapeValue: false
+		},
+		lng,
+		ns: ns || Object.keys(fr),
+		react: {
+			bindI18n: 'languageChanged',
+			bindI18nStore: '',
+			transEmptyNodeValue: '',
+			transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'b', 'span'],
+			transSupportBasicHtmlNodes: true,
+			useSuspense: true
+		},
+		resources,
+		supportedLngs: languages
+	}
+}

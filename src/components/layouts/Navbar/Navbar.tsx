@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
 import { IoMdHeartEmpty } from 'react-icons/io'
@@ -14,15 +13,14 @@ import { SlUser } from 'react-icons/sl'
 import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
 
+import { useTranslation } from '@/app/i18n/client'
 import { useMobileMenu } from '@/contexts/MobileMenuContext'
-import i18n from '@/i18n'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 
-	const [language, setLanguage] = useState('fr')
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
@@ -143,20 +141,16 @@ export default function Navbar() {
 
 					<section className='flex w-[400px] items-center justify-center gap-4 pr-3.5 text-black'>
 						<SlUser />
-						<p>{t('common:login')}</p>
-						<button
+						<p>{t('login')}</p>
+						<Link
 							className='flex cursor-pointer items-center gap-2'
-							onClick={() => {
-								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
-									setLanguage(i18n.language)
-									// localStorage.setItem('language', i18n.language)
-								})
-							}}
-							type='button'
+							href={`/${i18n.language === 'fr' ? 'en' : 'fr'}`}
 						>
+							{i18n.language}
+
 							<BsFlag className='h-4 w-4' />
-							{language}
-						</button>
+							{i18n.language}
+						</Link>
 						{/* TODO: Gerer le hidden et le block */}
 						<Link
 							className='flex items-center gap-2'
