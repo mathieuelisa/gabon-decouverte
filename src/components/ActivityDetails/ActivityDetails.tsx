@@ -20,7 +20,7 @@ export default function ActivityDetails() {
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
 			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100'>{ACTIVITY_ID?.title}</h1>
-			{/* Main grid: 1 mobile column */}
+			{/* Main grid: 1 mobile column. */}
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
 				{/* Large pictures (left column, covering 2/3 of the width)*/}
 				<div className='relative overflow-hidden rounded-2xl md:col-span-2'>
