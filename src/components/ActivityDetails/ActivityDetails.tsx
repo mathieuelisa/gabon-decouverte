@@ -8,6 +8,7 @@ import { LuMapPin } from 'react-icons/lu'
 import { TbClockHour7 } from 'react-icons/tb'
 
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
+import { useBasketAtom } from '@/stores/useBasket.atom'
 import ActivityExplorerItem from '../ActivityExplorer/ActivityExplorerItem'
 import Counter from '../Counter'
 import { Calendar } from '../ui/calendar'
@@ -15,10 +16,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 
 export default function ActivityDetails() {
 	const { id } = useParams()
+
+	const [open, setOpen] = useState(false)
 	const [date, setDate] = useState<Date | undefined>(new Date())
+	const [participate, setParticipate] = useState(0)
+	const [basket, setBasket] = useBasketAtom()
 
 	const ACTIVITY_ID = ACTVITY_MOCK_DATA.find((element) => element.slug === id)
-
+	const { price_cfa, price_eur, title } = ACTIVITY_ID || {}
 	// TODO: Creer un tableau d'image
 	const photos = ACTIVITY_ID?.img ? [ACTIVITY_ID.img, ACTIVITY_ID.img, ACTIVITY_ID.img] : []
 
@@ -29,6 +34,23 @@ export default function ActivityDetails() {
 		return shuffled.slice(0, 3)
 	}, [id])
 
+	const handleAddBasketClick = () => {
+		const newBasket = [...basket]
+
+		newBasket.push({
+			date,
+			id: id.toString(),
+			participate,
+			price_cfa,
+			price_eur,
+			title
+		})
+
+		setBasket(newBasket)
+		setOpen(false)
+		setDate(new Date())
+		setParticipate(0)
+	}
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
 			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100'>{ACTIVITY_ID?.title}</h1>
@@ -96,7 +118,7 @@ export default function ActivityDetails() {
 			</section>
 
 			{/* Button of reservation */}
-			<Dialog>
+			<Dialog onOpenChange={setOpen} open={open}>
 				<DialogTrigger asChild>
 					<button
 						className='mt-6 w-full cursor-pointer rounded-md bg-red-700 p-2 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-red-800'
@@ -134,7 +156,7 @@ export default function ActivityDetails() {
 						<div className='flex items-center justify-between'>
 							<p className='font-caviarDreams-bold'>Participants :</p>
 
-							<Counter />
+							<Counter count={participate} setCount={setParticipate} />
 						</div>
 
 						<hr className='my-2 border-gray-200 border-t' />
@@ -162,6 +184,7 @@ export default function ActivityDetails() {
 						</div>
 						<button
 							className='cursor-pointer rounded-md bg-greeny-100 p-3 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-greeny-50'
+							onClick={handleAddBasketClick}
 							type='button'
 						>
 							Ajouter au panier
