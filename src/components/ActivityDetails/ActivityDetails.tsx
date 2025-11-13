@@ -106,9 +106,10 @@ export default function ActivityDetails() {
 					</button>
 				</DialogTrigger>
 
+				{/* modal of reservation */}
 				<DialogContent className='p-9 sm:max-w-[425px]'>
 					<DialogHeader>
-						<DialogTitle className='font-caviarDreams-bold'>{ACTIVITY_ID?.title}</DialogTitle>
+						<DialogTitle className='font-caviarDreams-bold text-xl'>{ACTIVITY_ID?.title}</DialogTitle>
 					</DialogHeader>
 
 					<div className='grid gap-4'>
@@ -155,7 +156,8 @@ export default function ActivityDetails() {
 					<section className='flex items-center justify-between'>
 						<div className='px-0'>
 							<p className='font-caviarDreams-bold'>{ACTIVITY_ID?.price_cfa} CFA</p>
-							<p className='text-sm'>3 Adultes x {ACTIVITY_ID?.price_cfa}</p>
+							{/* TODO: Mettre le count a la place du 3 et multipler par le prix de base */}
+							<p className='mt-2 text-sm'>3 Adultes x {ACTIVITY_ID?.price_cfa}</p>
 							<p className='text-sm'>Taxes et frais compris</p>
 						</div>
 						<button

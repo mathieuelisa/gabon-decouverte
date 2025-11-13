@@ -157,7 +157,6 @@ export default function Navbar() {
 							<BsFlag className='h-4 w-4' />
 							{language}
 						</button>
-						{/* TODO: Gerer le hidden et le block */}
 						<Link
 							className='flex items-center gap-2'
 							href={'/devenir-prestataire'}
@@ -172,7 +171,7 @@ export default function Navbar() {
 							Favoris
 						</Link>
 
-						<Link className='flex items-center gap-2' href='/favoris'>
+						<Link className='flex items-center gap-2' href='/panier'>
 							<SlBasket className='h-5 w-5' />
 						</Link>
 					</section>
