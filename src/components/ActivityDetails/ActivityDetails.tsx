@@ -1,26 +1,38 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useMemo, useState } from 'react'
 import { LuMapPin } from 'react-icons/lu'
+import { TbClockHour7 } from 'react-icons/tb'
 
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
+import ActivityExplorerItem from '../ActivityExplorer/ActivityExplorerItem'
+import Counter from '../Counter'
+import { Calendar } from '../ui/calendar'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
 
 export default function ActivityDetails() {
 	const { id } = useParams()
+	const [date, setDate] = useState<Date | undefined>(new Date())
 
 	const ACTIVITY_ID = ACTVITY_MOCK_DATA.find((element) => element.slug === id)
 
-	const photos = [
-		'/assets/images/activites/parc-aquatique.avif',
-		'/assets/images/activites/parc-aquatique.avif',
-		'/assets/images/activites/parc-aquatique.avif'
-	]
+	// TODO: Creer un tableau d'image
+	const photos = ACTIVITY_ID?.img ? [ACTIVITY_ID.img, ACTIVITY_ID.img, ACTIVITY_ID.img] : []
+
+	const suggestions = useMemo(() => {
+		const pool = ACTVITY_MOCK_DATA.filter((el) => el.slug !== id)
+
+		const shuffled = [...pool].sort(() => Math.random() - 0.5)
+		return shuffled.slice(0, 3)
+	}, [id])
 
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
 			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100'>{ACTIVITY_ID?.title}</h1>
-			{/* Main grid: 1 mobile column */}
+			{/* Main grid: 1 mobile column. */}
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
 				{/* Large pictures (left column, covering 2/3 of the width)*/}
 				<div className='relative overflow-hidden rounded-2xl md:col-span-2'>
@@ -42,12 +54,144 @@ export default function ActivityDetails() {
 			</div>
 
 			{/* Location part */}
-			<div className='mt-5 flex items-center gap-3'>
-				<LuMapPin className='h-6 w-6' />
-				<p className='text-lg'>{ACTIVITY_ID?.city}</p>
-			</div>
+			<section className='mt-5 flex justify-between'>
+				<div className='flex items-center gap-3'>
+					<LuMapPin className='h-6 w-6' />
+					<p className='text-lg'>{ACTIVITY_ID?.city}</p>
+				</div>
+
+				{/* Duration part */}
+				<div>
+					<div className='flex items-center gap-2'>
+						<TbClockHour7 className='h-6 w-6' />
+						<p>{ACTIVITY_ID?.duration}</p>
+					</div>
+				</div>
+			</section>
 
 			<hr className='my-6 border-gray-200 border-t' />
+
+			{/* Activity description */}
+			<section>
+				<h3 className='mb-2 font-caviarDreams-bold'>Description de l'activité</h3>
+				<p>{ACTIVITY_ID?.long_description}</p>
+			</section>
+
+			<hr className='my-6 border-gray-200 border-t' />
+
+			{/* Organizer informations */}
+			<section>
+				<h3 className='mb-2 font-caviarDreams-bold'>Présentation de l'organisateur</h3>
+				<div className='min-w-60 rounded-lg border border-gray-100 p-4 shadow-lg'>
+					<div className='flex flex-col gap-4'>
+						<div className='flex gap-2'>
+							<h4>Nom de l'organisateur: </h4>
+							<h4>{ACTIVITY_ID?.proposed_by}</h4>
+						</div>
+						<div className='flex gap-2'>
+							<h4>{ACTIVITY_ID?.presentation_organizer}</h4>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* Button of reservation */}
+			<Dialog>
+				<DialogTrigger asChild>
+					<button
+						className='mt-6 w-full cursor-pointer rounded-md bg-red-700 p-2 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-red-800'
+						type='button'
+					>
+						DEMANDE DE RESERVATION
+					</button>
+				</DialogTrigger>
+
+				{/* modal of reservation */}
+				<DialogContent className='p-9 sm:max-w-[425px]'>
+					<DialogHeader>
+						<DialogTitle className='font-caviarDreams-bold text-xl'>{ACTIVITY_ID?.title}</DialogTitle>
+					</DialogHeader>
+
+					<div className='grid gap-4'>
+						<div className='flex items-center justify-between'>
+							<div className='flex items-center gap-2'>
+								<TbClockHour7 className='h-5 w-5' />
+								<p>{ACTIVITY_ID?.duration}</p>
+							</div>
+
+							<div className='flex flex-col'>
+								<p>A partir de:</p>
+
+								<p className='font-caviarDreams-bold'>
+									{ACTIVITY_ID?.price_cfa} CFA{' '}
+									<small className='font-caviarDreams'>par personne</small>
+								</p>
+							</div>
+						</div>
+
+						<hr className='my-2 border-gray-200 border-t' />
+
+						<div className='flex items-center justify-between'>
+							<p className='font-caviarDreams-bold'>Participants :</p>
+
+							<Counter />
+						</div>
+
+						<hr className='my-2 border-gray-200 border-t' />
+
+						<div className='flex items-center justify-between'>
+							<p className='font-caviarDreams-bold'>Date :</p>
+							<Calendar
+								captionLayout='dropdown'
+								className='rounded-md border shadow-sm'
+								mode='single'
+								onSelect={setDate}
+								selected={date}
+							/>
+						</div>
+
+						<hr className='my-2 border-gray-200 border-t' />
+					</div>
+
+					<section className='flex items-center justify-between'>
+						<div className='px-0'>
+							<p className='font-caviarDreams-bold'>{ACTIVITY_ID?.price_cfa} CFA</p>
+							{/* TODO: Mettre le count a la place du 3 et multipler par le prix de base */}
+							<p className='mt-2 text-sm'>3 Adultes x {ACTIVITY_ID?.price_cfa}</p>
+							<p className='text-sm'>Taxes et frais compris</p>
+						</div>
+						<button
+							className='cursor-pointer rounded-md bg-greeny-100 p-3 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-greeny-50'
+							type='button'
+						>
+							Ajouter au panier
+						</button>
+					</section>
+				</DialogContent>
+			</Dialog>
+
+			<hr className='my-6 border-gray-200 border-t' />
+
+			{/* This section allows you to choose 3 activities at random. */}
+			<section>
+				<h3 className='mb-6 font-caviarDreams-bold text-xl'>
+					Explorez d’autres univers tout aussi captivants.
+				</h3>
+
+				<div className='grid grid-cols-1 sup-lg:grid-cols-3 sup-sm:grid-cols-2 sup-xl:grid-cols-3 gap-6'>
+					{suggestions.map((element) => (
+						<Link className='flex justify-center' href={`/activite/${element.slug}`} key={element.id}>
+							<ActivityExplorerItem
+								description={element.short_description}
+								imgSrc={element.img}
+								rating={element.rating}
+								slug={element.slug}
+								title={element.title}
+							/>
+						</Link>
+					))}
+				</div>
+			</section>
 		</section>
 	)
 }
