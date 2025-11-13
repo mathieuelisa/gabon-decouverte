@@ -11,6 +11,7 @@ type TBasketAtom = {
 	price_cfa: number
 	price_eur: number
 	title: string
+	img: string
 }[]
 
 const basketAtom = atomWithSessionStorage<TBasketAtom>('basket', [])

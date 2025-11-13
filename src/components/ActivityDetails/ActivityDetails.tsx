@@ -23,7 +23,7 @@ export default function ActivityDetails() {
 	const [basket, setBasket] = useBasketAtom()
 
 	const ACTIVITY_ID = ACTVITY_MOCK_DATA.find((element) => element.slug === id)
-	const { price_cfa, price_eur, title } = ACTIVITY_ID || {}
+	const { img, price_cfa, price_eur, title } = ACTIVITY_ID || {}
 	// TODO: Creer un tableau d'image
 	const photos = ACTIVITY_ID?.img ? [ACTIVITY_ID.img, ACTIVITY_ID.img, ACTIVITY_ID.img] : []
 
@@ -40,6 +40,7 @@ export default function ActivityDetails() {
 		newBasket.push({
 			date,
 			id: id.toString(),
+			img,
 			participate,
 			price_cfa,
 			price_eur,
