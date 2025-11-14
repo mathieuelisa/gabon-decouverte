@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 import Cart from '@/components/Cart'
-import { useBasketAtom } from '@/stores/useBasket.atom'
 
 export const metadata: Metadata = {
 	alternates: {
