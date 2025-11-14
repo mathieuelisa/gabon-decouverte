@@ -9,6 +9,7 @@ export const languages = [fallbackLng, 'en'] as const
 
 export const defaultNS = 'common'
 export const cookieName = 'i18next'
+export const headerName = 'x-i18next-current-language'
 
 // ----------------------------------------------------------------------
 
@@ -70,26 +71,3 @@ export const resources = {
 	en,
 	fr
 } as const
-export function getOptions(lng = fallbackLng, ns: TNameSpacesKey = defaultNS) {
-	return {
-		debug: false,
-		defaultNS,
-		fallbackLng,
-		fallbackNS: defaultNS,
-		interpolation: {
-			escapeValue: false
-		},
-		lng,
-		ns: ns || Object.keys(fr),
-		react: {
-			bindI18n: 'languageChanged',
-			bindI18nStore: '',
-			transEmptyNodeValue: '',
-			transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'b', 'span'],
-			transSupportBasicHtmlNodes: true,
-			useSuspense: true
-		},
-		resources,
-		supportedLngs: languages
-	}
-}

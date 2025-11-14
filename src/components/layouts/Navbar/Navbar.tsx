@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
@@ -20,6 +20,8 @@ import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
 	const { t, i18n } = useTranslation()
+	const pathname = usePathname()
+	const router = useRouter()
 
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
@@ -61,8 +63,6 @@ export default function Navbar() {
 		}
 	}
 
-	const pathname = usePathname()
-
 	const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
 	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-greeny-50')
@@ -71,20 +71,6 @@ export default function Navbar() {
 
 	const isOpen = activePanel !== null
 
-	const closePanel = () => setActivePanel(null)
-
-	const handleNavClick = () => {
-		closePanel()
-		setMobileMenuOpen(false)
-	}
-
-	const togglePanel = (key: TPanelKey) => {
-		setActivePanel((prev) => (prev === key ? null : key))
-	}
-
-	// useEffect(() => {
-	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
-	// }, [])
 	useEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') closePanel()
@@ -118,6 +104,27 @@ export default function Navbar() {
 		}
 	}, [pathname])
 
+	const closePanel = () => setActivePanel(null)
+
+	const handleNavClick = () => {
+		closePanel()
+		setMobileMenuOpen(false)
+	}
+	const handleSwitchLanguageClick = (lng) => {
+		let newPathUrl = pathname
+
+		if (lng === 'fr') {
+			newPathUrl = pathname.replace('/en', `/${lng}`)
+		} else if (lng === 'en') {
+			newPathUrl = pathname.replace('/fr', `/${lng}`)
+		}
+
+		router.replace(newPathUrl)
+	}
+	const togglePanel = (key: TPanelKey) => {
+		setActivePanel((prev) => (prev === key ? null : key))
+	}
+
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
@@ -142,7 +149,17 @@ export default function Navbar() {
 					<section className='flex w-[400px] items-center justify-center gap-4 pr-3.5 text-black'>
 						<SlUser />
 						<p>{t('login')}</p>
-						<Link
+						<button
+							className='flex cursor-pointer items-center gap-2'
+							onClick={() => handleSwitchLanguageClick(i18n.language === 'fr' ? 'en' : 'fr')}
+							type='button'
+						>
+							{i18n.language}
+
+							<BsFlag className='h-4 w-4' />
+							{i18n.language}
+						</button>
+						{/*<Link
 							className='flex cursor-pointer items-center gap-2'
 							href={`/${i18n.language === 'fr' ? 'en' : 'fr'}`}
 						>
@@ -150,7 +167,7 @@ export default function Navbar() {
 
 							<BsFlag className='h-4 w-4' />
 							{i18n.language}
-						</Link>
+						</Link>*/}
 						<Link
 							className='flex items-center gap-2'
 							href={'/devenir-prestataire'}
