@@ -3,9 +3,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
 import { IoMdHeartEmpty } from 'react-icons/io'
@@ -14,15 +13,16 @@ import { SlBasket, SlUser } from 'react-icons/sl'
 import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
 
+import { useTranslation } from '@/app/i18n/client'
 import { useMobileMenu } from '@/contexts/MobileMenuContext'
-import i18n from '@/i18n'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
+	const pathname = usePathname()
+	const router = useRouter()
 
-	const [language, setLanguage] = useState('fr')
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
@@ -63,8 +63,6 @@ export default function Navbar() {
 		}
 	}
 
-	const pathname = usePathname()
-
 	const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
 	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-greeny-50')
@@ -73,20 +71,6 @@ export default function Navbar() {
 
 	const isOpen = activePanel !== null
 
-	const closePanel = () => setActivePanel(null)
-
-	const handleNavClick = () => {
-		closePanel()
-		setMobileMenuOpen(false)
-	}
-
-	const togglePanel = (key: TPanelKey) => {
-		setActivePanel((prev) => (prev === key ? null : key))
-	}
-
-	// useEffect(() => {
-	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
-	// }, [])
 	useEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') closePanel()
@@ -120,6 +104,27 @@ export default function Navbar() {
 		}
 	}, [pathname])
 
+	const closePanel = () => setActivePanel(null)
+
+	const handleNavClick = () => {
+		closePanel()
+		setMobileMenuOpen(false)
+	}
+	const handleSwitchLanguageClick = (lng) => {
+		let newPathUrl = pathname
+
+		if (lng === 'fr') {
+			newPathUrl = pathname.replace('/en', `/${lng}`)
+		} else if (lng === 'en') {
+			newPathUrl = pathname.replace('/fr', `/${lng}`)
+		}
+
+		router.replace(newPathUrl)
+	}
+	const togglePanel = (key: TPanelKey) => {
+		setActivePanel((prev) => (prev === key ? null : key))
+	}
+
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
@@ -143,20 +148,26 @@ export default function Navbar() {
 
 					<section className='flex w-[400px] items-center justify-center gap-4 pr-3.5 text-black'>
 						<SlUser />
-						<p>{t('common:login')}</p>
+						<p>{t('login')}</p>
 						<button
 							className='flex cursor-pointer items-center gap-2'
-							onClick={() => {
-								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
-									setLanguage(i18n.language)
-									// localStorage.setItem('language', i18n.language)
-								})
-							}}
+							onClick={() => handleSwitchLanguageClick(i18n.language === 'fr' ? 'en' : 'fr')}
 							type='button'
 						>
+							{i18n.language}
+
 							<BsFlag className='h-4 w-4' />
-							{language}
+							{i18n.language}
 						</button>
+						{/*<Link
+							className='flex cursor-pointer items-center gap-2'
+							href={`/${i18n.language === 'fr' ? 'en' : 'fr'}`}
+						>
+							{i18n.language}
+
+							<BsFlag className='h-4 w-4' />
+							{i18n.language}
+						</Link>*/}
 						<Link
 							className='flex items-center gap-2'
 							href={'/devenir-prestataire'}
