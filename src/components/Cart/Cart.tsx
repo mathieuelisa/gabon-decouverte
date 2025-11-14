@@ -1,10 +1,8 @@
 'use client'
 
-import { useBasketAtom } from '@/stores/useBasket.atom'
-
 export default function Cart() {
-	const [basket] = useBasketAtom()
+	// const [basket] = useBasketAtom()
 
-	console.log(basket)
+	// console.log('basket', basket)
 	return <p>Panier</p>
 }
