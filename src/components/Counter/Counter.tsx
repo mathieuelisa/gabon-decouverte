@@ -1,11 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import type { SetStateAction } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 import { FiMinus } from 'react-icons/fi'
 
-export default function Counter() {
-	const [count, setCount] = useState(0)
+type Props = {
+	setCount: (value: SetStateAction<number>) => void
+	count: number
+}
+
+export default function Counter({ count, setCount }: Props) {
 	return (
 		<section className='flex w-fit items-center justify-center gap-6 rounded-2xl bg-white p-2 shadow-md'>
 			<button

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 
+import Cart from '@/components/Cart'
+import { useBasketAtom } from '@/stores/useBasket.atom'
+
 export const metadata: Metadata = {
 	alternates: {
 		canonical: 'https://www.decouvertegabon.com/contact'
@@ -28,5 +31,5 @@ export const metadata: Metadata = {
 }
 
 export default function CartPage() {
-	return <p>Panier</p>
+	return <Cart />
 }
