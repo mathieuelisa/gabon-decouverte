@@ -22,7 +22,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Libreville',
-		duration: '2 heures',
+		duration: '3 heures',
 		id: 2,
 		img: '/assets/images/activites/parc-aquatique.avif',
 		long_description:
@@ -60,7 +60,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Libreville',
-		duration: '2 heures',
+		duration: '45 minutes',
 		id: 4,
 		img: '/assets/images/decouverte/africa.avif',
 		long_description:
