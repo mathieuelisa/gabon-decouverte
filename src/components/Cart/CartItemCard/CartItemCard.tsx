@@ -1,9 +1,18 @@
+'use client'
+
 import Image from 'next/image'
 import { BsTrash3 } from 'react-icons/bs'
 import { FiUsers } from 'react-icons/fi'
 import { TbClockHour7 } from 'react-icons/tb'
 
-export default function CartItemCard({ item }) {
+import type { TBasketItem } from '@/types/common'
+
+type TcartItemCard = {
+	item: TBasketItem
+	onRemove?: (id: string) => void
+}
+
+export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 	return (
 		<section
 			className='flex min-w-[60%] sup-md:flex-row flex-col gap-2 rounded-md border border-gray-200 p-3'
@@ -21,14 +30,12 @@ export default function CartItemCard({ item }) {
 							<FiUsers className='h-5 w-5' />
 							<p>{item?.participate} participants</p>
 						</div>
-
 						{/* Duration */}
 						<div className='mt-4 flex items-center gap-2'>
 							<TbClockHour7 className='h-5 w-5' />
 							<p>{item?.duration}</p>
 						</div>
 					</div>
-
 					{/* Price */}
 					<div className='flex flex-col items-end'>
 						<p className='font-caviarDreams-bold text-lg'>{item.total_eur} € </p>
@@ -37,7 +44,11 @@ export default function CartItemCard({ item }) {
 				</section>
 
 				<section className='flex justify-end'>
-					<button className='group flex cursor-pointer items-center gap-2' type='button'>
+					<button
+						className='group flex cursor-pointer items-center gap-2'
+						onClick={() => onRemove(item.id)}
+						type='button'
+					>
 						<BsTrash3 className='h-4 w-4' />
 						<p className='text-sm group-hover:underline'>Supprimer</p>
 					</button>

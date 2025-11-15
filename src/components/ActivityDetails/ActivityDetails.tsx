@@ -22,9 +22,12 @@ export default function ActivityDetails() {
 	const [participate, setParticipate] = useState(1)
 	const [basket, setBasket] = useBasketAtom()
 
-	const ACTIVITY_ID = ACTVITY_MOCK_DATA.find((element) => element.slug === id)
+	const ACTIVITY_ID = useMemo(() => {
+		return ACTVITY_MOCK_DATA.find((element) => element.slug === id)
+	}, [id])
+
 	const { img, price_cfa, price_eur, title, duration, short_description } = ACTIVITY_ID || {}
-	// TODO: Creer un tableau d'image
+
 	const photos = ACTIVITY_ID?.img ? [ACTIVITY_ID.img, ACTIVITY_ID.img, ACTIVITY_ID.img] : []
 
 	const suggestions = useMemo(() => {
@@ -57,21 +60,15 @@ export default function ActivityDetails() {
 		setParticipate(0)
 	}
 
-	const getTotalEurPrice = (price, participate) => {
-		return price * participate
-	}
+	const getTotalPrice = (price: number, quantity: number) => price * quantity
 
-	const getTotalCfaPrice = (price, participate) => {
-		return price * participate
-	}
-
-	const totalEur = getTotalEurPrice(price_eur, participate)
-	const totalCfa = getTotalCfaPrice(price_cfa, participate)
+	const totalEur = useMemo(() => getTotalPrice(price_eur, participate), [price_eur, participate])
+	const totalCfa = useMemo(() => getTotalPrice(price_cfa, participate), [price_cfa, participate])
 
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
 			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100'>{ACTIVITY_ID?.title}</h1>
-			{/* Main grid: 1 mobile column. */}
+			{/* Main grid: 1 mobile column */}
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
 				{/* Large pictures (left column, covering 2/3 of the width)*/}
 				<div className='relative overflow-hidden rounded-2xl md:col-span-2'>
@@ -196,10 +193,9 @@ export default function ActivityDetails() {
 
 					<section className='flex items-center justify-between'>
 						<div className='px-0'>
-							<p className='font-caviarDreams-bold text-2xl'>
-								{getTotalEurPrice(price_eur, participate)} €{' '}
-								<span className='text-xs'>/ {getTotalCfaPrice(price_cfa, participate)} CFA</span>
-							</p>
+							<p className='font-caviarDreams-bold text-2xl'>{getTotalPrice(price_eur, participate)} €</p>
+							<p className='text-gray-600 text-sm'>{getTotalPrice(price_cfa, participate)} CFA</p>
+
 							<p className='mt-2 text-sm'>
 								{participate} Adultes x {ACTIVITY_ID?.price_eur} €
 							</p>
@@ -210,7 +206,7 @@ export default function ActivityDetails() {
 							onClick={handleAddBasketClick}
 							type='button'
 						>
-							Ajouter au panier
+							AJOUTER AU PANIER
 						</button>
 					</section>
 				</DialogContent>

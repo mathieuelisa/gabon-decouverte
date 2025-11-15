@@ -49,3 +49,17 @@ export type TFavorite = {
 	rating: number | string
 	slug?: string
 }
+
+export type TBasketItem = {
+	date: Date
+	id: string
+	participate: number
+	price_cfa: number
+	price_eur: number
+	title: string
+	img: string
+	duration: string
+	short_description: string
+	total_eur: number
+	total_cfa: number
+}
