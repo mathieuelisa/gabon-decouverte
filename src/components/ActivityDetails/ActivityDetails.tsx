@@ -19,11 +19,11 @@ export default function ActivityDetails() {
 
 	const [open, setOpen] = useState(false)
 	const [date, setDate] = useState<Date | undefined>(new Date())
-	const [participate, setParticipate] = useState(0)
+	const [participate, setParticipate] = useState(1)
 	const [basket, setBasket] = useBasketAtom()
 
 	const ACTIVITY_ID = ACTVITY_MOCK_DATA.find((element) => element.slug === id)
-	const { img, price_cfa, price_eur, title } = ACTIVITY_ID || {}
+	const { img, price_cfa, price_eur, title, duration, short_description } = ACTIVITY_ID || {}
 	// TODO: Creer un tableau d'image
 	const photos = ACTIVITY_ID?.img ? [ACTIVITY_ID.img, ACTIVITY_ID.img, ACTIVITY_ID.img] : []
 
@@ -39,11 +39,13 @@ export default function ActivityDetails() {
 
 		newBasket.push({
 			date,
+			duration,
 			id: id.toString(),
 			img,
 			participate,
 			price_cfa,
 			price_eur,
+			short_description,
 			title
 		})
 
@@ -52,6 +54,15 @@ export default function ActivityDetails() {
 		setDate(new Date())
 		setParticipate(0)
 	}
+
+	const getTotalEurPrice = (price, participate) => {
+		return price * participate
+	}
+
+	const getTotalCfaPrice = (price, participate) => {
+		return price * participate
+	}
+
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
 			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100'>{ACTIVITY_ID?.title}</h1>
@@ -146,7 +157,8 @@ export default function ActivityDetails() {
 								<p>A partir de:</p>
 
 								<p className='font-caviarDreams-bold'>
-									{ACTIVITY_ID?.price_cfa} CFA{' '}
+									{ACTIVITY_ID?.price_eur} €{' '}
+									<span className='text-xs'>/ {ACTIVITY_ID?.price_cfa} CFA</span>{' '}
 									<small className='font-caviarDreams'>par personne</small>
 								</p>
 							</div>
@@ -167,6 +179,7 @@ export default function ActivityDetails() {
 							<Calendar
 								captionLayout='dropdown'
 								className='rounded-md border shadow-sm'
+								// disabled={(date) => date.getDay() === 0}
 								mode='single'
 								onSelect={setDate}
 								selected={date}
@@ -178,13 +191,17 @@ export default function ActivityDetails() {
 
 					<section className='flex items-center justify-between'>
 						<div className='px-0'>
-							<p className='font-caviarDreams-bold'>{ACTIVITY_ID?.price_cfa} CFA</p>
-							{/* TODO: Mettre le count a la place du 3 et multipler par le prix de base */}
-							<p className='mt-2 text-sm'>3 Adultes x {ACTIVITY_ID?.price_cfa}</p>
+							<p className='font-caviarDreams-bold text-2xl'>
+								{getTotalEurPrice(price_eur, participate)} €{' '}
+								<span className='text-xs'>/ {getTotalCfaPrice(price_cfa, participate)} CFA</span>
+							</p>
+							<p className='mt-2 text-sm'>
+								{participate} Adultes x {ACTIVITY_ID?.price_eur} €
+							</p>
 							<p className='text-sm'>Taxes et frais compris</p>
 						</div>
 						<button
-							className='cursor-pointer rounded-md bg-greeny-100 p-3 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-greeny-50'
+							className='cursor-pointer rounded-md bg-greeny-100 p-3 font-caviarDreams-bold text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 							onClick={handleAddBasketClick}
 							type='button'
 						>

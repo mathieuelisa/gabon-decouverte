@@ -149,7 +149,6 @@ export default function Navbar() {
 							onClick={() => {
 								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
 									setLanguage(i18n.language)
-									// localStorage.setItem('language', i18n.language)
 								})
 							}}
 							type='button'

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 		type: 'website',
 		url: 'https://www.decouvertegabon.com/contact'
 	},
-	title: 'Favoris | Gabon Decouverte'
+	title: 'Panier | Gabon Decouverte'
 }
 
 export default function CartPage() {
