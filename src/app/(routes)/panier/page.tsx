@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 import Cart from '@/components/Cart'
-import { useBasketAtom } from '@/stores/useBasket.atom'
 
 export const metadata: Metadata = {
 	alternates: {
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
 		type: 'website',
 		url: 'https://www.decouvertegabon.com/contact'
 	},
-	title: 'Favoris | Gabon Decouverte'
+	title: 'Panier | Gabon Decouverte'
 }
 
 export default function CartPage() {

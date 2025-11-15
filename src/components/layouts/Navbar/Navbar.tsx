@@ -16,6 +16,7 @@ import { twJoin, twMerge } from 'tailwind-merge'
 
 import { useMobileMenu } from '@/contexts/MobileMenuContext'
 import i18n from '@/i18n'
+import { useBasketAtom } from '@/stores/useBasket.atom'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
@@ -26,6 +27,9 @@ export default function Navbar() {
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
+	const [isMounted, setIsMounted] = useState(false)
+
+	const [basket] = useBasketAtom()
 
 	// Images de couverture pour activité part
 	const activiteImageMap: Record<TActiviteKey, { src: string; alt: string }> = {
@@ -84,6 +88,8 @@ export default function Navbar() {
 		setActivePanel((prev) => (prev === key ? null : key))
 	}
 
+	const basketLength = basket?.length ?? 0
+
 	// useEffect(() => {
 	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
 	// }, [])
@@ -120,6 +126,10 @@ export default function Navbar() {
 		}
 	}, [pathname])
 
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
+
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
@@ -149,7 +159,6 @@ export default function Navbar() {
 							onClick={() => {
 								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
 									setLanguage(i18n.language)
-									// localStorage.setItem('language', i18n.language)
 								})
 							}}
 							type='button'
@@ -166,13 +175,19 @@ export default function Navbar() {
 							Prestataire
 						</Link>
 
-						<Link className='flex items-center gap-2' href='/favoris'>
+						<Link className='flex items-center gap-2' href='/favoris' onClick={handleNavClick}>
 							<IoMdHeartEmpty className='h-5 w-5' />
 							Favoris
 						</Link>
 
-						<Link className='flex items-center gap-2' href='/panier'>
+						<Link className='relative flex items-center gap-2' href='/panier' onClick={handleNavClick}>
 							<SlBasket className='h-5 w-5' />
+
+							{isMounted && basketLength > 0 && (
+								<span className='-top-1 -right-1 absolute flex h-4 w-4 items-center justify-center rounded-full bg-red-600 font-caviarDreams-bold text-[10px] text-white'>
+									{basketLength}
+								</span>
+							)}
 						</Link>
 					</section>
 				</div>
@@ -335,7 +350,7 @@ export default function Navbar() {
 											</ul>
 
 											<Link
-												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams-bold text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 												href={{
 													pathname: '/activite',
 													query: { type: 'toutes-nos-activites' }
