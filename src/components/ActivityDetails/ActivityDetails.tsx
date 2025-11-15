@@ -46,7 +46,9 @@ export default function ActivityDetails() {
 			price_cfa,
 			price_eur,
 			short_description,
-			title
+			title,
+			total_cfa: totalCfa,
+			total_eur: totalEur
 		})
 
 		setBasket(newBasket)
@@ -62,6 +64,9 @@ export default function ActivityDetails() {
 	const getTotalCfaPrice = (price, participate) => {
 		return price * participate
 	}
+
+	const totalEur = getTotalEurPrice(price_eur, participate)
+	const totalCfa = getTotalCfaPrice(price_cfa, participate)
 
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
