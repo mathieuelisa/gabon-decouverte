@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -36,11 +37,18 @@ export default function Cart() {
 		}
 	}, [basket.length, isMounted])
 
-	//TODO: Creer une page de chargement
 	if (!isMounted) {
 		return (
-			<section className='flex h-screen items-center px-5 sup-md:px-40'>
-				<p>Chargement du panier...</p>
+			<section className='flex h-[calc(100vh-180px)] flex-col items-center justify-center px-5 sup-md:px-40'>
+				<Image
+					alt='logo_background'
+					className='-z-1 opacity-60'
+					height={100}
+					priority
+					src='/assets/images/logo_grey.png'
+					width={200}
+				/>
+				<p className='font-caviarDreams text-gray-400 text-lg'>Chargement du panier...</p>
 			</section>
 		)
 	}
@@ -61,7 +69,7 @@ export default function Cart() {
 						<div className='mt-6 flex justify-end'>
 							<Link href='/activite'>
 								<button
-									className='cursor-pointer rounded-md bg-greeny-100 p-2 font-caviarDreams-bold text-white'
+									className='cursor-pointer rounded-md bg-greeny-100 p-2 font-caviarDreams-bold text-base text-white'
 									type='button'
 								>
 									EXPLORER LES ACTIVITES
@@ -74,7 +82,7 @@ export default function Cart() {
 		)
 
 	return (
-		<section className='px-5 sup-xl:px-40'>
+		<section className='min-h-screen px-5 sup-xl:px-40'>
 			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Votre panier</h1>
 
 			<hr className='my-6 border-gray-200 border-t' />
