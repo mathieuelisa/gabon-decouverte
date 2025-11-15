@@ -49,7 +49,12 @@ export default function FavoriteExplorer() {
 		)
 	}
 
-	if (items.length === 0) return <div className='h-screen'>Aucun favori pour le moment.</div>
+	if (items.length === 0)
+		return (
+			<section className='h-screen px-5 sup-md:px-40'>
+				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Aucun favori pour le moment</h1>
+			</section>
+		)
 
 	return (
 		<div className='mt-5 grid min-h-screen grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>

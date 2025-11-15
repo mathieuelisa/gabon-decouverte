@@ -1,3 +1,5 @@
+'use client'
+
 import { GrValidate } from 'react-icons/gr'
 
 import { CART_BENEFITS_DATA } from './CartBenefitsMock.data'

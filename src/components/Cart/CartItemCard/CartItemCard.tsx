@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { BsTrash3 } from 'react-icons/bs'
 import { FiUsers } from 'react-icons/fi'
+import { IoCalendarNumberOutline } from 'react-icons/io5'
 import { TbClockHour7 } from 'react-icons/tb'
 
 import type { TBasketItem } from '@/types/common'
@@ -13,6 +14,10 @@ type TcartItemCard = {
 }
 
 export default function CartItemCard({ item, onRemove }: TcartItemCard) {
+	const iseDate = item?.date
+	const date = new Date(iseDate)
+	const formatted = date.toLocaleDateString('fr-FR')
+
 	return (
 		<section
 			className='flex min-w-[60%] sup-md:flex-row flex-col gap-2 rounded-md border border-gray-200 p-3'
@@ -34,6 +39,11 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 						<div className='mt-4 flex items-center gap-2'>
 							<TbClockHour7 className='h-5 w-5' />
 							<p>{item?.duration}</p>
+						</div>
+						{/* Date */}
+						<div className='mt-4 flex items-center gap-2'>
+							<IoCalendarNumberOutline className='h-5 w-5' />
+							<p>le {formatted}</p>
 						</div>
 					</div>
 					{/* Price */}

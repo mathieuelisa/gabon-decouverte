@@ -12,6 +12,11 @@ import CartSummary from './CartSummary'
 export default function Cart() {
 	const [basket, setBasket] = useBasketAtom()
 	const [open, setOpen] = useState(false)
+	const [isMounted, setIsMounted] = useState(false)
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
 
 	// Removes an item from the shopping basket
 	// by filtering out the entry matching the given ID
@@ -22,20 +27,33 @@ export default function Cart() {
 	}
 
 	useEffect(() => {
+		if (!isMounted) return
+
 		if (basket.length === 0) {
 			setOpen(true)
+		} else {
+			setOpen(false)
 		}
-	}, [basket.length])
+	}, [basket.length, isMounted])
+
+	//TODO: Creer une page de chargement
+	if (!isMounted) {
+		return (
+			<section className='flex h-screen items-center px-5 sup-md:px-40'>
+				<p>Chargement du panier...</p>
+			</section>
+		)
+	}
 
 	if (basket.length === 0)
 		return (
 			<section className='h-screen px-5 sup-md:px-40'>
-				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Aucunes activites dans votre panier</h1>
+				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Aucunes activités dans votre panier</h1>
 
 				<Dialog onOpenChange={setOpen} open={open}>
 					<DialogContent className='p-6'>
 						<DialogHeader>
-							<DialogTitle>Votre panier est vide</DialogTitle>
+							<DialogTitle className='font-caviarDreams-bold'>Votre panier est vide</DialogTitle>
 						</DialogHeader>
 
 						<p className='mt-3'>Il n'y a actuellement aucune activité dans votre panier.</p>

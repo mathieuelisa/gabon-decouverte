@@ -1,3 +1,5 @@
+'use client'
+
 import { useBasketAtom } from '@/stores/useBasket.atom'
 
 export default function CartSummary() {

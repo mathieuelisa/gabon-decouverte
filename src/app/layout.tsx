@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html data-lt-installed='true' lang='fr' suppressHydrationWarning>
-			<body className='font-louisGeorgeCafe-light antialiased'>
+			<body className='font-louisGeorgeCafe-light antialiased' suppressHydrationWarning>
 				<Base>{children}</Base>
 			</body>
 		</html>
