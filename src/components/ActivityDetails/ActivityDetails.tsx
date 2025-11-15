@@ -6,6 +6,8 @@ import { useParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { LuMapPin } from 'react-icons/lu'
 import { TbClockHour7 } from 'react-icons/tb'
+import { ToastContainer, toast } from 'react-toastify'
+import { twMerge } from 'tailwind-merge'
 
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
 import { useBasketAtom } from '@/stores/useBasket.atom'
@@ -30,12 +32,29 @@ export default function ActivityDetails() {
 
 	const photos = ACTIVITY_ID?.img ? [ACTIVITY_ID.img, ACTIVITY_ID.img, ACTIVITY_ID.img] : []
 
+	// Selects 3 random activities from the list, excluding the current one.
 	const suggestions = useMemo(() => {
 		const pool = ACTVITY_MOCK_DATA.filter((el) => el.slug !== id)
 
 		const shuffled = [...pool].sort(() => Math.random() - 0.5)
 		return shuffled.slice(0, 3)
 	}, [id])
+
+	// Toast with image
+	const notifyWithImage = (title: string, img: string) => {
+		toast.success(
+			<div className='flex items-center gap-3'>
+				<Image alt={title} className='rounded-md object-cover' height={40} src={img} width={40} />
+				<span className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</span>
+			</div>,
+			{
+				autoClose: 3000,
+				hideProgressBar: true,
+				icon: false,
+				position: 'bottom-left'
+			}
+		)
+	}
 
 	const handleAddBasketClick = () => {
 		const newBasket = [...basket]
@@ -58,12 +77,16 @@ export default function ActivityDetails() {
 		setOpen(false)
 		setDate(new Date())
 		setParticipate(0)
+
+		notifyWithImage(title ?? "L'activité", img)
 	}
 
 	const getTotalPrice = (price: number, quantity: number) => price * quantity
 
 	const totalEur = useMemo(() => getTotalPrice(price_eur, participate), [price_eur, participate])
 	const totalCfa = useMemo(() => getTotalPrice(price_cfa, participate), [price_cfa, participate])
+
+	const activityAlreadySelected = basket.some((element) => element.id === id)
 
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
@@ -135,7 +158,13 @@ export default function ActivityDetails() {
 			<Dialog onOpenChange={setOpen} open={open}>
 				<DialogTrigger asChild>
 					<button
-						className='mt-6 w-full cursor-pointer rounded-md bg-red-700 p-2 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-red-800'
+						className={twMerge(
+							'mt-6 w-full rounded-md p-2 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out',
+							activityAlreadySelected
+								? 'cursor-not-allowed bg-gray-400 opacity-60'
+								: 'cursor-pointer bg-red-700 hover:bg-red-800'
+						)}
+						disabled={activityAlreadySelected}
 						type='button'
 					>
 						DEMANDE DE RESERVATION
@@ -143,7 +172,7 @@ export default function ActivityDetails() {
 				</DialogTrigger>
 
 				{/* modal of reservation */}
-				<DialogContent className='p-9 sm:max-w-[425px]'>
+				<DialogContent className='sup-sm:max-w-[425px] p-9'>
 					<DialogHeader>
 						<DialogTitle className='font-caviarDreams-bold text-xl'>{ACTIVITY_ID?.title}</DialogTitle>
 					</DialogHeader>
@@ -202,7 +231,12 @@ export default function ActivityDetails() {
 							<p className='text-sm'>Taxes et frais compris</p>
 						</div>
 						<button
-							className='cursor-pointer rounded-md bg-greeny-100 p-3 font-caviarDreams-bold text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+							className={`rounded-md p-2 font-caviarDreams-bold text-white transition-all duration-400 ease-in-out ${
+								participate === 0
+									? 'cursor-not-allowed bg-gray-400 opacity-60'
+									: 'cursor-pointer bg-greeny-50 hover:bg-greeny-100'
+							}`}
+							disabled={participate === 0}
 							onClick={handleAddBasketClick}
 							type='button'
 						>
@@ -234,6 +268,17 @@ export default function ActivityDetails() {
 					))}
 				</div>
 			</section>
+
+			<ToastContainer
+				autoClose={2000}
+				hideProgressBar={true}
+				icon={false}
+				toastStyle={{
+					borderRadius: '10px',
+					boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+					color: '#121212'
+				}}
+			/>
 		</section>
 	)
 }
