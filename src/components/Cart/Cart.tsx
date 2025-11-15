@@ -20,7 +20,7 @@ export default function Cart() {
 
 	// Removes an item from the shopping basket
 	// by filtering out the entry matching the given ID
-	// then updates the basket state.
+	// then updates the basket state
 	const handleRemoveFromBasket = (id: string) => {
 		const updateBasket = basket.filter((item) => item.id !== id)
 		setBasket(updateBasket)
