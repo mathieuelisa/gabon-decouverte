@@ -39,6 +39,21 @@ export type TActivity = {
 	price_eur: number
 	price_cfa: number
 	city: string
+	city_activity: string
+}
+
+export type TDiscover = {
+	id: number
+	long_description: string
+	short_description: string
+	title: string
+	img: string
+	second_img: string
+	slug: string
+	type: string
+	city: string
+	best_period: string
+	airport_transfer_duration: string
 }
 
 export type TFavorite = {
