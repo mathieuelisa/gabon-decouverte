@@ -3,6 +3,7 @@ import type { TActivity } from '@/types/common'
 export const ACTVITY_MOCK_DATA: TActivity[] = [
 	{
 		city: 'Franceville',
+		city_activity: 'lambarene',
 		duration: '1 heure',
 		id: 1,
 		img: '/assets/images/activites/chutes-djomou.avif',
@@ -22,6 +23,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Libreville',
+		city_activity: 'libreville',
 		duration: '3 heures',
 		id: 2,
 		img: '/assets/images/activites/parc-aquatique.avif',
@@ -41,6 +43,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Libreville',
+		city_activity: 'libreville',
 		duration: '2 heures',
 		id: 3,
 		img: '/assets/images/activites/pongora.avif',
@@ -60,6 +63,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Libreville',
+		city_activity: 'libreville',
 		duration: '45 minutes',
 		id: 4,
 		img: '/assets/images/decouverte/africa.avif',
@@ -79,6 +83,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Lambaréné',
+		city_activity: 'lambarene',
 		duration: '2 heures',
 		id: 5,
 		img: '/assets/images/activites/musee-albert-schweitzer.avif',
@@ -98,6 +103,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Tchibanga',
+		city_activity: 'mayumba',
 		duration: '30 minutes',
 		id: 6,
 		img: '/assets/images/activites/kayak.avif',
@@ -117,6 +123,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 	},
 	{
 		city: 'Libreville',
+		city_activity: 'oyem',
 		duration: '2 heures',
 		id: 7,
 		img: '/assets/images/activites/lac-oguemoue.avif',

@@ -37,7 +37,7 @@ export default function FavoriteExplorer() {
 						}))
 					: (parsed ?? [])
 
-			// 👉 first determine whether there are favorites
+			// 👉 first determine whether there are favorites.
 			if (normalized.length === 0) {
 				setHasFavorites(false)
 				setItems([]) // no skeleton in this case
