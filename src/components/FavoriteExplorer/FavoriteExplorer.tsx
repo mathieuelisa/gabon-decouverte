@@ -37,16 +37,16 @@ export default function FavoriteExplorer() {
 						}))
 					: (parsed ?? [])
 
-			// 👉 on détermine d'abord s'il y a des favoris
+			// 👉 first determine whether there are favorites
 			if (normalized.length === 0) {
 				setHasFavorites(false)
-				setItems([]) // pas de skeleton dans ce cas
+				setItems([]) // no skeleton in this case
 			} else {
 				setHasFavorites(true)
-				// 🔥 ici tu peux décider d'afficher un skeleton avant d'afficher les vraies cartes
-				// Si tu veux que le skeleton soit visible un minimum, tu peux simuler un "chargement"
+				// 🔥 here you can decide to display a skeleton before showing the actual cards
+				// If you want the skeleton to remain visible for a minimum amount of time, you can simulate a “loading”
 				setItems(null)
-				// Exemple : petit délai pour que le skeleton soit visible (optionnel)
+				// Example: small delay so the skeleton is visible (optional)
 				setTimeout(() => {
 					setItems(normalized)
 				}, 300)
