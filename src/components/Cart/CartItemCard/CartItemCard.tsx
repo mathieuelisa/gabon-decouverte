@@ -56,7 +56,7 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 				<section className='flex justify-end'>
 					<button
 						className='group flex cursor-pointer items-center gap-2'
-						onClick={() => onRemove(item.id)}
+						onClick={() => onRemove(item.basketItemId)}
 						type='button'
 					>
 						<BsTrash3 className='h-4 w-4' />

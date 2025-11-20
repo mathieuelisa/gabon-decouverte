@@ -7,7 +7,6 @@ import { useMemo, useState } from 'react'
 import { LuMapPin } from 'react-icons/lu'
 import { TbClockHour7 } from 'react-icons/tb'
 import { ToastContainer, toast } from 'react-toastify'
-import { twMerge } from 'tailwind-merge'
 
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
 import { useBasketAtom } from '@/stores/useBasket.atom'
@@ -59,7 +58,10 @@ export default function ActivityDetails() {
 	const handleAddBasketClick = () => {
 		const newBasket = [...basket]
 
+		const basketItemId = crypto.randomUUID?.() ? crypto.randomUUID() : `${id}-${Date.now()}-${Math.random()}`
+
 		newBasket.push({
+			basketItemId,
 			date,
 			duration,
 			id: id.toString(),
@@ -86,7 +88,7 @@ export default function ActivityDetails() {
 	const totalEur = useMemo(() => getTotalPrice(price_eur, participate), [price_eur, participate])
 	const totalCfa = useMemo(() => getTotalPrice(price_cfa, participate), [price_cfa, participate])
 
-	const activityAlreadySelected = basket.some((element) => element.id === id)
+	// const activityAlreadySelected = basket.some((element) => element.id === id)
 
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
@@ -158,13 +160,8 @@ export default function ActivityDetails() {
 			<Dialog onOpenChange={setOpen} open={open}>
 				<DialogTrigger asChild>
 					<button
-						className={twMerge(
-							'mt-6 w-full rounded-md p-2 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out',
-							activityAlreadySelected
-								? 'cursor-not-allowed bg-gray-400 opacity-60'
-								: 'cursor-pointer bg-red-700 hover:bg-red-800'
-						)}
-						disabled={activityAlreadySelected}
+						className='mt-6 w-full cursor-pointer rounded-md bg-red-700 p-2 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-red-800'
+						// disabled={activityAlreadySelected}
 						type='button'
 					>
 						DEMANDE DE RESERVATION
@@ -231,12 +228,7 @@ export default function ActivityDetails() {
 							<p className='text-sm'>Taxes et frais compris</p>
 						</div>
 						<button
-							className={`rounded-md p-2 font-caviarDreams-bold text-white transition-all duration-400 ease-in-out ${
-								participate === 0
-									? 'cursor-not-allowed bg-gray-400 opacity-60'
-									: 'cursor-pointer bg-greeny-50 hover:bg-greeny-100'
-							}`}
-							disabled={participate === 0}
+							className='cursor-pointer rounded-md bg-greeny-50 p-2 font-caviarDreams-bold text-white transition-all duration-400 ease-in-out hover:bg-greeny-100'
 							onClick={handleAddBasketClick}
 							type='button'
 						>
