@@ -51,7 +51,7 @@ export default function ActivityExplorer() {
 
 	return (
 		<section className='mb-10 sup-md:px-12'>
-			<div className='flex w-[460px] justify-between px-2'>
+			<div className='mx-auto flex w-[460px] justify-between px-12'>
 				<button
 					className={twJoin(btnBase, activeLink === 'art-et-culture' && 'text-white')}
 					onClick={() => handleSelectType('art-et-culture')}

@@ -77,4 +77,5 @@ export type TBasketItem = {
 	short_description: string
 	total_eur: number
 	total_cfa: number
+	basketItemId: string
 }
