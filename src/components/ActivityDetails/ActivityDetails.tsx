@@ -44,7 +44,10 @@ export default function ActivityDetails() {
 		toast.success(
 			<div className='flex items-center gap-3'>
 				<Image alt={title} className='rounded-md object-cover' height={40} src={img} width={40} />
-				<span className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</span>
+				<Link className='flex flex-col' href='/panier'>
+					<p className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</p>
+					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs'>Voir le panier</p>
+				</Link>
 			</div>,
 			{
 				autoClose: 3000,
@@ -78,7 +81,7 @@ export default function ActivityDetails() {
 		setBasket(newBasket)
 		setOpen(false)
 		setDate(new Date())
-		setParticipate(0)
+		setParticipate(1)
 
 		notifyWithImage(title ?? "L'activité", img)
 	}

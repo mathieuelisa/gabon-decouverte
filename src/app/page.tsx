@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import AboutUs from '@/components/AboutUs'
 import Banner from '@/components/Banner'
+import DestinationsGallery from '@/components/DestinationsGallery'
 import HightLights from '@/components/HighLights'
 
 export const metadata: Metadata = {
@@ -46,6 +47,7 @@ export default function Home() {
 		<section className='bg-white'>
 			<Banner />
 			<AboutUs />
+			<DestinationsGallery />
 			<HightLights />
 		</section>
 	)
