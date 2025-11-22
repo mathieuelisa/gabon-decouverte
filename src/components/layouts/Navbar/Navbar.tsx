@@ -6,18 +6,16 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
+import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
-import { IoMdHeartEmpty } from 'react-icons/io'
-import { IoClose } from 'react-icons/io5'
-import { LiaHandshake } from 'react-icons/lia'
-import { SlBasket, SlUser } from 'react-icons/sl'
+import { SlUser } from 'react-icons/sl'
 import { twJoin, twMerge } from 'tailwind-merge'
 
-import { Drawer, DrawerClose, DrawerContent, DrawerHeader } from '@/components/ui/drawer'
+import MobileNavbarDrawer from '@/components/layouts/MobileNavbarDrawer'
 import i18n from '@/i18n'
 import { useBasketAtom } from '@/stores/useBasket.atom'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
+import AccountPopover from '../AccountPopover'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
@@ -29,7 +27,6 @@ export default function Navbar() {
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
 	const [isMounted, setIsMounted] = useState(false)
-
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 	const accountAreaRef = useRef<HTMLElement | null>(null)
@@ -44,7 +41,7 @@ export default function Navbar() {
 		setIsOpenDialog(false)
 	}
 
-	// Images de couverture pour activité part
+	// Cover images for activity part
 	const activiteImageMap: Record<TActiviteKey, { src: string; alt: string }> = {
 		art: {
 			alt: 'Art & culture au Gabon',
@@ -60,7 +57,7 @@ export default function Navbar() {
 		}
 	}
 
-	// Images de couverture pour decouverte part.
+	// Cover images for discovery part
 	const decouverteImageMap: Record<TDecouverteKey, { src: string; alt: string }> = {
 		lambarene: {
 			alt: 'Ecotourisme & balnéaire au Gabon',
@@ -92,7 +89,6 @@ export default function Navbar() {
 
 	const handleNavClick = () => {
 		closePanel()
-		// setMobileMenuOpen(false)
 	}
 
 	const togglePanel = (key: TPanelKey) => {
@@ -104,6 +100,12 @@ export default function Navbar() {
 	// useEffect(() => {
 	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
 	// }, [])
+
+	const handleToggleLanguage = () => {
+		i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
+			setLanguage(i18n.language)
+		})
+	}
 
 	useEffect(() => {
 		// --- Activités ---
@@ -164,18 +166,18 @@ export default function Navbar() {
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
 				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white'>
-					{/* Burger menu */}
+					{/* Burger menu - open mobile menu */}
 					<button
 						className='ml-4 flex sup-md:hidden cursor-pointer flex-col'
 						onClick={() => setIsMobileMenuOpen(true)}
 						type='button'
 					>
-						<CiMenuBurger aria-label='Ouvrir le menu mobile' />
+						<CiMenuBurger aria-label='Ouvrir le menu mobile' className='h-5 w-5' />
 					</button>
 
 					<Link
 						aria-label='Se rendre a la page daccueil'
-						className='flex items-center justify-center pl-14 font-caviarDreams sup-md:text-3xl text-2xl text-black'
+						className='flex items-center justify-center pl-0 sup-lg:pl-14 font-caviarDreams sup-md:text-3xl text-2xl text-black'
 						href='/'
 					>
 						<Image
@@ -190,7 +192,7 @@ export default function Navbar() {
 					</Link>
 
 					<section className='relative flex items-center pr-3.5 text-black' ref={accountAreaRef}>
-						{/* Bouton qui ouvre la petite dialog */}
+						{/* Button that opens the small dialog box */}
 						<button
 							aria-expanded={isOpenDialog}
 							aria-haspopup='dialog'
@@ -202,88 +204,16 @@ export default function Navbar() {
 							<span className='hidden sm:inline'>{t('common:login')}</span>
 						</button>
 
-						{/* Petite dialog / popover */}
-						<AnimatePresence>
-							{isOpenDialog && (
-								<motion.div
-									animate={{ opacity: 1, y: 0 }}
-									aria-modal='false'
-									className='absolute top-12 right-4 z-100 w-[180px] rounded-md border border-gray-200 bg-white p-4 shadow-lg'
-									exit={{ opacity: 0, y: -8 }}
-									initial={{ opacity: 0, y: -8 }}
-									role='dialog'
-									transition={{ duration: 0.2 }}
-								>
-									<div className='mb-4 flex items-center gap-2 border-gray-100 border-b pb-3'>
-										<SlUser className='h-4 w-4' />
-										<p className='font-medium text-sm'>{t('common:login')}</p>
-									</div>
-
-									<div className='flex flex-col gap-3 text-sm'>
-										{/* Langue */}
-										<button
-											className='flex cursor-pointer items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
-											onClick={() => {
-												i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
-													setLanguage(i18n.language)
-												})
-											}}
-											type='button'
-										>
-											<BsFlag className='h-4 w-4' />
-											<span>{language}</span>
-										</button>
-
-										{/* Prestataire */}
-										<Link
-											className='flex items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
-											href={'/devenir-prestataire'}
-											onClick={() => {
-												closeDialog()
-												handleNavClick()
-											}}
-										>
-											<LiaHandshake className='h-4 w-4' />
-											<span>Prestataire</span>
-										</Link>
-
-										{/* Favoris */}
-										<Link
-											className='flex items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
-											href='/favoris'
-											onClick={() => {
-												closeDialog()
-												handleNavClick()
-											}}
-										>
-											<IoMdHeartEmpty className='h-4 w-4' />
-											<span>Favoris</span>
-										</Link>
-
-										{/* Panier */}
-										<Link
-											className='flex items-center justify-between gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
-											href='/panier'
-											onClick={() => {
-												closeDialog()
-												handleNavClick()
-											}}
-										>
-											<div className='flex items-center gap-2'>
-												<SlBasket className='h-4 w-4' />
-												<span>Panier</span>
-											</div>
-
-											{isMounted && basketLength > 0 && (
-												<span className='flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 font-caviarDreams-bold text-[10px] text-white'>
-													{basketLength}
-												</span>
-											)}
-										</Link>
-									</div>
-								</motion.div>
-							)}
-						</AnimatePresence>
+						{/* small dialog component / popover */}
+						<AccountPopover
+							basketLength={basketLength}
+							isMounted={isMounted}
+							isOpen={isOpenDialog}
+							language={language}
+							onClose={closeDialog}
+							onNavClick={handleNavClick}
+							onToggleLanguage={handleToggleLanguage}
+						/>
 					</section>
 				</div>
 			</section>
@@ -347,7 +277,7 @@ export default function Navbar() {
 				</nav>
 			</section>
 
-			{/* Panneau extensible qui s'ouvre EN DESSOUS de la navbar */}
+			{/* Expandable panel that opens below the navbar */}
 			<AnimatePresence initial={false}>
 				{isOpen && (
 					<motion.div
@@ -456,7 +386,7 @@ export default function Navbar() {
 													/>
 												</div>
 											) : (
-												// Image par defaut
+												// Default image
 												<div className='relative h-full w-full overflow-hidden'>
 													<Image
 														alt='Activités'
@@ -566,23 +496,7 @@ export default function Navbar() {
 			</AnimatePresence>
 
 			{/* Drawer mobile part */}
-			<Drawer direction='left' onOpenChange={setIsMobileMenuOpen} open={isMobileMenuOpen}>
-				<DrawerContent>
-					<DrawerClose className='absolute top-4 right-4 cursor-pointer'>
-						<IoClose size={24} />
-					</DrawerClose>
-					<div className='mx-auto w-full max-w-sm'>
-						<DrawerHeader>
-							<h1>Menu</h1>
-							<p>Contenu du drawer mobile</p>
-						</DrawerHeader>
-
-						<div className='p-4 pb-0'>
-							<p>ookok</p>
-						</div>
-					</div>
-				</DrawerContent>
-			</Drawer>
+			<MobileNavbarDrawer onOpenChange={setIsMobileMenuOpen} open={isMobileMenuOpen} />
 		</header>
 	)
 }
