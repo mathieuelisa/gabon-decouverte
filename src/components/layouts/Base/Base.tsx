@@ -17,7 +17,7 @@ export default function Base({ children }: { children: React.ReactNode }) {
 					<Footer />
 				</main>
 			</I18nextProvider>
-			<DevTools position='top-left' theme='dark' />
+			<DevTools position='bottom-right' theme='dark' />
 		</>
 	)
 }

@@ -9,12 +9,12 @@ import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
 import { IoMdHeartEmpty } from 'react-icons/io'
+import { IoClose } from 'react-icons/io5'
 import { LiaHandshake } from 'react-icons/lia'
 import { SlBasket, SlUser } from 'react-icons/sl'
-import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
 
-import { useMobileMenu } from '@/contexts/MobileMenuContext'
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader } from '@/components/ui/drawer'
 import i18n from '@/i18n'
 import { useBasketAtom } from '@/stores/useBasket.atom'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
@@ -29,6 +29,8 @@ export default function Navbar() {
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
 	const [isMounted, setIsMounted] = useState(false)
+
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 	const accountAreaRef = useRef<HTMLElement | null>(null)
 
@@ -84,15 +86,13 @@ export default function Navbar() {
 
 	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-greeny-50')
 
-	const { isMobileMenuOpen, toggleMobileMenu, setMobileMenuOpen } = useMobileMenu()
-
 	const isOpen = activePanel !== null
 
 	const closePanel = () => setActivePanel(null)
 
 	const handleNavClick = () => {
 		closePanel()
-		setMobileMenuOpen(false)
+		// setMobileMenuOpen(false)
 	}
 
 	const togglePanel = (key: TPanelKey) => {
@@ -164,11 +164,19 @@ export default function Navbar() {
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
 				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white'>
+					{/* Burger menu */}
+					<button
+						className='ml-4 flex sup-md:hidden cursor-pointer flex-col'
+						onClick={() => setIsMobileMenuOpen(true)}
+						type='button'
+					>
+						<CiMenuBurger aria-label='Ouvrir le menu mobile' />
+					</button>
+
 					<Link
 						aria-label='Se rendre a la page daccueil'
 						className='flex items-center justify-center pl-14 font-caviarDreams sup-md:text-3xl text-2xl text-black'
 						href='/'
-						onClick={() => setMobileMenuOpen(false)}
 					>
 						<Image
 							alt='logo gabon decouverte'
@@ -280,7 +288,7 @@ export default function Navbar() {
 				</div>
 			</section>
 
-			<section className='-top-0.5 sticky z-50 flex h-24 w-full items-center justify-between bg-white'>
+			<section className='-top-0.5 sticky z-50 sup-md:flex hidden h-24 w-full items-center justify-between bg-white'>
 				<nav aria-label='Navigation principale'>
 					<ul className='flex items-center pl-14'>
 						{NAVBAR_CONTENT.map((item) => {
@@ -336,21 +344,6 @@ export default function Navbar() {
 							Contact
 						</Link>
 					</ul>
-				</nav>
-
-				<nav className='flex sup-md:hidden flex-col'>
-					{isMobileMenuOpen ? (
-						<button
-							aria-label='Fermer le menu mobile'
-							className='flex'
-							onClick={toggleMobileMenu}
-							type='button'
-						>
-							<VscClose />
-						</button>
-					) : (
-						<CiMenuBurger aria-label='Ouvrir le menu mobile' onClick={toggleMobileMenu} />
-					)}
 				</nav>
 			</section>
 
@@ -571,6 +564,25 @@ export default function Navbar() {
 					</motion.div>
 				)}
 			</AnimatePresence>
+
+			{/* Drawer mobile part */}
+			<Drawer direction='left' onOpenChange={setIsMobileMenuOpen} open={isMobileMenuOpen}>
+				<DrawerContent>
+					<DrawerClose className='absolute top-4 right-4 cursor-pointer'>
+						<IoClose size={24} />
+					</DrawerClose>
+					<div className='mx-auto w-full max-w-sm'>
+						<DrawerHeader>
+							<h1>Menu</h1>
+							<p>Contenu du drawer mobile</p>
+						</DrawerHeader>
+
+						<div className='p-4 pb-0'>
+							<p>ookok</p>
+						</div>
+					</div>
+				</DrawerContent>
+			</Drawer>
 		</header>
 	)
 }
