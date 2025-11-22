@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
@@ -23,13 +23,24 @@ import { NAVBAR_CONTENT } from './Navbar.data'
 export default function Navbar() {
 	const { t } = useTranslation()
 
+	const [isOpenDialog, setIsOpenDialog] = useState(false)
 	const [language, setLanguage] = useState('fr')
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
 	const [isMounted, setIsMounted] = useState(false)
 
+	const accountAreaRef = useRef<HTMLElement | null>(null)
+
 	const [basket] = useBasketAtom()
+
+	const toggleDialog = () => {
+		setIsOpenDialog((prev) => !prev)
+	}
+
+	const closeDialog = () => {
+		setIsOpenDialog(false)
+	}
 
 	// Images de couverture pour activité part
 	const activiteImageMap: Record<TActiviteKey, { src: string; alt: string }> = {
@@ -93,14 +104,6 @@ export default function Navbar() {
 	// useEffect(() => {
 	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
 	// }, [])
-	useEffect(() => {
-		const onKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') closePanel()
-		}
-
-		window.addEventListener('keydown', onKeyDown)
-		return () => window.removeEventListener('keydown', onKeyDown)
-	}, [])
 
 	useEffect(() => {
 		// --- Activités ---
@@ -130,6 +133,33 @@ export default function Navbar() {
 		setIsMounted(true)
 	}, [])
 
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				closePanel()
+				if (isOpenDialog) {
+					closeDialog()
+				}
+			}
+		}
+
+		const handleClickOutside = (e: MouseEvent) => {
+			if (!isOpenDialog) return
+
+			if (accountAreaRef.current && !accountAreaRef.current.contains(e.target as Node)) {
+				closeDialog()
+			}
+		}
+
+		window.addEventListener('keydown', handleKeyDown)
+		document.addEventListener('mousedown', handleClickOutside)
+
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown)
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [isOpenDialog])
+
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
@@ -151,44 +181,101 @@ export default function Navbar() {
 						GABON DECOUVERTE
 					</Link>
 
-					<section className='flex w-[400px] items-center justify-center gap-4 pr-3.5 text-black'>
-						<SlUser />
-						<p>{t('common:login')}</p>
+					<section className='relative flex items-center pr-3.5 text-black' ref={accountAreaRef}>
+						{/* Bouton qui ouvre la petite dialog */}
 						<button
-							className='flex cursor-pointer items-center gap-2'
-							onClick={() => {
-								i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
-									setLanguage(i18n.language)
-								})
-							}}
+							aria-expanded={isOpenDialog}
+							aria-haspopup='dialog'
+							className='flex cursor-pointer items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm transition-all duration-300 ease-in-out hover:bg-gray-50'
+							onClick={toggleDialog}
 							type='button'
 						>
-							<BsFlag className='h-4 w-4' />
-							{language}
+							<SlUser className='h-4 w-4' />
+							<span className='hidden sm:inline'>{t('common:login')}</span>
 						</button>
-						<Link
-							className='flex items-center gap-2'
-							href={'/devenir-prestataire'}
-							onClick={handleNavClick}
-						>
-							<LiaHandshake className='h-5 w-5' />
-							Prestataire
-						</Link>
 
-						<Link className='flex items-center gap-2' href='/favoris' onClick={handleNavClick}>
-							<IoMdHeartEmpty className='h-5 w-5' />
-							Favoris
-						</Link>
+						{/* Petite dialog / popover */}
+						<AnimatePresence>
+							{isOpenDialog && (
+								<motion.div
+									animate={{ opacity: 1, y: 0 }}
+									aria-modal='false'
+									className='absolute top-12 right-4 z-100 w-[180px] rounded-md border border-gray-200 bg-white p-4 shadow-lg'
+									exit={{ opacity: 0, y: -8 }}
+									initial={{ opacity: 0, y: -8 }}
+									role='dialog'
+									transition={{ duration: 0.2 }}
+								>
+									<div className='mb-4 flex items-center gap-2 border-gray-100 border-b pb-3'>
+										<SlUser className='h-4 w-4' />
+										<p className='font-medium text-sm'>{t('common:login')}</p>
+									</div>
 
-						<Link className='relative flex items-center gap-2' href='/panier' onClick={handleNavClick}>
-							<SlBasket className='h-5 w-5' />
+									<div className='flex flex-col gap-3 text-sm'>
+										{/* Langue */}
+										<button
+											className='flex cursor-pointer items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+											onClick={() => {
+												i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
+													setLanguage(i18n.language)
+												})
+											}}
+											type='button'
+										>
+											<BsFlag className='h-4 w-4' />
+											<span>{language}</span>
+										</button>
 
-							{isMounted && basketLength > 0 && (
-								<span className='-top-1 -right-1 absolute flex h-4 w-4 items-center justify-center rounded-full bg-red-600 font-caviarDreams-bold text-[10px] text-white'>
-									{basketLength}
-								</span>
+										{/* Prestataire */}
+										<Link
+											className='flex items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+											href={'/devenir-prestataire'}
+											onClick={() => {
+												closeDialog()
+												handleNavClick()
+											}}
+										>
+											<LiaHandshake className='h-4 w-4' />
+											<span>Prestataire</span>
+										</Link>
+
+										{/* Favoris */}
+										<Link
+											className='flex items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+											href='/favoris'
+											onClick={() => {
+												closeDialog()
+												handleNavClick()
+											}}
+										>
+											<IoMdHeartEmpty className='h-4 w-4' />
+											<span>Favoris</span>
+										</Link>
+
+										{/* Panier */}
+										<Link
+											className='flex items-center justify-between gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+											href='/panier'
+											onClick={() => {
+												closeDialog()
+												handleNavClick()
+											}}
+										>
+											<div className='flex items-center gap-2'>
+												<SlBasket className='h-4 w-4' />
+												<span>Panier</span>
+											</div>
+
+											{isMounted && basketLength > 0 && (
+												<span className='flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 font-caviarDreams-bold text-[10px] text-white'>
+													{basketLength}
+												</span>
+											)}
+										</Link>
+									</div>
+								</motion.div>
 							)}
-						</Link>
+						</AnimatePresence>
 					</section>
 				</div>
 			</section>
