@@ -4,7 +4,7 @@ import '@/app/i18n/client'
 import { languages } from '@/app/i18n/settings'
 import Base from '@/components/layouts/Base'
 import '@/styles/index.css'
-// import 'jotai-devtools/styles.css'
+import 'jotai-devtools/styles.css'
 
 export async function generateStaticParams() {
 	return languages.map((lng) => ({ lng }))
