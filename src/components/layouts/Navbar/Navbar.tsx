@@ -3,25 +3,26 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
 import { SlBasket, SlUser } from 'react-icons/sl'
 import { twJoin, twMerge } from 'tailwind-merge'
 
+import { useTranslation } from '@/app/i18n/client'
 import MobileNavbarDrawer from '@/components/layouts/MobileNavbarDrawer'
-import i18n from '@/i18n'
 import { useBasketAtom } from '@/stores/useBasket.atom'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
 import AccountPopover from '../AccountPopover'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
-	// const { t } = useTranslation()
+	const { i18n } = useTranslation()
+	const pathname = usePathname()
+	const router = useRouter()
 
 	const [isOpenDialog, setIsOpenDialog] = useState(false)
-	const [language, setLanguage] = useState('fr')
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
@@ -76,31 +77,13 @@ export default function Navbar() {
 		}
 	}
 
-	const pathname = usePathname()
-
 	const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
 	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-greeny-50')
 
 	const isOpen = activePanel !== null
 
-	const closePanel = () => setActivePanel(null)
-
-	const handleNavClick = () => {
-		closePanel()
-	}
-
-	const togglePanel = (key: TPanelKey) => {
-		setActivePanel((prev) => (prev === key ? null : key))
-	}
-
 	const basketLength = basket?.length ?? 0
-
-	const handleToggleLanguage = () => {
-		i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
-			setLanguage(i18n.language)
-		})
-	}
 
 	useEffect(() => {
 		// --- Activités ---
@@ -178,6 +161,27 @@ export default function Navbar() {
 		}
 	}, [])
 
+	const closePanel = () => setActivePanel(null)
+
+	const handleNavClick = () => {
+		closePanel()
+	}
+
+	const handleSwitchLanguageClick = (lng) => {
+		let newPathUrl = pathname
+
+		if (lng === 'fr') {
+			newPathUrl = pathname.replace('/en', `/${lng}`)
+		} else if (lng === 'en') {
+			newPathUrl = pathname.replace('/fr', `/${lng}`)
+		}
+
+		router.replace(newPathUrl)
+	}
+	const togglePanel = (key: TPanelKey) => {
+		setActivePanel((prev) => (prev === key ? null : key))
+	}
+
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
@@ -223,10 +227,10 @@ export default function Navbar() {
 						{/* small dialog component / popover */}
 						<AccountPopover
 							isOpen={isOpenDialog}
-							language={language}
+							language={i18n.language}
 							onClose={closeDialog}
 							onNavClick={handleNavClick}
-							onToggleLanguage={handleToggleLanguage}
+							onToggleLanguage={handleSwitchLanguageClick}
 						/>
 
 						{/* Basket icon */}
@@ -446,7 +450,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/libreville'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/libreville'
+															href='/src/app/[lng]/voyage-decouverte/libreville'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('libreville')}
 															onMouseEnter={() => setSelectedDecouverte('libreville')}
@@ -460,7 +464,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/lambarene'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/lambarene'
+															href='/src/app/[lng]/voyage-decouverte/lambarene'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('lambarene')}
 															onMouseEnter={() => setSelectedDecouverte('lambarene')}
@@ -475,7 +479,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/mayumba'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/mayumba'
+															href='/src/app/[lng]/voyage-decouverte/mayumba'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('mayumba')}
 															onMouseEnter={() => setSelectedDecouverte('mayumba')}
@@ -489,7 +493,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/oyem'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/oyem'
+															href='/src/app/[lng]/voyage-decouverte/oyem'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('oyem')}
 															onMouseEnter={() => setSelectedDecouverte('oyem')}

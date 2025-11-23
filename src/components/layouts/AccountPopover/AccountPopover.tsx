@@ -7,10 +7,12 @@ import { LiaHandshake } from 'react-icons/lia'
 import { SlUser } from 'react-icons/sl'
 import { twMerge } from 'tailwind-merge'
 
+import { useTranslation } from '@/app/i18n/client'
+
 type AccountPopoverProps = {
 	isOpen: boolean
 	language: string
-	onToggleLanguage: () => void
+	onToggleLanguage: (lng: string) => void
 	onClose: () => void
 	onNavClick: () => void
 }
@@ -22,6 +24,8 @@ export default function AccountPopover({
 	onClose,
 	onNavClick
 }: AccountPopoverProps) {
+	const { t } = useTranslation()
+
 	const handleLinkClick = () => {
 		onClose()
 		onNavClick()
@@ -41,38 +45,38 @@ export default function AccountPopover({
 				>
 					<div className='mb-4 flex items-center gap-2 border-gray-100 border-b pb-3'>
 						<SlUser className='h-4 w-4' />
-						{/* <p className='font-medium text-sm'>{t('common:login')}</p> */}
+						<p className='font-medium text-sm'>{t('login')}</p>
 					</div>
 
 					<div className='flex flex-col gap-3 text-sm'>
 						{/* Langue */}
-						<button
-							className='flex items-center gap-3 rounded-full border px-3 py-1.5 transition-all hover:bg-gray-50'
-							onClick={onToggleLanguage}
-							type='button'
-						>
+						<div className='flex items-center gap-3 rounded-full border px-3 py-1.5 transition-all hover:bg-gray-50'>
 							<div className='relative flex items-center gap-1'>
 								{/* FR */}
-								<span
+								<button
 									className={twMerge(
-										'flex h-6 w-10 items-center justify-center rounded-full text-xs transition-all',
-										language === 'FR' ? 'bg-greeny-100 text-white' : 'text-gray-500'
+										'flex h-6 w-10 cursor-pointer items-center justify-center rounded-full text-xs transition-all',
+										language === 'fr' ? 'bg-greeny-100 text-white' : 'text-gray-500'
 									)}
+									onClick={() => onToggleLanguage('fr')}
+									type='button'
 								>
 									FR
-								</span>
+								</button>
 
 								{/* EN */}
-								<span
+								<button
 									className={twMerge(
-										'flex h-6 w-10 items-center justify-center rounded-full text-xs transition-all',
-										language === 'EN' ? 'bg-greeny-100 text-white' : 'text-gray-500'
+										'flex h-6 w-10 cursor-pointer items-center justify-center rounded-full text-xs transition-all',
+										language === 'en' ? 'bg-greeny-100 text-white' : 'text-gray-500'
 									)}
+									onClick={() => onToggleLanguage('en')}
+									type='button'
 								>
 									EN
-								</span>
+								</button>
 							</div>
-						</button>
+						</div>
 
 						{/* Prestataire */}
 						<Link

@@ -1,0 +1,33 @@
+'use client'
+
+import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import type { UseTranslationOptions } from 'react-i18next'
+import { useTranslation as useT } from 'react-i18next'
+
+import type { TNameSpacesKey } from '@/app/i18n/settings'
+import i18next from './i18next'
+
+const runsOnServerSide = typeof window === 'undefined'
+
+export function useTranslation(ns: TNameSpacesKey = 'common', options?: UseTranslationOptions<undefined>) {
+	const lng = useParams()?.lng
+	if (typeof lng !== 'string') throw new Error('useT is only available inside /app/[lng]')
+	if (runsOnServerSide && i18next.resolvedLanguage !== lng) {
+		i18next.changeLanguage(lng)
+	} else {
+		// biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
+		const [activeLng, setActiveLng] = useState(i18next.resolvedLanguage)
+		// biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
+		useEffect(() => {
+			if (activeLng === i18next.resolvedLanguage) return
+			setActiveLng(i18next.resolvedLanguage)
+		}, [activeLng, i18next.resolvedLanguage])
+		// biome-ignore lint/correctness/useHookAtTopLevel: <explanation>
+		useEffect(() => {
+			if (!lng || i18next.resolvedLanguage === lng) return
+			i18next.changeLanguage(lng)
+		}, [lng, i18next])
+	}
+	return useT(ns, { ...options, keyPrefix: undefined })
+}
