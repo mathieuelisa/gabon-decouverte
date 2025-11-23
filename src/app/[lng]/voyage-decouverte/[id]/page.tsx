@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import Cart from '@/components/Cart'
+import DiscoverDetails from '@/components/DiscoverDetails'
 
 export const metadata: Metadata = {
 	alternates: {
@@ -13,22 +13,20 @@ export const metadata: Metadata = {
 		'informations règles',
 		'restauration',
 		'voyages',
-		'recrutement',
 		'activites',
 		'gabon',
-		'prestataire',
 		'organisation de voyages'
 	],
 	openGraph: {
 		description: 'Bla bla',
 		locale: 'fr_FR',
-		title: 'Devenir prestataire | Decouverte Gabon',
+		title: 'Contact | Decouverte Gabon',
 		type: 'website',
 		url: 'https://www.decouvertegabon.com/contact'
 	},
-	title: 'Panier | Gabon Decouverte'
+	title: 'Decouverte | Gabon Decouverte'
 }
 
-export default function CartPage() {
-	return <Cart />
+export default function DiscoverDetailsPage() {
+	return <DiscoverDetails />
 }

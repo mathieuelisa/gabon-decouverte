@@ -26,6 +26,9 @@ export default function Navbar() {
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
+	const [isMounted, setIsMounted] = useState(false)
+
+	const [basket] = useBasketAtom()
 
 	// Images de couverture pour activité part
 	const activiteImageMap: Record<TActiviteKey, { src: string; alt: string }> = {
@@ -71,6 +74,22 @@ export default function Navbar() {
 
 	const isOpen = activePanel !== null
 
+	const closePanel = () => setActivePanel(null)
+
+	const handleNavClick = () => {
+		closePanel()
+		setMobileMenuOpen(false)
+	}
+
+	const togglePanel = (key: TPanelKey) => {
+		setActivePanel((prev) => (prev === key ? null : key))
+	}
+
+	const basketLength = basket?.length ?? 0
+
+	// useEffect(() => {
+	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
+	// }, [])
 	useEffect(() => {
 		const onKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') closePanel()
@@ -103,6 +122,10 @@ export default function Navbar() {
 			setSelectedDecouverte('oyem')
 		}
 	}, [pathname])
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
 
 	const closePanel = () => setActivePanel(null)
 
@@ -177,13 +200,19 @@ export default function Navbar() {
 							Prestataire
 						</Link>
 
-						<Link className='flex items-center gap-2' href='/favoris'>
+						<Link className='flex items-center gap-2' href='/favoris' onClick={handleNavClick}>
 							<IoMdHeartEmpty className='h-5 w-5' />
 							Favoris
 						</Link>
 
-						<Link className='flex items-center gap-2' href='/panier'>
+						<Link className='relative flex items-center gap-2' href='/panier' onClick={handleNavClick}>
 							<SlBasket className='h-5 w-5' />
+
+							{isMounted && basketLength > 0 && (
+								<span className='-top-1 -right-1 absolute flex h-4 w-4 items-center justify-center rounded-full bg-red-600 font-caviarDreams-bold text-[10px] text-white'>
+									{basketLength}
+								</span>
+							)}
 						</Link>
 					</section>
 				</div>
@@ -346,7 +375,7 @@ export default function Navbar() {
 											</ul>
 
 											<Link
-												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams-bold text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 												href={{
 													pathname: '/activite',
 													query: { type: 'toutes-nos-activites' }
@@ -395,7 +424,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/libreville'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/libreville'
+															href='/src/app/[lng]/voyage-decouverte/libreville'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('libreville')}
 															onMouseEnter={() => setSelectedDecouverte('libreville')}
@@ -409,7 +438,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/lambarene'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/lambarene'
+															href='/src/app/[lng]/voyage-decouverte/lambarene'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('lambarene')}
 															onMouseEnter={() => setSelectedDecouverte('lambarene')}
@@ -424,7 +453,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/mayumba'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/mayumba'
+															href='/src/app/[lng]/voyage-decouverte/mayumba'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('mayumba')}
 															onMouseEnter={() => setSelectedDecouverte('mayumba')}
@@ -438,7 +467,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/oyem'),
 																'text-lg'
 															)}
-															href='/voyage-decouverte/oyem'
+															href='/src/app/[lng]/voyage-decouverte/oyem'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('oyem')}
 															onMouseEnter={() => setSelectedDecouverte('oyem')}

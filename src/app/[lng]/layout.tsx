@@ -19,7 +19,7 @@ export async function generateMetadata() {
 export default function RootLayout({ children, params: { lng } }) {
 	return (
 		<html data-lt-installed='true' lang={lng} suppressHydrationWarning>
-			<body className='font-louisGeorgeCafe-light antialiased'>
+			<body className='font-louisGeorgeCafe-light antialiased' suppressHydrationWarning>
 				<Base>{children}</Base>
 			</body>
 		</html>

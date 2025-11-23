@@ -39,6 +39,21 @@ export type TActivity = {
 	price_eur: number
 	price_cfa: number
 	city: string
+	city_activity: string
+}
+
+export type TDiscover = {
+	id: number
+	long_description: string
+	short_description: string
+	title: string
+	img: string
+	second_img: string
+	slug: string
+	type: string
+	city: string
+	best_period: string
+	airport_transfer_duration: string
 }
 
 export type TFavorite = {
@@ -48,4 +63,18 @@ export type TFavorite = {
 	imgSrc: string
 	rating: number | string
 	slug?: string
+}
+
+export type TBasketItem = {
+	date: Date
+	id: string
+	participate: number
+	price_cfa: number
+	price_eur: number
+	title: string
+	img: string
+	duration: string
+	short_description: string
+	total_eur: number
+	total_cfa: number
 }
