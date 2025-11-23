@@ -221,7 +221,6 @@ export default function Navbar() {
 							type='button'
 						>
 							<SlUser className='h-4 w-4' />
-							{/* <span className='sup-md:inline hidden'>{t('common:login')}</span> */}
 						</button>
 
 						{/* small dialog component / popover */}
@@ -450,7 +449,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/libreville'),
 																'text-lg'
 															)}
-															href='/src/app/[lng]/voyage-decouverte/libreville'
+															href='/voyage-decouverte/libreville'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('libreville')}
 															onMouseEnter={() => setSelectedDecouverte('libreville')}
@@ -464,7 +463,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/lambarene'),
 																'text-lg'
 															)}
-															href='/src/app/[lng]/voyage-decouverte/lambarene'
+															href='/voyage-decouverte/lambarene'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('lambarene')}
 															onMouseEnter={() => setSelectedDecouverte('lambarene')}
@@ -479,7 +478,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/mayumba'),
 																'text-lg'
 															)}
-															href='/src/app/[lng]/voyage-decouverte/mayumba'
+															href='/voyage-decouverte/mayumba'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('mayumba')}
 															onMouseEnter={() => setSelectedDecouverte('mayumba')}
@@ -493,7 +492,7 @@ export default function Navbar() {
 																panelLinkClass('/voyage-decouverte/oyem'),
 																'text-lg'
 															)}
-															href='/src/app/[lng]/voyage-decouverte/oyem'
+															href='/voyage-decouverte/oyem'
 															onClick={handleNavClick}
 															onFocus={() => setSelectedDecouverte('oyem')}
 															onMouseEnter={() => setSelectedDecouverte('oyem')}
