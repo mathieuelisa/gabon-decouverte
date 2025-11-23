@@ -15,9 +15,9 @@ import MobileNavbarDrawer from '@/components/layouts/MobileNavbarDrawer'
 import { useBasketAtom } from '@/stores/useBasket.atom'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
 import AccountPopover from '../AccountPopover'
-import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
+	const { t } = useTranslation() as { t: (key: string) => string }
 	const { i18n } = useTranslation()
 	const pathname = usePathname()
 	const router = useRouter()
@@ -245,13 +245,13 @@ export default function Navbar() {
 								<div className='relative flex items-center justify-center'>
 									<SlBasket className='h-[15px] w-[15px]' />
 									{isMounted && basketLength > 0 && (
-										<span className='-right-1.5 -top-1.5 absolute flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-red-600 px-[2px] font-caviarDreams-bold text-[8px] text-white leading-none shadow-sm'>
+										<span className='-right-1.5 -top-1.5 absolute flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-red-600 px-0.5 font-caviarDreams-bold text-[8px] text-white leading-none shadow-sm'>
 											{basketLength}
 										</span>
 									)}
 								</div>
 
-								<span className='sup-md:block hidden'>Panier</span>
+								<span className='sup-md:block hidden'>{t('cart')}</span>
 							</div>
 						</Link>
 					</section>
@@ -261,20 +261,13 @@ export default function Navbar() {
 			<section className='-top-0.5 sticky z-50 sup-md:flex hidden h-24 w-full items-center justify-between bg-white'>
 				<nav aria-label='Navigation principale'>
 					<ul className='flex items-center pl-14'>
-						{NAVBAR_CONTENT.map((item) => {
-							return (
-								<Link
-									className={twMerge(
-										'mr-5 font-caviarDreams text-black text-lg uppercase transition-all duration-500 ease-in-out'
-									)}
-									href={item.link}
-									key={item.label}
-									onClick={handleNavClick}
-								>
-									{item.label}
-								</Link>
-							)
-						})}
+						<Link
+							className={twMerge('mr-5 font-caviarDreams text-black text-lg uppercase')}
+							href='/'
+							onClick={handleNavClick}
+						>
+							{t('navbar.home')}
+						</Link>
 						<li className='flex items-center justify-center gap-2'>
 							<button
 								aria-controls='navbar-extended-panel'
@@ -286,7 +279,7 @@ export default function Navbar() {
 								onClick={() => togglePanel('activité')}
 								type='button'
 							>
-								Activités
+								{t('navbar.activities')}
 								{activePanel === 'activité' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
 							</button>
 						</li>
@@ -301,7 +294,7 @@ export default function Navbar() {
 								onClick={() => togglePanel('decouverte')}
 								type='button'
 							>
-								Découvrir
+								{t('navbar.discovery')}
 								{activePanel === 'decouverte' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
 							</button>
 						</li>
@@ -377,7 +370,7 @@ export default function Navbar() {
 														onFocus={() => setSelectedActivite('eco')}
 														onMouseEnter={() => setSelectedActivite('eco')}
 													>
-														Ecotourisme & balnéaire
+														{t('navbar.ecotourismSeaside')}
 													</Link>
 												</li>
 												<li>
@@ -394,13 +387,13 @@ export default function Navbar() {
 														onFocus={() => setSelectedActivite('nature')}
 														onMouseEnter={() => setSelectedActivite('nature')}
 													>
-														Nature & Découverte
+														{t('navbar.natureDiscovery')}
 													</Link>
 												</li>
 											</ul>
 
 											<Link
-												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams-bold text-sm text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams-bold text-sm text-white uppercase transition-all duration-400 ease-in-out hover:bg-greeny-50'
 												href={{
 													pathname: '/activite',
 													query: { type: 'toutes-nos-activites' }
@@ -410,7 +403,7 @@ export default function Navbar() {
 												onMouseEnter={() => setSelectedActivite('nature')}
 												type='button'
 											>
-												DECOUVRIR NOS ACTIVITES
+												{t('button.discoverOurActivities')}
 											</Link>
 										</div>
 										<div className='relative w-full'>
@@ -454,7 +447,7 @@ export default function Navbar() {
 															onFocus={() => setSelectedDecouverte('libreville')}
 															onMouseEnter={() => setSelectedDecouverte('libreville')}
 														>
-															Partir à la découverte de libreville
+															{t('navbar.discoverLibreville')}
 														</Link>
 													</li>
 													<li>
@@ -468,7 +461,7 @@ export default function Navbar() {
 															onFocus={() => setSelectedDecouverte('lambarene')}
 															onMouseEnter={() => setSelectedDecouverte('lambarene')}
 														>
-															Visitez Lambaréné, le cœur battant du Gabon
+															{t('navbar.visitLambarene')}
 														</Link>
 													</li>
 
@@ -483,7 +476,7 @@ export default function Navbar() {
 															onFocus={() => setSelectedDecouverte('mayumba')}
 															onMouseEnter={() => setSelectedDecouverte('mayumba')}
 														>
-															Explorez Mayumba, un joyau du Gabon
+															{t('navbar.exploreMayumba')}
 														</Link>
 													</li>
 													<li>
@@ -497,7 +490,7 @@ export default function Navbar() {
 															onFocus={() => setSelectedDecouverte('oyem')}
 															onMouseEnter={() => setSelectedDecouverte('oyem')}
 														>
-															À la découverte de Oyem, entre traditions et modernité
+															{t('navbar.exploreOyem')}
 														</Link>
 													</li>
 												</ul>

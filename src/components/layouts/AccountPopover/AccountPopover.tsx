@@ -24,7 +24,7 @@ export default function AccountPopover({
 	onClose,
 	onNavClick
 }: AccountPopoverProps) {
-	const { t } = useTranslation()
+	const { t } = useTranslation() as { t: (key: string) => string }
 
 	const handleLinkClick = () => {
 		onClose()
@@ -50,7 +50,7 @@ export default function AccountPopover({
 
 					<div className='flex flex-col gap-3 text-sm'>
 						{/* Langue */}
-						<div className='flex items-center gap-3 rounded-full border px-3 py-1.5 transition-all hover:bg-gray-50'>
+						<div className='flex items-center justify-center gap-3 rounded-full border px-3 py-1.5 transition-all hover:bg-gray-50'>
 							<div className='relative flex items-center gap-1'>
 								{/* FR */}
 								<button
@@ -85,7 +85,7 @@ export default function AccountPopover({
 							onClick={handleLinkClick}
 						>
 							<LiaHandshake className='h-4 w-4' />
-							<span>Prestataire</span>
+							<span>{t('popover.partner')}</span>
 						</Link>
 
 						{/* Favoris */}
@@ -95,7 +95,7 @@ export default function AccountPopover({
 							onClick={handleLinkClick}
 						>
 							<IoMdHeartEmpty className='h-4 w-4' />
-							<span>Favoris</span>
+							<span>{t('popover.wishlist')}</span>
 						</Link>
 					</div>
 				</motion.div>

@@ -1,3 +1,32 @@
 {
-	"login": "connectionnnn"
+	"button": {
+		"discoverOurActivities": "Discover our activities"
+	},
+	"cart": "Cart",
+	"landing": {
+		"becomeAdventure": "every encounter becomes an adventure",
+		"discoverGabon": "Discover Gabon in a different way",
+		"diveIntoTurquoiseWater": "Dive into its turquoise waters, sample its vibrant cuisine, explore its galleries, and meet the people who make the country's heart beat",
+		"ourTopDestination": "Our top destinations",
+		"quietConfidence": "Quiet confidence"
+	},
+	"login": "Login",
+	"navbar": {
+		"activities": "Activities",
+		"discoverLibreville": "Discover Libreville",
+		"discovery": "Discovery",
+		"ecotourismSeaside": "Ecotourism & Seaside resorts",
+		"exploreMayumba": "Explore Mayumba, a gem of Gabon",
+		"exploreOyem": "Discovering Oyem, between tradition and modernity",
+		"home": "Home",
+		"natureDiscovery": "Nature & Discovery",
+		"visitLambarene": "Visit Lambaréné, the beating heart of Gabon"
+	},
+	"popover": {
+		"partner": "Partner",
+		"wishlist": "Wishlist"
+	},
+	"words": {
+		"here": "Here, "
+	}
 }

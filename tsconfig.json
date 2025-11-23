@@ -49,6 +49,6 @@
 		"incremental": true,
 		"tsBuildInfoFile": "./reports/tsconfig.tsbuildinfo"
 	},
-	"include": ["next-env.d.ts", "src", "@types"],
+	"include": ["@types", "next-env.d.ts", "src", ".next/types/**/*.ts"],
 	"exclude": ["node_modules", ".next"]
 }
