@@ -55,18 +55,21 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=art-et-culture'
+									onClick={() => onOpenChange(false)}
 								>
 									Art & Culture
 								</Link>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=ecotourisme-et-balneaire'
+									onClick={() => onOpenChange(false)}
 								>
 									Écotourisme & Balnéaire
 								</Link>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=nature-et-decouverte'
+									onClick={() => onOpenChange(false)}
 								>
 									Nature & Découverte
 								</Link>
@@ -86,24 +89,28 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/libreville'
+									onClick={() => onOpenChange(false)}
 								>
 									Libreville
 								</Link>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/lambarene'
+									onClick={() => onOpenChange(false)}
 								>
 									Lambaréné
 								</Link>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/mayumba'
+									onClick={() => onOpenChange(false)}
 								>
 									Mayumba
 								</Link>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/oyem'
+									onClick={() => onOpenChange(false)}
 								>
 									Oyem
 								</Link>
@@ -115,6 +122,7 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 							<Link
 								className='block cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline'
 								href='/contact'
+								onClick={() => onOpenChange(false)}
 							>
 								CONTACT
 							</Link>
