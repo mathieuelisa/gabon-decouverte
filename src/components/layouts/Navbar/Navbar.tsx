@@ -162,10 +162,6 @@ export default function Navbar() {
 	}, [isOpenDialog])
 
 	useEffect(() => {
-		if (typeof window === 'undefined') {
-			return
-		}
-
 		// Mark component as mounted (for client-only UI bits)
 		setIsMounted(true)
 
