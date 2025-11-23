@@ -22,8 +22,13 @@ export default function Cart() {
 	// Removes an item from the shopping basket
 	// by filtering out the entry matching the given ID
 	// then updates the basket state
-	const handleRemoveFromBasket = (id: string) => {
-		const updateBasket = basket.filter((item) => item.id !== id)
+	// const handleRemoveFromBasket = (id: string) => {
+	// 	const updateBasket = basket.filter((item) => item.id !== id)
+	// 	setBasket(updateBasket)
+	// }
+
+	const handleRemoveFromBasket = (basketItemId: string) => {
+		const updateBasket = basket.filter((item) => item.basketItemId !== basketItemId)
 		setBasket(updateBasket)
 	}
 
@@ -91,7 +96,7 @@ export default function Cart() {
 				{/* Colonne 1 */}
 				<div className='flex min-w-[60%] flex-col gap-4'>
 					{basket.map((item) => (
-						<CartItemCard item={item} key={item.id} onRemove={handleRemoveFromBasket} />
+						<CartItemCard item={item} key={item.basketItemId} onRemove={handleRemoveFromBasket} />
 					))}
 				</div>
 				{/* Colonne 2 : Sous-total + avantages */}

@@ -6,19 +6,19 @@ export type TFooter = {
 export const FOOTER_DESTINATION_CONTENT: TFooter = {
 	links: [
 		{
-			href: '/',
+			href: '/voyage-decouverte/libreville',
 			title: 'Libreville'
 		},
 		{
-			href: '/contact',
+			href: '/voyage-decouverte/lambarene',
 			title: 'Lambarané'
 		},
 		{
-			href: '/contact',
+			href: '/voyage-decouverte/mayumba',
 			title: 'Mayumba'
 		},
 		{
-			href: '/contact',
+			href: '/voyage-decouverte/oyem',
 			title: 'Oyem'
 		}
 	],

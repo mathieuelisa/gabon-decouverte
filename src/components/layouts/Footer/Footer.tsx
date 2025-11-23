@@ -41,11 +41,14 @@ export default function Footer() {
 				{/* Deux blocks footer */}
 				<div className='flex gap-16'>
 					<div className='text-center'>
-						<h3 className='mb-3 font-bold text-lg text-white'> {FOOTER_DESTINATION_CONTENT.title}</h3>
+						<h3 className='mb-6 font-bold text-lg text-white'> {FOOTER_DESTINATION_CONTENT.title}</h3>
 						<ul>
 							{FOOTER_DESTINATION_CONTENT.links.map((element) => (
-								<li className='mb-2' key={element.title}>
-									<Link className='text-white' href={element.href}>
+								<li className='mb-4' key={element.title}>
+									<Link
+										className='font-caviarDreams text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
+										href={element.href}
+									>
 										{element.title}
 									</Link>
 								</li>
@@ -53,14 +56,16 @@ export default function Footer() {
 						</ul>
 					</div>
 					<div className='text-center'>
-						<h3 className='mb-3 font-bold text-lg text-white'>
-							{' '}
+						<h3 className='mb-6 font-bold text-lg text-white'>
 							{FOOTER_LEGALES_INFORMATIONS_CONTENT.title}
 						</h3>
 						<ul>
 							{FOOTER_LEGALES_INFORMATIONS_CONTENT.links.map((element) => (
 								<li className='mb-2' key={element.title}>
-									<Link className='text-white' href={element.href}>
+									<Link
+										className='font-caviarDreams text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
+										href={element.href}
+									>
 										{element.title}
 									</Link>
 								</li>

@@ -7,7 +7,7 @@ export default function DiscoverInformations({ discoverItem }) {
 			<h2 className='font-caviarDreams text-greeny-100 text-xl'>Votre séjour</h2>
 			<p className='text-justify'>{discoverItem?.long_description}</p>
 
-			<div className='mt-4 grid sup-md:w-[420px] w-full grid-cols-1 gap-3 self-end border border-gray-300 p-3 sm:grid-cols-2'>
+			<div className='mt-4 grid sup-md:w-[480px] w-full grid-cols-1 gap-3 self-end border border-gray-300 p-3 sm:grid-cols-2'>
 				<div className='flex flex-col items-center justify-center gap-2'>
 					<h3 className='font-caviarDreams-bold text-greeny-100 text-sm'>Meilleur période</h3>
 					<div className='flex items-center gap-2'>

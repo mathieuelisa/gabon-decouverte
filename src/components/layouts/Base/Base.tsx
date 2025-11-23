@@ -3,7 +3,7 @@
 import { DevTools } from 'jotai-devtools'
 import { I18nextProvider } from 'react-i18next'
 
-import i18n from '@/app/i18n/client'
+import i18n from '@/app/i18n/i18next'
 import Footer from '../Footer'
 import Navbar from '../Navbar/Navbar'
 
@@ -17,7 +17,7 @@ export default function Base({ children }: { children: React.ReactNode }) {
 					<Footer />
 				</main>
 			</I18nextProvider>
-			<DevTools position='top-left' theme='dark' />
+			<DevTools position='bottom-right' theme='dark' />
 		</>
 	)
 }

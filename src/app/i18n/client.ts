@@ -29,5 +29,5 @@ export function useTranslation(ns: TNameSpacesKey = 'common', options?: UseTrans
 			i18next.changeLanguage(lng)
 		}, [lng, i18next])
 	}
-	return useT(ns, options)
+	return useT(ns, { ...options, keyPrefix: undefined })
 }

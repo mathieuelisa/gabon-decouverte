@@ -4,33 +4,44 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { BsChevronCompactDown, BsChevronCompactUp, BsFlag } from 'react-icons/bs'
+import { useEffect, useRef, useState } from 'react'
+import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
-import { IoMdHeartEmpty } from 'react-icons/io'
-import { LiaHandshake } from 'react-icons/lia'
 import { SlBasket, SlUser } from 'react-icons/sl'
-import { VscClose } from 'react-icons/vsc'
 import { twJoin, twMerge } from 'tailwind-merge'
 
 import { useTranslation } from '@/app/i18n/client'
-import { useMobileMenu } from '@/contexts/MobileMenuContext'
+import MobileNavbarDrawer from '@/components/layouts/MobileNavbarDrawer'
+import { useBasketAtom } from '@/stores/useBasket.atom'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
+import AccountPopover from '../AccountPopover'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
-	const { t, i18n } = useTranslation()
+	const { i18n } = useTranslation()
 	const pathname = usePathname()
 	const router = useRouter()
 
+	const [isOpenDialog, setIsOpenDialog] = useState(false)
 	const [activePanel, setActivePanel] = useState<TPanelKey | null>(null)
 	const [selectedActivite, setSelectedActivite] = useState<TActiviteKey | null>(null)
 	const [selectedDecouverte, setSelectedDecouverte] = useState<TDecouverteKey | null>(null)
 	const [isMounted, setIsMounted] = useState(false)
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+	const accountAreaRef = useRef<HTMLElement | null>(null)
 
 	const [basket] = useBasketAtom()
 
-	// Images de couverture pour activité part
+	const toggleDialog = () => {
+		setIsOpenDialog((prev) => !prev)
+	}
+
+	const closeDialog = () => {
+		setIsOpenDialog(false)
+	}
+
+	// Cover images for activity part
 	const activiteImageMap: Record<TActiviteKey, { src: string; alt: string }> = {
 		art: {
 			alt: 'Art & culture au Gabon',
@@ -46,7 +57,7 @@ export default function Navbar() {
 		}
 	}
 
-	// Images de couverture pour decouverte part.
+	// Cover images for discovery part
 	const decouverteImageMap: Record<TDecouverteKey, { src: string; alt: string }> = {
 		lambarene: {
 			alt: 'Ecotourisme & balnéaire au Gabon',
@@ -70,34 +81,9 @@ export default function Navbar() {
 
 	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-greeny-50')
 
-	const { isMobileMenuOpen, toggleMobileMenu, setMobileMenuOpen } = useMobileMenu()
-
 	const isOpen = activePanel !== null
 
-	const closePanel = () => setActivePanel(null)
-
-	const handleNavClick = () => {
-		closePanel()
-		setMobileMenuOpen(false)
-	}
-
-	const togglePanel = (key: TPanelKey) => {
-		setActivePanel((prev) => (prev === key ? null : key))
-	}
-
 	const basketLength = basket?.length ?? 0
-
-	// useEffect(() => {
-	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
-	// }, [])
-	useEffect(() => {
-		const onKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') closePanel()
-		}
-
-		window.addEventListener('keydown', onKeyDown)
-		return () => window.removeEventListener('keydown', onKeyDown)
-	}, [])
 
 	useEffect(() => {
 		// --- Activités ---
@@ -123,16 +109,64 @@ export default function Navbar() {
 		}
 	}, [pathname])
 
+	// Close the extended navbar panel automatically when the viewport
+	// becomes smaller than the `sup-md` breakpoint. This prevents the
+	// desktop dropdown panel from staying open when switching to mobile view.
 	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				closePanel()
+				if (isOpenDialog) {
+					closeDialog()
+				}
+			}
+		}
+
+		const handleClickOutside = (e: MouseEvent) => {
+			if (!isOpenDialog) return
+
+			if (accountAreaRef.current && !accountAreaRef.current.contains(e.target as Node)) {
+				closeDialog()
+			}
+		}
+
+		window.addEventListener('keydown', handleKeyDown)
+		document.addEventListener('mousedown', handleClickOutside)
+
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown)
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [isOpenDialog])
+
+	useEffect(() => {
+		// Mark component as mounted (for client-only UI bits)
 		setIsMounted(true)
+
+		const SUP_LG_BREAKPOINT = 768
+
+		const handleResize = () => {
+			// If we're under the breakpoint value we close the panel
+			if (window.innerWidth < SUP_LG_BREAKPOINT) {
+				setActivePanel(null)
+			}
+		}
+
+		// We check for the first render
+		handleResize()
+
+		window.addEventListener('resize', handleResize)
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
 	}, [])
 
 	const closePanel = () => setActivePanel(null)
 
 	const handleNavClick = () => {
 		closePanel()
-		setMobileMenuOpen(false)
 	}
+
 	const handleSwitchLanguageClick = (lng) => {
 		let newPathUrl = pathname
 
@@ -152,11 +186,19 @@ export default function Navbar() {
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
 				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white'>
+					{/* Burger menu - open mobile menu */}
+					<button
+						className='ml-4 flex sup-md:hidden cursor-pointer flex-col'
+						onClick={() => setIsMobileMenuOpen(true)}
+						type='button'
+					>
+						<CiMenuBurger aria-label='Ouvrir le menu mobile' className='h-5 w-5' />
+					</button>
+
 					<Link
 						aria-label='Se rendre a la page daccueil'
-						className='flex items-center justify-center pl-14 font-caviarDreams sup-md:text-3xl text-2xl text-black'
+						className='flex items-center justify-center pl-0 sup-lg:pl-14 font-caviarDreams sup-md:text-3xl text-2xl text-black'
 						href='/'
-						onClick={() => setMobileMenuOpen(false)}
 					>
 						<Image
 							alt='logo gabon decouverte'
@@ -169,56 +211,55 @@ export default function Navbar() {
 						GABON DECOUVERTE
 					</Link>
 
-					<section className='flex w-[400px] items-center justify-center gap-4 pr-3.5 text-black'>
-						<SlUser />
-						<p>{t('login')}</p>
+					<section className='relative flex items-center pr-3.5 text-black' ref={accountAreaRef}>
+						{/* Button that opens the small dialog / popover box */}
 						<button
-							className='flex cursor-pointer items-center gap-2'
-							onClick={() => handleSwitchLanguageClick(i18n.language === 'fr' ? 'en' : 'fr')}
+							aria-expanded={isOpenDialog}
+							aria-haspopup='dialog'
+							className='flex cursor-pointer items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm transition-all duration-300 ease-in-out hover:bg-gray-50'
+							onClick={toggleDialog}
 							type='button'
 						>
-							{i18n.language}
-
-							<BsFlag className='h-4 w-4' />
-							{i18n.language}
+							<SlUser className='h-4 w-4' />
+							{/* <span className='sup-md:inline hidden'>{t('common:login')}</span> */}
 						</button>
-						{/*<Link
-							className='flex cursor-pointer items-center gap-2'
-							href={`/${i18n.language === 'fr' ? 'en' : 'fr'}`}
-						>
-							{i18n.language}
 
-							<BsFlag className='h-4 w-4' />
-							{i18n.language}
-						</Link>*/}
+						{/* small dialog component / popover */}
+						<AccountPopover
+							isOpen={isOpenDialog}
+							language={i18n.language}
+							onClose={closeDialog}
+							onNavClick={handleNavClick}
+							onToggleLanguage={handleSwitchLanguageClick}
+						/>
+
+						{/* Basket icon */}
 						<Link
-							className='flex items-center gap-2'
-							href={'/devenir-prestataire'}
-							onClick={handleNavClick}
+							className='relative flex items-center justify-between gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+							href='/panier'
+							onClick={() => {
+								closeDialog()
+								handleNavClick()
+							}}
 						>
-							<LiaHandshake className='h-5 w-5' />
-							Prestataire
-						</Link>
+							<div className='relative flex items-center gap-2'>
+								<div className='relative flex items-center justify-center'>
+									<SlBasket className='h-[15px] w-[15px]' />
+									{isMounted && basketLength > 0 && (
+										<span className='-right-1.5 -top-1.5 absolute flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-red-600 px-[2px] font-caviarDreams-bold text-[8px] text-white leading-none shadow-sm'>
+											{basketLength}
+										</span>
+									)}
+								</div>
 
-						<Link className='flex items-center gap-2' href='/favoris' onClick={handleNavClick}>
-							<IoMdHeartEmpty className='h-5 w-5' />
-							Favoris
-						</Link>
-
-						<Link className='relative flex items-center gap-2' href='/panier' onClick={handleNavClick}>
-							<SlBasket className='h-5 w-5' />
-
-							{isMounted && basketLength > 0 && (
-								<span className='-top-1 -right-1 absolute flex h-4 w-4 items-center justify-center rounded-full bg-red-600 font-caviarDreams-bold text-[10px] text-white'>
-									{basketLength}
-								</span>
-							)}
+								<span className='sup-md:block hidden'>Panier</span>
+							</div>
 						</Link>
 					</section>
 				</div>
 			</section>
 
-			<section className='-top-0.5 sticky z-50 flex h-24 w-full items-center justify-between bg-white'>
+			<section className='-top-0.5 sticky z-50 sup-md:flex hidden h-24 w-full items-center justify-between bg-white'>
 				<nav aria-label='Navigation principale'>
 					<ul className='flex items-center pl-14'>
 						{NAVBAR_CONTENT.map((item) => {
@@ -275,24 +316,9 @@ export default function Navbar() {
 						</Link>
 					</ul>
 				</nav>
-
-				<nav className='flex sup-md:hidden flex-col'>
-					{isMobileMenuOpen ? (
-						<button
-							aria-label='Fermer le menu mobile'
-							className='flex'
-							onClick={toggleMobileMenu}
-							type='button'
-						>
-							<VscClose />
-						</button>
-					) : (
-						<CiMenuBurger aria-label='Ouvrir le menu mobile' onClick={toggleMobileMenu} />
-					)}
-				</nav>
 			</section>
 
-			{/* Panneau extensible qui s'ouvre EN DESSOUS de la navbar */}
+			{/* Expandable panel that opens below the navbar */}
 			<AnimatePresence initial={false}>
 				{isOpen && (
 					<motion.div
@@ -401,7 +427,7 @@ export default function Navbar() {
 													/>
 												</div>
 											) : (
-												// Image par defaut
+												// Default image
 												<div className='relative h-full w-full overflow-hidden'>
 													<Image
 														alt='Activités'
@@ -509,6 +535,9 @@ export default function Navbar() {
 					</motion.div>
 				)}
 			</AnimatePresence>
+
+			{/* Drawer mobile part */}
+			<MobileNavbarDrawer onOpenChange={setIsMobileMenuOpen} open={isMobileMenuOpen} />
 		</header>
 	)
 }
