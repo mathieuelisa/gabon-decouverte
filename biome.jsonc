@@ -49,7 +49,7 @@
 			// other
 			"!!**/.idea",
 			"!!**/.tanstack",
-			"!!**/.vite-cache",
+			"!!**/.next",
 			"!!**/dist",
 			"!!**/node_modules",
 			"!!**/reports",
