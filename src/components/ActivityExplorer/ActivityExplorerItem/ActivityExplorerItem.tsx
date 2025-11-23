@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io'
 import { MdOutlineStar } from 'react-icons/md'
@@ -28,12 +29,6 @@ export default function ActivityExplorerItem({
 	const key = title
 	const [isFav, setIsFav] = useState(false)
 
-	const notify = (text: string) =>
-		toast.success(text, {
-			autoClose: 7000,
-			position: 'bottom-left'
-		})
-
 	const readFavorites = (): TFavorite[] => {
 		const raw = localStorage.getItem('favorites') || '[]'
 
@@ -56,25 +51,45 @@ export default function ActivityExplorerItem({
 		setIsFav(favs.some((f) => f.key === key))
 	}, [key])
 
+	const notifyMessage = () => {
+		toast.success(
+			<div className='flex items-center gap-3'>
+				<Image alt={title} className='rounded-md object-cover' height={60} src={imgSrc} width={60} />
+				<Link className='flex flex-col' href='/panier'>
+					<p className='font-caviarDreams-bold'>Ajouté à vos favoris ❤️</p>
+					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs'>Voir vos favoris</p>
+				</Link>
+			</div>,
+			{
+				autoClose: 4000,
+				hideProgressBar: true,
+				icon: false,
+				position: 'bottom-left'
+			}
+		)
+	}
+
 	const toggleFavorite = (e: React.MouseEvent) => {
 		e.stopPropagation()
 		e.preventDefault()
 
 		const favs = readFavorites()
-		const wasFav = favs.some((f) => f.key === key) // ← ici "étaitFavori"
+		const wasFav = favs.some((f) => f.key === key)
 
 		if (wasFav) {
 			const next = favs.filter((f) => f.key !== key)
 			localStorage.setItem('favorites', JSON.stringify(next))
+
 			setIsFav(false)
-			notify('Supprimé de vos favoris 💔')
+			notifyMessage()
 			onToggleFav?.(key, false)
 		} else {
 			const fav: TFavorite = { description, imgSrc, key, rating, slug, title }
 			const next = [...favs, fav]
 			localStorage.setItem('favorites', JSON.stringify(next))
+
 			setIsFav(true)
-			notify('Ajouté à vos favoris ❤️')
+			notifyMessage()
 			onToggleFav?.(key, true)
 		}
 	}

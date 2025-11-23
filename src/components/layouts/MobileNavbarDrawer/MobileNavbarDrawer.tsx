@@ -4,15 +4,25 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { IoClose } from 'react-icons/io5'
 
+import { useTranslation } from '@/app/i18n/client'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Drawer, DrawerClose, DrawerContent, DrawerHeader } from '../../ui/drawer'
+import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader } from '../../ui/drawer'
 
 type MobileNavbarDrawerProps = {
 	open: boolean
 	onOpenChange: (open: boolean) => void
+	language: string
+	onToggleLanguage: (lng: 'fr' | 'en') => void
 }
 
-export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarDrawerProps) {
+export default function MobileNavbarDrawer({
+	open,
+	onOpenChange,
+	language,
+	onToggleLanguage
+}: MobileNavbarDrawerProps) {
+	const { t } = useTranslation() as { t: (key: string) => string }
+
 	return (
 		<Drawer direction='left' onOpenChange={onOpenChange} open={open}>
 			<DrawerContent className='max-w-[520px]'>
@@ -47,8 +57,8 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
 							value='item-1'
 						>
-							<AccordionTrigger className='"cursor-pointer font-caviarDreams text-2xl no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide"'>
-								ACTIVITÉ
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide"'>
+								{t('navbar.activities')}
 							</AccordionTrigger>
 
 							<AccordionContent className='flex flex-col gap-4'>
@@ -64,14 +74,14 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 									href='/activite?type=ecotourisme-et-balneaire'
 									onClick={() => onOpenChange(false)}
 								>
-									Écotourisme & Balnéaire
+									{t('navbar.ecotourismSeaside')}
 								</Link>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=nature-et-decouverte'
 									onClick={() => onOpenChange(false)}
 								>
-									Nature & Découverte
+									{t('navbar.natureDiscovery')}
 								</Link>
 							</AccordionContent>
 						</AccordionItem>
@@ -81,8 +91,8 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
 							value='item-2'
 						>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide'>
-								DÉCOUVERTE
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide'>
+								{t('navbar.discovery')}
 							</AccordionTrigger>
 
 							<AccordionContent className='flex flex-col gap-4'>
@@ -129,6 +139,40 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 						</div>
 					</Accordion>
 				</div>
+
+				<DrawerFooter>
+					<div className='flex items-center justify-end'>
+						<div className='flex items-center justify-center gap-3 rounded-full border px-3 py-1.5 transition-all hover:bg-gray-50'>
+							<div className='relative flex items-center gap-1'>
+								{/* FR */}
+								<button
+									className={`flex h-6 w-10 cursor-pointer items-center justify-center rounded-full font-caviarDreams-bold text-xs transition-all ${
+										language === 'fr' ? 'bg-greeny-100 text-white' : 'text-gray-500'
+									}`}
+									onClick={() => {
+										onToggleLanguage('fr')
+									}}
+									type='button'
+								>
+									FR
+								</button>
+
+								{/* EN */}
+								<button
+									className={`flex h-6 w-10 cursor-pointer items-center justify-center rounded-full font-caviarDreams-bold text-xs transition-all ${
+										language === 'en' ? 'bg-greeny-100 text-white' : 'text-gray-500'
+									}`}
+									onClick={() => {
+										onToggleLanguage('en')
+									}}
+									type='button'
+								>
+									EN
+								</button>
+							</div>
+						</div>
+					</div>
+				</DrawerFooter>
 			</DrawerContent>
 		</Drawer>
 	)

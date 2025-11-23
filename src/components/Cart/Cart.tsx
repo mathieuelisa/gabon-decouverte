@@ -64,7 +64,7 @@ export default function Cart() {
 				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Aucunes activités dans votre panier</h1>
 
 				<Dialog onOpenChange={setOpen} open={open}>
-					<DialogContent className='p-6'>
+					<DialogContent className='p-6 [&>button]:cursor-pointer'>
 						<DialogHeader>
 							<DialogTitle className='font-caviarDreams-bold'>Votre panier est vide</DialogTitle>
 						</DialogHeader>

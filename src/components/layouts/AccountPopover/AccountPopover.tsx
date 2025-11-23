@@ -55,7 +55,7 @@ export default function AccountPopover({
 								{/* FR */}
 								<button
 									className={twMerge(
-										'flex h-6 w-10 cursor-pointer items-center justify-center rounded-full text-xs transition-all',
+										'flex h-6 w-10 cursor-pointer items-center justify-center rounded-full font-caviarDreams-bold text-xs transition-all',
 										language === 'fr' ? 'bg-greeny-100 text-white' : 'text-gray-500'
 									)}
 									onClick={() => onToggleLanguage('fr')}
@@ -67,7 +67,7 @@ export default function AccountPopover({
 								{/* EN */}
 								<button
 									className={twMerge(
-										'flex h-6 w-10 cursor-pointer items-center justify-center rounded-full text-xs transition-all',
+										'flex h-6 w-10 cursor-pointer items-center justify-center rounded-full font-caviarDreams-bold text-xs transition-all',
 										language === 'en' ? 'bg-greeny-100 text-white' : 'text-gray-500'
 									)}
 									onClick={() => onToggleLanguage('en')}

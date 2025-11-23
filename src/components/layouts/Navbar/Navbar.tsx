@@ -529,7 +529,12 @@ export default function Navbar() {
 			</AnimatePresence>
 
 			{/* Drawer mobile part */}
-			<MobileNavbarDrawer onOpenChange={setIsMobileMenuOpen} open={isMobileMenuOpen} />
+			<MobileNavbarDrawer
+				language={i18n.language}
+				onOpenChange={setIsMobileMenuOpen}
+				onToggleLanguage={handleSwitchLanguageClick}
+				open={isMobileMenuOpen}
+			/>
 		</header>
 	)
 }
