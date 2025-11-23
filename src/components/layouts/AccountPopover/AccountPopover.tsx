@@ -2,10 +2,10 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
-import { BsFlag } from 'react-icons/bs'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { LiaHandshake } from 'react-icons/lia'
-import { SlBasket, SlUser } from 'react-icons/sl'
+import { SlUser } from 'react-icons/sl'
+import { twMerge } from 'tailwind-merge'
 
 type AccountPopoverProps = {
 	isOpen: boolean
@@ -51,12 +51,31 @@ export default function AccountPopover({
 					<div className='flex flex-col gap-3 text-sm'>
 						{/* Langue */}
 						<button
-							className='flex cursor-pointer items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+							className='flex items-center gap-3 rounded-full border px-3 py-1.5 transition-all hover:bg-gray-50'
 							onClick={onToggleLanguage}
 							type='button'
 						>
-							<BsFlag className='h-4 w-4' />
-							<span>{language}</span>
+							<div className='relative flex items-center gap-1'>
+								{/* FR */}
+								<span
+									className={twMerge(
+										'flex h-6 w-10 items-center justify-center rounded-full text-xs transition-all',
+										language === 'FR' ? 'bg-greeny-100 text-white' : 'text-gray-500'
+									)}
+								>
+									FR
+								</span>
+
+								{/* EN */}
+								<span
+									className={twMerge(
+										'flex h-6 w-10 items-center justify-center rounded-full text-xs transition-all',
+										language === 'EN' ? 'bg-greeny-100 text-white' : 'text-gray-500'
+									)}
+								>
+									EN
+								</span>
+							</div>
 						</button>
 
 						{/* Prestataire */}
@@ -77,24 +96,6 @@ export default function AccountPopover({
 						>
 							<IoMdHeartEmpty className='h-4 w-4' />
 							<span>Favoris</span>
-						</Link>
-
-						{/* Panier */}
-						<Link
-							className='flex items-center justify-between gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
-							href='/panier'
-							onClick={handleLinkClick}
-						>
-							<div className='flex items-center gap-2'>
-								<SlBasket className='h-4 w-4' />
-								<span>Panier</span>
-							</div>
-
-							{isMounted && basketLength > 0 && (
-								<span className='flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 font-caviarDreams-bold text-[10px] text-white'>
-									{basketLength}
-								</span>
-							)}
 						</Link>
 					</div>
 				</motion.div>

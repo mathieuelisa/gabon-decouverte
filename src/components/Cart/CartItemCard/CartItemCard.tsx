@@ -28,7 +28,7 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 			<div className='flex w-full flex-col justify-between'>
 				<section className='flex justify-between'>
 					<div className='ml-3 flex flex-col'>
-						<h2 className='font-caviarDreams-bold text-xl'>{item?.title}</h2>
+						<h2 className='max-w-[300px] font-caviarDreams-bold text-xl'>{item?.title}</h2>
 						<p className='mt-3 max-w-[300px] text-sm'>{item?.short_description}</p>
 						{/* Participant */}
 						<div className='mt-8 flex items-center gap-2'>

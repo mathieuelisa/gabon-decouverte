@@ -5,10 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
-import { SlUser } from 'react-icons/sl'
+import { SlBasket, SlUser } from 'react-icons/sl'
 import { twJoin, twMerge } from 'tailwind-merge'
 
 import MobileNavbarDrawer from '@/components/layouts/MobileNavbarDrawer'
@@ -19,7 +18,7 @@ import AccountPopover from '../AccountPopover'
 import { NAVBAR_CONTENT } from './Navbar.data'
 
 export default function Navbar() {
-	const { t } = useTranslation()
+	// const { t } = useTranslation()
 
 	const [isOpenDialog, setIsOpenDialog] = useState(false)
 	const [language, setLanguage] = useState('fr')
@@ -96,10 +95,6 @@ export default function Navbar() {
 	}
 
 	const basketLength = basket?.length ?? 0
-
-	// useEffect(() => {
-	// 	i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')
-	// }, [])
 
 	const handleToggleLanguage = () => {
 		i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr').then(() => {
@@ -213,7 +208,7 @@ export default function Navbar() {
 					</Link>
 
 					<section className='relative flex items-center pr-3.5 text-black' ref={accountAreaRef}>
-						{/* Button that opens the small dialog box */}
+						{/* Button that opens the small dialog / popover box */}
 						<button
 							aria-expanded={isOpenDialog}
 							aria-haspopup='dialog'
@@ -222,7 +217,7 @@ export default function Navbar() {
 							type='button'
 						>
 							<SlUser className='h-4 w-4' />
-							<span className='hidden sm:inline'>{t('common:login')}</span>
+							{/* <span className='sup-md:inline hidden'>{t('common:login')}</span> */}
 						</button>
 
 						{/* small dialog component / popover */}
@@ -235,6 +230,29 @@ export default function Navbar() {
 							onNavClick={handleNavClick}
 							onToggleLanguage={handleToggleLanguage}
 						/>
+
+						{/* Basket icon */}
+						<Link
+							className='relative flex items-center justify-between gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+							href='/panier'
+							onClick={() => {
+								closeDialog()
+								handleNavClick()
+							}}
+						>
+							<div className='relative flex items-center gap-2'>
+								<div className='relative flex items-center justify-center'>
+									<SlBasket className='h-[15px] w-[15px]' />
+									{isMounted && basketLength > 0 && (
+										<span className='-right-1.5 -top-1.5 absolute flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-red-600 px-[2px] font-caviarDreams-bold text-[8px] text-white leading-none shadow-sm'>
+											{basketLength}
+										</span>
+									)}
+								</div>
+
+								<span className='sup-md:block hidden'>Panier</span>
+							</div>
+						</Link>
 					</section>
 				</div>
 			</section>

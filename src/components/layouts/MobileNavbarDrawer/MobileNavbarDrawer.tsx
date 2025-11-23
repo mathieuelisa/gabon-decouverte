@@ -47,7 +47,7 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
 							value='item-1'
 						>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline data-[state=open]:font-caviarDreams-bold data-[state=open]:text-greeny-100'>
+							<AccordionTrigger className='"cursor-pointer font-caviarDreams text-2xl no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide"'>
 								ACTIVITÉ
 							</AccordionTrigger>
 
@@ -78,7 +78,7 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
 							value='item-2'
 						>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline data-[state=open]:font-caviarDreams-bold data-[state=open]:text-greeny-100'>
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide'>
 								DÉCOUVERTE
 							</AccordionTrigger>
 
