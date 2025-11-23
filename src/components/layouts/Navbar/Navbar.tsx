@@ -131,10 +131,9 @@ export default function Navbar() {
 		}
 	}, [pathname])
 
-	useEffect(() => {
-		setIsMounted(true)
-	}, [])
-
+	// Close the extended navbar panel automatically when the viewport
+	// becomes smaller than the `sup-md` breakpoint. This prevents the
+	// desktop dropdown panel from staying open when switching to mobile view.
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
@@ -161,6 +160,32 @@ export default function Navbar() {
 			document.removeEventListener('mousedown', handleClickOutside)
 		}
 	}, [isOpenDialog])
+
+	useEffect(() => {
+		if (typeof window === 'undefined') {
+			return
+		}
+
+		// Mark component as mounted (for client-only UI bits)
+		setIsMounted(true)
+
+		const SUP_LG_BREAKPOINT = 768
+
+		const handleResize = () => {
+			// If we're under the breakpoint value we close the panel
+			if (window.innerWidth < SUP_LG_BREAKPOINT) {
+				setActivePanel(null)
+			}
+		}
+
+		// We check for the first render
+		handleResize()
+
+		window.addEventListener('resize', handleResize)
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, [])
 
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>

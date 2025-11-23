@@ -16,33 +16,41 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 	return (
 		<Drawer direction='left' onOpenChange={onOpenChange} open={open}>
 			<DrawerContent className='max-w-[520px]'>
-				<DrawerClose className='absolute top-4 right-4 cursor-pointer'>
+				<DrawerClose className='absolute top-4 right-4 z-200 cursor-pointer'>
 					<IoClose size={24} />
 				</DrawerClose>
 
-				<div className='mx-auto w-full px-4'>
+				<div className='relative mx-auto w-full px-4'>
+					{/* Background image */}
+					<Image
+						alt='logo_background'
+						className='-z-10 pointer-events-none absolute top-1/2 left-1/2 h-full w-full object-contain opacity-20'
+						fill
+						src='/assets/images/logo_grey.png'
+					/>
+
 					<DrawerHeader>
-						<Link href='/'>
-							<Image
-								alt='logo gabon decouverte'
-								className='relative'
-								height={60}
-								priority
-								src='/assets/images/logo.png'
-								width={60}
-							/>
-						</Link>
+						<Image
+							alt='logo gabon decouverte'
+							className='relative'
+							height={60}
+							priority
+							src='/assets/images/logo.png'
+							width={60}
+						/>
 					</DrawerHeader>
 
-					<Accordion className='w-full' collapsible defaultValue='item-1' type='single'>
-						{/* ACTIVITE */}
+					{/* Accordion content above the background image */}
+					<Accordion className='relative z-10 w-full' collapsible defaultValue='item-1' type='single'>
+						{/* ACTIVITÉ */}
 						<AccordionItem
 							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
 							value='item-1'
 						>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline data-[state=open]:text-greeny-100 dark:data-[state=open]:text-greeny-50'>
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline data-[state=open]:font-caviarDreams-bold data-[state=open]:text-greeny-100'>
 								ACTIVITÉ
 							</AccordionTrigger>
+
 							<AccordionContent className='flex flex-col gap-4'>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
@@ -50,14 +58,12 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 								>
 									Art & Culture
 								</Link>
-
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=ecotourisme-et-balneaire'
 								>
 									Écotourisme & Balnéaire
 								</Link>
-
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=nature-et-decouverte'
@@ -72,9 +78,10 @@ export default function MobileNavbarDrawer({ open, onOpenChange }: MobileNavbarD
 							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
 							value='item-2'
 						>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline data-[state=open]:text-greeny-100 dark:data-[state=open]:text-greeny-50'>
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline data-[state=open]:font-caviarDreams-bold data-[state=open]:text-greeny-100'>
 								DÉCOUVERTE
 							</AccordionTrigger>
+
 							<AccordionContent className='flex flex-col gap-4'>
 								<Link
 									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'

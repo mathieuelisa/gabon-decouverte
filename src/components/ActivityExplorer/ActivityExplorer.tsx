@@ -57,7 +57,7 @@ export default function ActivityExplorer() {
 	const currentTitle = TITLES[activeLink] ?? TITLES['toutes-nos-activites']
 
 	return (
-		<section className='mb-10 sup-md:px-12'>
+		<section className='my-10 sup-md:px-12'>
 			{/* WRAPPER FILTRES : centré + responsive */}
 			<div className='mx-auto flex w-full max-w-[960px] flex-col items-center px-4 sup-md:px-12'>
 				{/* VERSION BOUTONS (desktop / sup-md et +) */}
