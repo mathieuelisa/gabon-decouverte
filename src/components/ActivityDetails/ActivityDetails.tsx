@@ -209,8 +209,8 @@ export default function ActivityDetails() {
 							<p className='font-caviarDreams-bold'>Date :</p>
 							<Calendar
 								captionLayout='dropdown'
-								className='rounded-md border shadow-sm'
-								// disabled={(date) => date.getDay() === 0}
+								className='rounded-md border shadow-sm [&_.rdp-caption_label]:cursor-pointer [&_.rdp-day]:cursor-pointer [&_.rdp-dropdown]:cursor-pointer [&_.rdp-nav_button]:cursor-pointer'
+								disabled={(day) => day < new Date(new Date().setHours(0, 0, 0, 0))}
 								mode='single'
 								onSelect={setDate}
 								selected={date}

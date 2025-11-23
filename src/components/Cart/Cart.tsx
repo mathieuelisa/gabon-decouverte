@@ -87,7 +87,7 @@ export default function Cart() {
 		)
 
 	return (
-		<section className='min-h-screen px-5 sup-xl:px-40'>
+		<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Votre panier</h1>
 
 			<hr className='my-6 border-gray-200 border-t' />
@@ -99,8 +99,17 @@ export default function Cart() {
 						<CartItemCard item={item} key={item.basketItemId} onRemove={handleRemoveFromBasket} />
 					))}
 				</div>
-				{/* Colonne 2 : Sous-total + avantages */}
-				<div className='flex flex-col gap-4'>
+
+				{/* Colonne 2 */}
+				<div className='sup-lg:flex hidden flex-col gap-4'>
+					<CartSummary />
+					<CartBenefits />
+				</div>
+			</div>
+
+			{/* Sticky footer mobile */}
+			<div className='fixed right-0 bottom-0 left-0 z-50 sup-lg:hidden border-t bg-white shadow-lg'>
+				<div className='mx-auto flex max-w-[1200px] flex-col gap-3 bg-greeny-100 px-5 py-3'>
 					<CartSummary />
 					<CartBenefits />
 				</div>

@@ -81,7 +81,6 @@ export default function ActivityExplorerItem({
 			localStorage.setItem('favorites', JSON.stringify(next))
 
 			setIsFav(false)
-			notifyMessage()
 			onToggleFav?.(key, false)
 		} else {
 			const fav: TFavorite = { description, imgSrc, key, rating, slug, title }
