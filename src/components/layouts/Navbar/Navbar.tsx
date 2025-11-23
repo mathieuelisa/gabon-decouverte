@@ -222,8 +222,6 @@ export default function Navbar() {
 
 						{/* small dialog component / popover */}
 						<AccountPopover
-							basketLength={basketLength}
-							isMounted={isMounted}
 							isOpen={isOpenDialog}
 							language={language}
 							onClose={closeDialog}

@@ -13,8 +13,6 @@ type AccountPopoverProps = {
 	onToggleLanguage: () => void
 	onClose: () => void
 	onNavClick: () => void
-	basketLength: number
-	isMounted: boolean
 }
 
 export default function AccountPopover({
@@ -22,9 +20,7 @@ export default function AccountPopover({
 	language,
 	onToggleLanguage,
 	onClose,
-	onNavClick,
-	basketLength,
-	isMounted
+	onNavClick
 }: AccountPopoverProps) {
 	const handleLinkClick = () => {
 		onClose()
