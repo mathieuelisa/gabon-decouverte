@@ -1,6 +1,6 @@
 export default function ActivityExplorerSkeleton() {
 	return (
-		<section className='relative h-[400px] min-w-[300px] max-w-[400px] overflow-hidden rounded-lg border border-gray-50 bg-white shadow dark:border-gray-700 dark:bg-gray-800'>
+		<section className='relative h-[400px] min-w-[235px] max-w-[400px] overflow-hidden rounded-lg border border-gray-50 bg-white shadow dark:border-gray-700 dark:bg-gray-800'>
 			{/* Image placeholder */}
 			<div className='relative'>
 				<div className='h-[180px] w-full animate-pulse bg-gray-200 dark:bg-gray-700' />

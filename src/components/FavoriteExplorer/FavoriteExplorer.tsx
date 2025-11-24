@@ -75,13 +75,19 @@ export default function FavoriteExplorer() {
 
 	if (hasFavorites && items === null) {
 		return (
-			<div className='mt-2 grid min-h-[calc(100vh-180px)] grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
-				{Array.from({ length: 5 }).map((_, i) => (
-					<div className='m-4 flex justify-center' key={i}>
-						<ActivityExplorerSkeleton />
-					</div>
-				))}
-			</div>
+			<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
+				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Vos favoris</h1>
+
+				<hr className='my-6 border-gray-200 border-t' />
+
+				<div className='grid grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
+					{Array.from({ length: 4 }).map((_, i) => (
+						<div className='flex justify-center' key={i}>
+							<ActivityExplorerSkeleton />
+						</div>
+					))}
+				</div>
+			</section>
 		)
 	}
 
@@ -94,30 +100,37 @@ export default function FavoriteExplorer() {
 	}
 
 	return (
-		<div className='mt-5 grid min-h-[calc(100vh-180px)] grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
-			{items?.map((fav) => (
-				<motion.div
-					className='transform-gpu will-change-transform'
-					key={fav.key}
-					transition={{ duration: 0.25, type: 'tween' }}
-					whileHover={{ y: -8 }}
-				>
-					<Link className='flex justify-center' href={`/activite/${fav.slug}`}>
-						<ActivityExplorerItem
-							description={fav.description}
-							imgSrc={fav.imgSrc}
-							onToggleFav={(key, nowFav) => {
-								if (!nowFav) {
-									setItems((curr) => curr?.filter((f) => f.key !== key) ?? [])
-								}
-							}}
-							rating={fav.rating}
-							slug={fav.slug}
-							title={fav.title}
-						/>
-					</Link>
-				</motion.div>
-			))}
-		</div>
+		<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
+			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Vos favoris</h1>
+
+			<hr className='my-6 border-gray-200 border-t' />
+
+			{/* Grid des favoris */}
+			<div className='grid grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
+				{items?.map((fav) => (
+					<motion.div
+						className='transform-gpu will-change-transform'
+						key={fav.key}
+						transition={{ duration: 0.25, type: 'tween' }}
+						whileHover={{ y: -8 }}
+					>
+						<Link className='flex justify-center' href={`/activite/${fav.slug}`}>
+							<ActivityExplorerItem
+								description={fav.description}
+								imgSrc={fav.imgSrc}
+								onToggleFav={(key, nowFav) => {
+									if (!nowFav) {
+										setItems((curr) => curr?.filter((f) => f.key !== key) ?? [])
+									}
+								}}
+								rating={fav.rating}
+								slug={fav.slug}
+								title={fav.title}
+							/>
+						</Link>
+					</motion.div>
+				))}
+			</div>
+		</section>
 	)
 }

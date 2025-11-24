@@ -60,7 +60,7 @@ export default function Cart() {
 
 	if (basket.length === 0)
 		return (
-			<section className='h-screen px-5 sup-md:px-40'>
+			<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Aucunes activités dans votre panier</h1>
 
 				<Dialog onOpenChange={setOpen} open={open}>
@@ -108,8 +108,8 @@ export default function Cart() {
 			</div>
 
 			{/* Sticky footer mobile */}
-			<div className='fixed right-0 bottom-0 left-0 z-50 sup-lg:hidden border-t bg-white shadow-lg'>
-				<div className='mx-auto flex max-w-[1200px] flex-col gap-3 bg-greeny-100 px-5 py-3'>
+			<div className='sticky inset-x-0 bottom-0 z-40 sup-lg:hidden bg-white shadow-lg'>
+				<div className='mx-auto flex max-w-[1200px] flex-col gap-3 bg-white px-5 py-3'>
 					<CartSummary />
 					<CartBenefits />
 				</div>

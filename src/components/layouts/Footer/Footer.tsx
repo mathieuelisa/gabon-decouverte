@@ -23,7 +23,7 @@ export default function Footer() {
 		<section className='bg-greeny-100'>
 			<div className='flex items-center'>
 				<div className='h-px w-full bg-white opacity-20' />
-				<div className='flex w-[490px] flex-col items-center pt-10'>
+				<div className='flex w-[740px] flex-col items-center pt-10'>
 					<Image
 						alt='logo_background'
 						className='opacity-50'
