@@ -55,7 +55,7 @@ export default function ActivityExplorerItem({
 		toast.success(
 			<div className='flex items-center gap-3'>
 				<Image alt={title} className='rounded-md object-cover' height={60} src={imgSrc} width={60} />
-				<Link className='flex flex-col' href='/panier'>
+				<Link className='flex flex-col' href='/favoris'>
 					<p className='font-caviarDreams-bold'>Ajouté à vos favoris ❤️</p>
 					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs'>Voir vos favoris</p>
 				</Link>

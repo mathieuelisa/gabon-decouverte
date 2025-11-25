@@ -13,7 +13,7 @@ export default function HightLights() {
 				{t('landing.quietConfidence')}
 			</h1>
 
-			<section className='my-16 flex sup-md:flex-row flex-col items-center sup-md:justify-between gap-9 sup-md:gap-0'>
+			<section className='my-16 mb-36 flex sup-md:flex-row flex-col items-center sup-md:justify-between gap-9 sup-md:gap-0'>
 				{HIGHLIGHTS_DATA.map((item) => (
 					<HightListItem description={item.description} key={item.id} title={item.title} />
 				))}

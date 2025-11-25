@@ -211,7 +211,7 @@ export default function Navbar() {
 						GABON DECOUVERTE
 					</Link>
 
-					<section className='relative flex items-center pr-3.5 text-black' ref={accountAreaRef}>
+					<section className='relative flex items-center gap-5 pr-3.5 text-black' ref={accountAreaRef}>
 						{/* Button that opens the small dialog / popover box */}
 						<button
 							aria-expanded={isOpenDialog}
