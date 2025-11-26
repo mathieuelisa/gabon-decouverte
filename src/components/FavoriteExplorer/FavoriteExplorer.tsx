@@ -76,7 +76,7 @@ export default function FavoriteExplorer() {
 	if (hasFavorites && items === null) {
 		return (
 			<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
-				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Vos favoris</h1>
+				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Vos favoris</h1>
 
 				<hr className='my-6 border-gray-200 border-t' />
 
@@ -94,14 +94,16 @@ export default function FavoriteExplorer() {
 	if (items && items.length === 0) {
 		return (
 			<section className='h-screen px-5 sup-md:px-40'>
-				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Aucun favori pour le moment</h1>
+				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>
+					Aucun favori pour le moment
+				</h1>
 			</section>
 		)
 	}
 
 	return (
 		<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
-			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Vos favoris</h1>
+			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Vos favoris</h1>
 
 			<hr className='my-6 border-gray-200 border-t' />
 

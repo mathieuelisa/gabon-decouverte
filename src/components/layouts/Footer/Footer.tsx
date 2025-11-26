@@ -41,7 +41,10 @@ export default function Footer() {
 				{/* Deux blocks footer */}
 				<div className='flex gap-16'>
 					<div className='text-center'>
-						<h3 className='mb-6 font-bold text-lg text-white'> {FOOTER_DESTINATION_CONTENT.title}</h3>
+						<h3 className='mb-6 font-caviarDreams text-lg text-white uppercase'>
+							{' '}
+							{FOOTER_DESTINATION_CONTENT.title}
+						</h3>
 						<ul>
 							{FOOTER_DESTINATION_CONTENT.links.map((element) => (
 								<li className='mb-4' key={element.title}>
@@ -56,7 +59,7 @@ export default function Footer() {
 						</ul>
 					</div>
 					<div className='text-center'>
-						<h3 className='mb-6 font-bold text-lg text-white'>
+						<h3 className='mb-6 font-caviarDreams text-lg text-white uppercase'>
 							{FOOTER_LEGALES_INFORMATIONS_CONTENT.title}
 						</h3>
 						<ul>
@@ -76,7 +79,7 @@ export default function Footer() {
 
 				{/* blcok Fomulaire */}
 				<div className='flex min-w-[350px] max-w-[400px] flex-col text-white'>
-					<label className='text-center font-semibold text-lg' htmlFor='newsletter'>
+					<label className='text-center font-caviarDreams text-lg uppercase' htmlFor='newsletter'>
 						Newsletter
 					</label>
 					<p className='mb-3 text-center'>

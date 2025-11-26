@@ -6,6 +6,8 @@ import Base from '@/components/layouts/Base'
 import '@/styles/index.css'
 import 'jotai-devtools/styles.css'
 
+import { ToastContainer } from 'react-toastify'
+
 export async function generateStaticParams() {
 	return languages.map((lng) => ({ lng }))
 }
@@ -23,6 +25,16 @@ export default function RootLayout({ children, params: { lng } }) {
 		<html data-lt-installed='true' lang={lng} suppressHydrationWarning>
 			<body className='font-louisGeorgeCafe-light antialiased' suppressHydrationWarning>
 				<Base>{children}</Base>
+				<ToastContainer
+					autoClose={2000}
+					hideProgressBar
+					icon={false}
+					toastStyle={{
+						borderRadius: '10px',
+						boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+						color: '#121212'
+					}}
+				/>
 			</body>
 		</html>
 	)

@@ -61,12 +61,16 @@ export default function Cart() {
 	if (basket.length === 0)
 		return (
 			<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
-				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Aucunes activités dans votre panier</h1>
+				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>
+					Aucunes activités dans votre panier
+				</h1>
 
 				<Dialog onOpenChange={setOpen} open={open}>
 					<DialogContent className='p-6 [&>button]:cursor-pointer'>
 						<DialogHeader>
-							<DialogTitle className='font-caviarDreams-bold'>Votre panier est vide</DialogTitle>
+							<DialogTitle className='font-caviarDreams-bold uppercase'>
+								Votre panier est vide
+							</DialogTitle>
 						</DialogHeader>
 
 						<p className='mt-3'>Il n'y a actuellement aucune activité dans votre panier.</p>
@@ -88,7 +92,7 @@ export default function Cart() {
 
 	return (
 		<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
-			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100'>Votre panier</h1>
+			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Votre panier</h1>
 
 			<hr className='my-6 border-gray-200 border-t' />
 

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
+import { BsChevronCompactDown } from 'react-icons/bs'
 import { CiMenuBurger } from 'react-icons/ci'
 import { SlBasket, SlUser } from 'react-icons/sl'
 import { twJoin, twMerge } from 'tailwind-merge'
@@ -280,7 +280,13 @@ export default function Navbar() {
 								type='button'
 							>
 								{t('navbar.activities')}
-								{activePanel === 'activité' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
+
+								<motion.div
+									animate={{ rotate: activePanel === 'activité' ? 180 : 0 }}
+									transition={{ duration: 0.25 }}
+								>
+									<BsChevronCompactDown />
+								</motion.div>
 							</button>
 						</li>
 						<li className='flex items-center justify-center gap-2'>
@@ -295,7 +301,13 @@ export default function Navbar() {
 								type='button'
 							>
 								{t('navbar.discovery')}
-								{activePanel === 'decouverte' ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
+
+								<motion.div
+									animate={{ rotate: activePanel === 'decouverte' ? 180 : 0 }}
+									transition={{ duration: 0.25 }}
+								>
+									<BsChevronCompactDown />
+								</motion.div>
 							</button>
 						</li>
 
@@ -393,7 +405,7 @@ export default function Navbar() {
 											</ul>
 
 											<Link
-												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-bold font-caviarDreams-bold text-sm text-white uppercase transition-all duration-400 ease-in-out hover:bg-greeny-50'
+												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-caviarDreams-bold text-sm text-white uppercase transition-all duration-400 ease-in-out hover:bg-greeny-50'
 												href={{
 													pathname: '/activite',
 													query: { type: 'toutes-nos-activites' }

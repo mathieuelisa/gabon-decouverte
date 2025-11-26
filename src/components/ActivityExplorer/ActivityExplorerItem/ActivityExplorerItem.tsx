@@ -57,7 +57,9 @@ export default function ActivityExplorerItem({
 				<Image alt={title} className='rounded-md object-cover' height={60} src={imgSrc} width={60} />
 				<Link className='flex flex-col' href='/favoris'>
 					<p className='font-caviarDreams-bold'>Ajouté à vos favoris ❤️</p>
-					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs'>Voir vos favoris</p>
+					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs uppercase'>
+						Voir vos favoris
+					</p>
 				</Link>
 			</div>,
 			{
