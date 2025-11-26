@@ -405,7 +405,7 @@ export default function Navbar() {
 											</ul>
 
 											<Link
-												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-caviarDreams-bold text-sm text-white uppercase transition-all duration-400 ease-in-out hover:bg-greeny-50'
+												className='flex cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-caviarDreams-bold text-base text-white uppercase transition-all duration-400 ease-in-out hover:bg-greeny-50'
 												href={{
 													pathname: '/activite',
 													query: { type: 'toutes-nos-activites' }

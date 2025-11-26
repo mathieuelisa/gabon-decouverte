@@ -142,7 +142,7 @@ export default function Contact() {
 						<div className='mt-4'>
 							<button
 								className={twMerge(
-									'w-full transform rounded-sm bg-greeny-100 px-6 py-2 font-caviarDreams-bold text-white transition duration-500 ease-in-out hover:bg-greeny-50',
+									'w-full transform rounded-sm bg-greeny-100 px-6 py-2 font-caviarDreams-bold text-base text-white transition duration-500 ease-in-out hover:bg-greeny-50',
 									loading
 										? 'cursor-not-allowed border border-gray-100 opacity-50'
 										: 'cursor-pointer border border-gray-100 text-white'
