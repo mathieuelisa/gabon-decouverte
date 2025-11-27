@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -13,8 +14,8 @@ export default function Banner() {
 			const maxScroll = 300
 			const clamped = Math.min(Math.max(scrollY, 0), maxScroll)
 
-			const minScale = 1 // taille normale
-			const maxScale = 1.1 // zoom max
+			const minScale = 1
+			const maxScale = 1.1
 			const ratio = clamped / maxScroll
 
 			const newScale = minScale + (maxScale - minScale) * ratio
@@ -40,7 +41,19 @@ export default function Banner() {
 					}}
 				/>
 			</div>
-			<div className='absolute inset-0 bg-linear-to-b from-0% from-white via-30% via-white to-80% to-transparent'></div>
+
+			{/* degraded white → transparent */}
+			<div className='absolute inset-0 bg-linear-to-b from-white via-white/30 to-transparent'></div>
+
+			{/* Animated text */}
+			<motion.h1
+				animate={{ color: '#000000', opacity: 0.7, y: 0 }}
+				className='-translate-x-1/2 absolute bottom-[480px] left-1/2 font-bold text-6xl tracking-wide'
+				initial={{ color: '#ffffff', opacity: 0, y: 340 }}
+				transition={{ duration: 2.2, ease: 'easeOut' }}
+			>
+				GABON DÉCOUVERTE
+			</motion.h1>
 		</section>
 	)
 }
