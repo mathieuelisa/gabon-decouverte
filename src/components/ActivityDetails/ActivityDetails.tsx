@@ -152,10 +152,18 @@ export default function ActivityDetails() {
 					<div className='flex flex-col gap-4'>
 						<div className='flex gap-2'>
 							<h4>Nom de l'organisateur: </h4>
+							<Image
+								alt='icone personne'
+								className='h-5 w-5'
+								height={8}
+								priority
+								src='/assets/images/icon-man.png'
+								width={8}
+							/>
 							<h4>{ACTIVITY_ID?.proposed_by}</h4>
 						</div>
 						<div className='flex gap-2'>
-							<h4>{ACTIVITY_ID?.presentation_organizer}</h4>
+							<p>{ACTIVITY_ID?.presentation_organizer}</p>
 						</div>
 					</div>
 				</div>
@@ -165,8 +173,7 @@ export default function ActivityDetails() {
 			<Dialog onOpenChange={setOpen} open={open}>
 				<DialogTrigger asChild>
 					<button
-						className='mt-6 w-full cursor-pointer rounded-md bg-red-700 p-2 font-caviarDreams-bold text-white transition-all duration-200 ease-in-out hover:bg-red-800'
-						// disabled={activityAlreadySelected}
+						className='mt-6 w-full cursor-pointer rounded-md bg-red-700 p-3 font-caviarDreams-bold text-base text-white transition-all duration-200 ease-in-out hover:bg-red-800'
 						type='button'
 					>
 						DEMANDE DE RESERVATION
