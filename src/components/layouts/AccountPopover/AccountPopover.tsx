@@ -37,7 +37,7 @@ export default function AccountPopover({
 				<motion.div
 					animate={{ opacity: 1, y: 0 }}
 					aria-modal='false'
-					className='absolute top-12 right-4 z-100 w-[190px] rounded-md border border-gray-200 bg-white p-4 shadow-lg'
+					className='absolute top-12 right-4 z-100 w-[190px] rounded-md border border-gray-100 bg-white p-4 shadow-lg'
 					exit={{ opacity: 0, y: -8 }}
 					initial={{ opacity: 0, y: -8 }}
 					role='dialog'

@@ -20,7 +20,7 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 
 	return (
 		<section
-			className='flex min-w-[60%] sup-md:flex-row flex-col gap-2 rounded-md border border-gray-200 p-3'
+			className='flex min-w-[60%] sup-md:flex-row flex-col gap-2 rounded-md border border-gray-100 p-3'
 			key={item.id}
 		>
 			{item.img ? <Image alt='img' className='w-full' height={300} src={item.img} width={300} /> : null}

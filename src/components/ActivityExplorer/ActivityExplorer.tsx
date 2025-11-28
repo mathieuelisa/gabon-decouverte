@@ -87,7 +87,7 @@ export default function ActivityExplorer() {
 				{/* VERSION MENU DÉROULANT (mobile / en dessous de sup-md) */}
 				<div className='flex sup-lg:hidden w-full'>
 					<select
-						className='w-full rounded-4xl border border-gray-200 px-4 py-2 pr-8 text-sm'
+						className='w-full rounded-4xl border border-gray-100 px-4 py-2 pr-8 text-sm'
 						onChange={(e) => handleSelectType(e.target.value)}
 						value={activeLink}
 					>

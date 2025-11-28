@@ -6,7 +6,7 @@ export default function CartSummary() {
 	const [basket] = useBasketAtom()
 
 	return (
-		<div className='flex flex-col gap-2 rounded-lg border border-gray-200 bg-white p-3'>
+		<div className='flex flex-col gap-2 rounded-lg border border-gray-100 bg-white p-3'>
 			<div className='flex items-center justify-between'>
 				<p className='font-caviarDreams-bold'>Sous-total</p>
 				<span className='text-gray-600 text-sm'>

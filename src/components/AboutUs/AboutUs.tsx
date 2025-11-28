@@ -19,7 +19,7 @@ export default function AboutUs() {
 
 	return (
 		<section className='flex min-h-[600px] items-center px-5 sup-md:px-40 text-center font-caviarDreams-bold'>
-			<h2 className='font-caviarDreams text-4xl text-greeny-100'>
+			<h2 className='font-caviarDreams sup-md:text-4xl text-2xl text-greeny-100'>
 				{t('landing.discoverGabon')}
 				<br />
 				<br /> {t('landing.diveIntoTurquoiseWater')}

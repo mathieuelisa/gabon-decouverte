@@ -46,7 +46,9 @@ export default function ActivityDetails() {
 				<Image alt={title} className='rounded-md object-cover' height={60} src={img} width={60} />
 				<Link className='flex flex-col' href='/panier'>
 					<p className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</p>
-					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs'>Voir votre panier</p>
+					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs uppercase'>
+						Voir votre panier
+					</p>
 				</Link>
 			</div>,
 			{
@@ -95,7 +97,7 @@ export default function ActivityDetails() {
 
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
-			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100'>{ACTIVITY_ID?.title}</h1>
+			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100 uppercase'>{ACTIVITY_ID?.title}</h1>
 			{/* Main grid: 1 mobile column */}
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
 				{/* Large pictures (left column, covering 2/3 of the width)*/}
@@ -133,7 +135,7 @@ export default function ActivityDetails() {
 				</div>
 			</section>
 
-			<hr className='my-6 border-gray-200 border-t' />
+			<hr className='my-6 border-gray-100 border-t' />
 
 			{/* Activity description */}
 			<section>
@@ -141,7 +143,7 @@ export default function ActivityDetails() {
 				<p>{ACTIVITY_ID?.long_description}</p>
 			</section>
 
-			<hr className='my-6 border-gray-200 border-t' />
+			<hr className='my-6 border-gray-100 border-t' />
 
 			{/* Organizer informations */}
 			<section>
@@ -195,7 +197,7 @@ export default function ActivityDetails() {
 							</div>
 						</div>
 
-						<hr className='my-2 border-gray-200 border-t' />
+						<hr className='my-2 border-gray-100 border-t' />
 
 						<div className='flex items-center justify-between'>
 							<p className='font-caviarDreams-bold'>Participants :</p>
@@ -203,7 +205,7 @@ export default function ActivityDetails() {
 							<Counter count={participate} setCount={setParticipate} />
 						</div>
 
-						<hr className='my-2 border-gray-200 border-t' />
+						<hr className='my-2 border-gray-100 border-t' />
 
 						<div className='flex items-center justify-between'>
 							<p className='font-caviarDreams-bold'>Date :</p>
@@ -217,7 +219,7 @@ export default function ActivityDetails() {
 							/>
 						</div>
 
-						<hr className='my-2 border-gray-200 border-t' />
+						<hr className='my-2 border-gray-100 border-t' />
 					</div>
 
 					<section className='flex items-center justify-between'>
@@ -241,7 +243,7 @@ export default function ActivityDetails() {
 				</DialogContent>
 			</Dialog>
 
-			<hr className='my-6 border-gray-200 border-t' />
+			<hr className='my-6 border-gray-100 border-t' />
 
 			{/* This section allows you to choose 3 activities at random. */}
 			<section>

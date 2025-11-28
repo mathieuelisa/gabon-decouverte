@@ -6,6 +6,29 @@ import { useEffect, useState } from 'react'
 
 export default function Banner() {
 	const [scale, setScale] = useState(1)
+	const [finalY, setFinalY] = useState(0)
+
+	useEffect(() => {
+		const updateY = () => {
+			const width = window.innerWidth
+
+			if (width < 640) {
+				setFinalY(-60) // mobile
+			} else if (width < 768) {
+				setFinalY(-80) // sm
+			} else if (width < 1024) {
+				setFinalY(-80) // md
+			} else if (width < 1280) {
+				setFinalY(-60) // lg
+			} else {
+				setFinalY(-30) // xl
+			}
+		}
+
+		updateY()
+		window.addEventListener('resize', updateY)
+		return () => window.removeEventListener('resize', updateY)
+	}, [])
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -29,7 +52,7 @@ export default function Banner() {
 
 	return (
 		<section className='relative'>
-			<div className='relative h-[722px]'>
+			<div className='relative h-[420px] sm:h-[520px] md:h-[620px] lg:h-[722px]'>
 				<Image
 					alt='savane africaine'
 					fill={true}
@@ -47,8 +70,9 @@ export default function Banner() {
 
 			{/* Animated text */}
 			<motion.h1
-				animate={{ color: '#000000', opacity: 0.7, y: 0 }}
-				className='-translate-x-1/2 absolute bottom-[480px] left-1/2 font-bold text-6xl tracking-wide'
+				// animate={{ color: '#000000', opacity: 0.7, y: 0 }}
+				animate={{ color: '#000', opacity: 0.7, y: finalY }}
+				className='-translate-x-1/2 absolute bottom-[220px] sup-lg:bottom-[420px] sup-md:bottom-80 sup-sm:bottom-[300px] sup-xl:bottom-[480px] left-1/2 text-center font-bold font-caviarDreams sup-lg:text-6xl sup-md:text-5xl sup-sm:text-4xl text-3xl tracking-wide'
 				initial={{ color: '#ffffff', opacity: 0, y: 340 }}
 				transition={{ duration: 2.2, ease: 'easeOut' }}
 			>

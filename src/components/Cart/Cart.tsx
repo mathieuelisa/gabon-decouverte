@@ -94,7 +94,7 @@ export default function Cart() {
 		<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Votre panier</h1>
 
-			<hr className='my-6 border-gray-200 border-t' />
+			<hr className='my-6 border-gray-100 border-t' />
 
 			<div className='my-9 grid grid-cols-1 sup-lg:grid-cols-[minmax(0,1fr)_auto] gap-6'>
 				{/* Colonne 1 */}

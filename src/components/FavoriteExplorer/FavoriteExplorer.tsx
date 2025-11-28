@@ -78,7 +78,7 @@ export default function FavoriteExplorer() {
 			<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Vos favoris</h1>
 
-				<hr className='my-6 border-gray-200 border-t' />
+				<hr className='my-6 border-gray-100 border-t' />
 
 				<div className='grid grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
 					{Array.from({ length: 4 }).map((_, i) => (
@@ -105,7 +105,7 @@ export default function FavoriteExplorer() {
 		<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Vos favoris</h1>
 
-			<hr className='my-6 border-gray-200 border-t' />
+			<hr className='my-6 border-gray-100 border-t' />
 
 			{/* Grid des favoris */}
 			<div className='grid grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>

@@ -185,7 +185,7 @@ export default function Navbar() {
 	return (
 		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
-				<div className='flex h-[81px] items-center justify-between border-gray-200 border-b bg-white'>
+				<div className='flex h-[81px] items-center justify-between border-gray-100 border-b bg-white'>
 					{/* Burger menu - open mobile menu */}
 					<button
 						className='ml-4 flex sup-md:hidden cursor-pointer flex-col'
@@ -216,7 +216,7 @@ export default function Navbar() {
 						<button
 							aria-expanded={isOpenDialog}
 							aria-haspopup='dialog'
-							className='flex cursor-pointer items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm transition-all duration-300 ease-in-out hover:bg-gray-50'
+							className='flex cursor-pointer items-center gap-2 rounded-md border border-gray-100 bg-white px-3 py-2 text-sm transition-all duration-300 ease-in-out hover:bg-gray-50'
 							onClick={toggleDialog}
 							type='button'
 						>
@@ -258,7 +258,7 @@ export default function Navbar() {
 				</div>
 			</section>
 
-			<section className='-top-0.5 sticky z-50 sup-md:flex hidden h-24 w-full items-center justify-between bg-white'>
+			<section className='after:-bottom-14 -top-0.5 relative z-50 sup-md:flex hidden h-24 w-full items-center justify-between bg-white after:pointer-events-none after:absolute after:right-0 after:left-0 after:h-14 after:bg-linear-to-b after:from-white after:to-transparent'>
 				<nav aria-label='Navigation principale'>
 					<ul className='flex items-center pl-14'>
 						<Link
