@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { BsTrash3 } from 'react-icons/bs'
-import { FiUsers } from 'react-icons/fi'
+import { FiUser, FiUsers } from 'react-icons/fi'
 import { IoCalendarNumberOutline } from 'react-icons/io5'
 import { TbClockHour7 } from 'react-icons/tb'
 
@@ -32,8 +32,10 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 						<p className='mt-3 max-w-[300px] text-sm'>{item?.short_description}</p>
 						{/* Participant */}
 						<div className='mt-8 flex items-center gap-2'>
-							<FiUsers className='h-5 w-5' />
-							<p>{item?.participate} participants</p>
+							{item?.participate === 1 ? <FiUser className='h-5 w-5' /> : <FiUsers className='h-5 w-5' />}
+							<p>
+								{item?.participate} participant{item?.participate > 1 ? 's' : ''}
+							</p>
 						</div>
 						{/* Duration */}
 						<div className='mt-4 flex items-center gap-2'>

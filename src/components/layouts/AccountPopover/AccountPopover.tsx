@@ -43,10 +43,14 @@ export default function AccountPopover({
 					role='dialog'
 					transition={{ duration: 0.2 }}
 				>
-					<div className='mb-4 flex items-center gap-2 border-gray-100 border-b pb-3'>
+					<button
+						className='mb-4 flex cursor-pointer items-center gap-2 border-gray-100 border-b pb-3'
+						onClick={() => alert('ADMIN ROUTE')}
+						type='button'
+					>
 						<SlUser className='h-4 w-4' />
 						<p className='font-medium text-sm'>{t('login')}</p>
-					</div>
+					</button>
 
 					<div className='flex flex-col gap-3 text-sm'>
 						{/* Langue */}

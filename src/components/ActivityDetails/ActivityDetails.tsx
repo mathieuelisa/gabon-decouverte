@@ -157,7 +157,7 @@ export default function ActivityDetails() {
 								className='h-5 w-5'
 								height={8}
 								priority
-								src='/assets/images/icon-man.png'
+								src={`/assets/images/icon-${ACTIVITY_ID?.gender === 'female' ? 'woman' : 'man'}.png`}
 								width={8}
 							/>
 							<h4>{ACTIVITY_ID?.proposed_by}</h4>

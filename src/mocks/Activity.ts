@@ -5,6 +5,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		city: 'Franceville',
 		city_activity: 'lambarene',
 		duration: '1 heure',
+		gender: 'male',
 		id: 1,
 		img: '/assets/images/activites/chutes-djomou.avif',
 		long_description:
@@ -25,6 +26,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		city: 'Libreville',
 		city_activity: 'libreville',
 		duration: '3 heures',
+		gender: 'male',
 		id: 2,
 		img: '/assets/images/activites/parc-aquatique.avif',
 		long_description:
@@ -45,6 +47,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		city: 'Libreville',
 		city_activity: 'libreville',
 		duration: '2 heures',
+		gender: 'female',
 		id: 3,
 		img: '/assets/images/activites/pongora.avif',
 		long_description:
@@ -65,6 +68,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		city: 'Libreville',
 		city_activity: 'libreville',
 		duration: '45 minutes',
+		gender: 'male',
 		id: 4,
 		img: '/assets/images/decouverte/africa.avif',
 		long_description:
@@ -85,6 +89,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		city: 'Lambaréné',
 		city_activity: 'lambarene',
 		duration: '2 heures',
+		gender: 'male',
 		id: 5,
 		img: '/assets/images/activites/musee-albert-schweitzer.avif',
 		long_description:
@@ -105,6 +110,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		city: 'Tchibanga',
 		city_activity: 'mayumba',
 		duration: '30 minutes',
+		gender: 'female',
 		id: 6,
 		img: '/assets/images/activites/kayak.avif',
 		long_description:
@@ -113,7 +119,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 			'Moi cest Emmanuel Mbappé et je propose des balades en kayak pour faire découvrir la beauté naturelle des rivières et lagunes du Gabon. Amoureuse de la nature et passionnée d’aventure douce, j’accompagne les visiteurs dans une expérience à la fois apaisante et dépaysante, en harmonie avec l’environnement. Mon objectif est d’offrir un moment de connexion authentique avec la nature, dans le respect de sa tranquillité et de sa richesse.',
 		price_cfa: 49196,
 		price_eur: 75,
-		proposed_by: 'Emmanuel Mbappé',
+		proposed_by: 'Emmanuelle Mbappé',
 		rating: 5,
 		short_description:
 			'Explorez les rivières et lagunes du Gabon en kayak et vivez une expérience paisible au cœur de la nature, entre observation de la faune et dépaysement total.',
@@ -125,6 +131,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		city: 'Libreville',
 		city_activity: 'oyem',
 		duration: '2 heures',
+		gender: 'male',
 		id: 7,
 		img: '/assets/images/activites/lac-oguemoue.avif',
 		long_description:

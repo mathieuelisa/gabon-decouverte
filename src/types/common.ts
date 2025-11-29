@@ -40,6 +40,7 @@ export type TActivity = {
 	price_cfa: number
 	city: string
 	city_activity: string
+	gender: 'male' | 'female'
 }
 
 export type TDiscover = {
