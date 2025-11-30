@@ -40,7 +40,7 @@ export default function ActivityExplorer() {
 
 	// Styles de base des boutons
 	const btnBase = 'relative min-w-[200px] px-1 py-2 rounded-4xl cursor-pointer select-none'
-	const btnText = 'relative z-10'
+	const btnText = 'relative z-10 text-lg'
 
 	// Transition de la "pill" verte
 	const pillTransition: Transition = prefersReduced
@@ -110,7 +110,7 @@ export default function ActivityExplorer() {
 						key={activeLink}
 						transition={{ duration: 0.18 }}
 					>
-						<h3 className='mb-5 text-center sup-lg:text-start'>{currentTitle}</h3>
+						<h3 className='mb-5 text-center sup-lg:text-start sup-md:text-lg text-base'>{currentTitle}</h3>
 
 						<div className='grid grid-cols-1 sup-lg:grid-cols-3 sup-sm:grid-cols-2 sup-xl:grid-cols-4 gap-6'>
 							{items.map((el) => (

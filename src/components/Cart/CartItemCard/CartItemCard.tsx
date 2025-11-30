@@ -29,7 +29,7 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 				<section className='flex justify-between'>
 					<div className='ml-3 flex flex-col'>
 						<h2 className='max-w-[300px] font-caviarDreams-bold text-xl'>{item?.title}</h2>
-						<p className='mt-3 max-w-[300px] text-sm'>{item?.short_description}</p>
+						<p className='mt-3 max-w-[300px] text-base'>{item?.short_description}</p>
 						{/* Participant */}
 						<div className='mt-8 flex items-center gap-2'>
 							{item?.participate === 1 ? <FiUser className='h-5 w-5' /> : <FiUsers className='h-5 w-5' />}

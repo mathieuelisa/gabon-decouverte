@@ -79,8 +79,8 @@ export default function DiscoverDetails() {
 				</div>
 			</section>
 			{/* Activite part */}
-			<section className='mt-11 flex flex-col items-center justify-center'>
-				<h3 className='mb-6 font-caviarDreams-bold text-xl'>
+			<section className='my-11 flex flex-col items-center justify-center'>
+				<h3 className='mb-6 text-center font-caviarDreams-bold text-xl'>
 					Explorez les activités présentes sur {discoverItem?.city || 'cette ville'}
 				</h3>
 

@@ -49,7 +49,7 @@ export default function Footer() {
 							{FOOTER_DESTINATION_CONTENT.links.map((element) => (
 								<li className='mb-4' key={element.title}>
 									<Link
-										className='font-caviarDreams text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
+										className='font-caviarDreams text-base text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
 										href={element.href}
 									>
 										{element.title}
@@ -66,7 +66,7 @@ export default function Footer() {
 							{FOOTER_LEGALES_INFORMATIONS_CONTENT.links.map((element) => (
 								<li className='mb-2' key={element.title}>
 									<Link
-										className='font-caviarDreams text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
+										className='font-caviarDreams text-base text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
 										href={element.href}
 									>
 										{element.title}

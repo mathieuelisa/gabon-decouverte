@@ -5,13 +5,13 @@ export default function DiscoverInformations({ discoverItem }) {
 	return (
 		<section className='mt-4 flex w-full flex-col gap-3 lg:mt-0 lg:w-[70%]'>
 			<h2 className='font-caviarDreams text-greeny-100 text-xl'>Votre séjour</h2>
-			<p className='text-justify'>{discoverItem?.long_description}</p>
+			<p className='text-justify sup-md:text-lg text-base'>{discoverItem?.long_description}</p>
 
 			<div className='mt-4 grid sup-md:w-[480px] w-full grid-cols-1 gap-3 self-end border border-gray-300 p-3 sm:grid-cols-2'>
 				<div className='flex flex-col items-center justify-center gap-2'>
 					<h3 className='font-caviarDreams-bold text-greeny-100 text-sm'>Meilleur période</h3>
 					<div className='flex items-center gap-2'>
-						<CiCloudSun className='h-5 w-5' />
+						<CiCloudSun className='h-6 w-6' />
 						<p>{discoverItem?.best_period}</p>
 					</div>
 				</div>

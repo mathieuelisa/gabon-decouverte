@@ -73,7 +73,9 @@ export default function Cart() {
 							</DialogTitle>
 						</DialogHeader>
 
-						<p className='mt-3'>Il n'y a actuellement aucune activité dans votre panier.</p>
+						<p className='mt-3 sup-md:text-lg text-base'>
+							Il n'y a actuellement aucune activité dans votre panier.
+						</p>
 
 						<div className='mt-6 flex justify-end'>
 							<Link href='/activite'>

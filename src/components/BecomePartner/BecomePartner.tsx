@@ -28,11 +28,11 @@ export default function BecomePartner() {
 						<h1 className='text-center sup-lg:text-start text-4xl'>
 							Ensemble, construisons un partenariat durable
 						</h1>
-						<p className='w-full text-center sup-lg:text-start'>
+						<p className='w-full text-center sup-lg:text-start sup-md:text-lg text-base'>
 							Gabon Découverte grandit et souhaite collaborer avec de nouveaux partenaires : hôtels,
 							chambres d’hôtes, artisans, restaurateurs et prestataires d’activités.
 						</p>
-						<p className='w-full text-center sup-lg:text-start'>
+						<p className='w-full text-center sup-lg:text-start sup-md:text-lg text-base'>
 							Cliquez sur le lien ci-dessous pour remplir le formulaire et rejoindre l’aventure.
 						</p>
 					</div>

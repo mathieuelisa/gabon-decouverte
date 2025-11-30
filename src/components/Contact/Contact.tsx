@@ -76,7 +76,7 @@ export default function Contact() {
 				<h1 className='font-caviarDreams-bold sup-md:text-4xl text-2xl text-greeny-100'>
 					UNE QUESTION ? UN BESOIN PARTICULIER ?
 				</h1>
-				<p className='sup-md:text-base text-gray-100text-sm'>
+				<p className='sup-md:text-lg text-base'>
 					Ce formulaire permet à nos equipes d’en savoir plus sur vos besoins et/ou désirs de voyages et
 					d'activités.
 				</p>

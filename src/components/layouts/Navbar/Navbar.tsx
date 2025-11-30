@@ -79,7 +79,7 @@ export default function Navbar() {
 
 	const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
-	const panelLinkClass = (href: string) => twMerge('text-black text-base', isActive(href) && 'text-greeny-50')
+	const panelLinkClass = (href: string) => twMerge('text-black', isActive(href) && 'text-greeny-50')
 
 	const isOpen = activePanel !== null
 

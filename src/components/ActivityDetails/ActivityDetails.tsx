@@ -139,19 +139,19 @@ export default function ActivityDetails() {
 
 			{/* Activity description */}
 			<section>
-				<h3 className='mb-2 font-caviarDreams-bold'>Description de l'activité</h3>
-				<p>{ACTIVITY_ID?.long_description}</p>
+				<h3 className='mb-2 font-caviarDreams-bold text-lg'>Description de l'activité</h3>
+				<p className='sup-md:text-lg text-base'>{ACTIVITY_ID?.long_description}</p>
 			</section>
 
 			<hr className='my-6 border-gray-100 border-t' />
 
 			{/* Organizer informations */}
 			<section>
-				<h3 className='mb-2 font-caviarDreams-bold'>Présentation de l'organisateur</h3>
+				<h3 className='mb-2 font-caviarDreams-bold text-lg'>Présentation de l'organisateur</h3>
 				<div className='min-w-60 rounded-lg border border-gray-100 p-4 shadow-lg'>
 					<div className='flex flex-col gap-4'>
 						<div className='flex gap-2'>
-							<h4>Nom de l'organisateur: </h4>
+							<h4 className='text-lg'>Nom de l'organisateur: </h4>
 							<Image
 								alt='icone personne'
 								className='h-5 w-5'
@@ -160,10 +160,10 @@ export default function ActivityDetails() {
 								src={`/assets/images/icon-${ACTIVITY_ID?.gender === 'female' ? 'woman' : 'man'}.png`}
 								width={8}
 							/>
-							<h4>{ACTIVITY_ID?.proposed_by}</h4>
+							<h4 className='text-lg'>{ACTIVITY_ID?.proposed_by}</h4>
 						</div>
 						<div className='flex gap-2'>
-							<p>{ACTIVITY_ID?.presentation_organizer}</p>
+							<p className='sup-md:text-lg text-base'>{ACTIVITY_ID?.presentation_organizer}</p>
 						</div>
 					</div>
 				</div>
@@ -254,8 +254,8 @@ export default function ActivityDetails() {
 
 			{/* This section allows you to choose 3 activities at random. */}
 			<section>
-				<h3 className='mb-6 font-caviarDreams-bold text-xl'>
-					Explorez d’autres univers tout aussi captivants.
+				<h3 className='mb-6 text-center font-caviarDreams-bold text-xl'>
+					Explorez d’autres univers tout aussi captivants
 				</h3>
 
 				<div className='grid grid-cols-1 sup-lg:grid-cols-3 sup-sm:grid-cols-2 sup-xl:grid-cols-3 gap-6'>
