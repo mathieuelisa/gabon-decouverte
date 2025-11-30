@@ -64,6 +64,7 @@ export type TFavorite = {
 	imgSrc: string
 	rating: number | string
 	slug?: string
+	price: number
 }
 
 export type TBasketItem = {

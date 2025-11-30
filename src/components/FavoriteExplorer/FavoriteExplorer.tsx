@@ -31,6 +31,7 @@ export default function FavoriteExplorer() {
 							description: '',
 							imgSrc: '',
 							key: t,
+							price: '',
 							rating: '',
 							slug: '',
 							title: t
@@ -125,6 +126,7 @@ export default function FavoriteExplorer() {
 										setItems((curr) => curr?.filter((f) => f.key !== key) ?? [])
 									}
 								}}
+								price={fav.price}
 								rating={fav.rating}
 								slug={fav.slug}
 								title={fav.title}

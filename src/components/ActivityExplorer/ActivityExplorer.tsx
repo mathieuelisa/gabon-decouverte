@@ -124,6 +124,7 @@ export default function ActivityExplorer() {
 										<ActivityExplorerItem
 											description={el.short_description}
 											imgSrc={el.img}
+											price={el.price_eur}
 											rating={el.rating}
 											slug={el.slug}
 											title={el.title}

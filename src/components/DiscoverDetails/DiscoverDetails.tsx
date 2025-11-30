@@ -90,6 +90,7 @@ export default function DiscoverDetails() {
 							<ActivityExplorerItem
 								description={element.short_description}
 								imgSrc={element.img}
+								price={element.price_eur}
 								rating={element.rating}
 								slug={element.slug}
 								title={element.title}

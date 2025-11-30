@@ -6,9 +6,11 @@ export async function POST(request: Request) {
 
 	const transporter = nodemailer.createTransport({
 		auth: {
-			pass: process.env.GMAIL_PASS, // your google app password
+			// your google app password
+			// pass: process.env.GMAIL_PASS,
 			// https://www.youtube.com/watch?v=t2LvPXHLrek&t=1062s => get variable google
-			user: process.env.GMAIL_USER // your google email
+			// your google email
+			// user: process.env.GMAIL_USER
 		},
 		service: 'gmail'
 	})
@@ -18,7 +20,7 @@ export async function POST(request: Request) {
 			from: `Gabon Decouverte <${process.env.GMAIL_USER}>`,
 			html: `
     <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-      <p style="margin-top: 20px">Bonjour Pri, vous avez une nouvelle demande d'information.<br/>
+      <p style="margin-top: 20px">Bonjour Audrey, vous avez une nouvelle demande d'information.<br/>
       Voici toutes les informations nécessaire à une nouvelle prise de contact<br/><br/>
       Bonne journée :)
       </p>

@@ -15,6 +15,7 @@ type TActivityExplorerItemProps = {
 	rating: number | string
 	slug?: string
 	title: string
+	price?: number
 	onToggleFav?: (key: string, nowFav: boolean) => void
 }
 
@@ -24,6 +25,7 @@ export default function ActivityExplorerItem({
 	imgSrc,
 	rating,
 	slug,
+	price,
 	onToggleFav
 }: TActivityExplorerItemProps) {
 	const key = title
@@ -38,6 +40,7 @@ export default function ActivityExplorerItem({
 				description: '',
 				imgSrc: '',
 				key: t,
+				price: 0,
 				rating: '',
 				slug: '',
 				title: t
@@ -85,7 +88,7 @@ export default function ActivityExplorerItem({
 			setIsFav(false)
 			onToggleFav?.(key, false)
 		} else {
-			const fav: TFavorite = { description, imgSrc, key, rating, slug, title }
+			const fav: TFavorite = { description, imgSrc, key, price, rating, slug, title }
 			const next = [...favs, fav]
 			localStorage.setItem('favorites', JSON.stringify(next))
 
@@ -130,6 +133,7 @@ export default function ActivityExplorerItem({
 			</div>
 
 			<p className='my-3 sup-md:text-lg text-base'>{description}</p>
+			<p className='my-3 text-end font-caviarDreams-bold text-greeny-100 text-sm'>{price} € / par personne</p>
 		</section>
 	)
 }

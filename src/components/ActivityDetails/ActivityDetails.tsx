@@ -97,7 +97,10 @@ export default function ActivityDetails() {
 
 	return (
 		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
-			<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100 uppercase'>{ACTIVITY_ID?.title}</h1>
+			<div className='flex items-center justify-between'>
+				<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100 uppercase'>{ACTIVITY_ID?.title}</h1>
+				<p className='font-caviarDreams-bold text-greeny-100'>{ACTIVITY_ID?.price_eur} € / par personne</p>
+			</div>
 			{/* Main grid: 1 mobile column */}
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
 				{/* Large pictures (left column, covering 2/3 of the width)*/}
@@ -214,7 +217,7 @@ export default function ActivityDetails() {
 
 						<hr className='my-2 border-gray-100 border-t' />
 
-						<div className='flex items-center justify-between'>
+						<div className='flex items-start justify-between'>
 							<p className='font-caviarDreams-bold'>Date :</p>
 							<Calendar
 								captionLayout='dropdown'
@@ -264,6 +267,7 @@ export default function ActivityDetails() {
 							<ActivityExplorerItem
 								description={element.short_description}
 								imgSrc={element.img}
+								price={element.price_eur}
 								rating={element.rating}
 								slug={element.slug}
 								title={element.title}

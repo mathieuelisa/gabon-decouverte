@@ -33,7 +33,7 @@ export const FOOTER_LEGALES_INFORMATIONS_CONTENT: TFooter = {
 		},
 		{
 			href: '/',
-			title: 'Mention legales'
+			title: 'Mentions légales'
 		},
 		{
 			href: '/',
