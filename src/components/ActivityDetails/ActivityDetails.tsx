@@ -243,7 +243,7 @@ export default function ActivityDetails() {
 							<p className='text-sm'>Taxes et frais compris</p>
 						</div>
 						<button
-							className='cursor-pointer rounded-md bg-greeny-50 p-2 font-caviarDreams-bold text-white transition-all duration-400 ease-in-out hover:bg-greeny-100'
+							className='cursor-pointer rounded-md bg-greeny-50 p-4 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-100'
 							onClick={handleAddBasketClick}
 							type='button'
 						>

@@ -52,7 +52,7 @@ export default function Banner() {
 
 	return (
 		<section className='relative'>
-			<div className='relative h-[420px] sm:h-[520px] md:h-[620px] lg:h-[722px]'>
+			<div className='relative h-[420px] sm:h-[520px] md:h-[620px] lg:h-[800px]'>
 				<Image
 					alt='savane africaine'
 					fill={true}

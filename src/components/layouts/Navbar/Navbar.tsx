@@ -161,6 +161,21 @@ export default function Navbar() {
 		}
 	}, [])
 
+	useEffect(() => {
+		if (isOpen) {
+			// Empêche totalement le scroll
+			document.body.style.overflow = 'hidden'
+		} else {
+			// Réactive le scroll
+			document.body.style.overflow = ''
+		}
+
+		// Nettoyage en cas de démontage
+		return () => {
+			document.body.style.overflow = ''
+		}
+	}, [isOpen])
+
 	const closePanel = () => setActivePanel(null)
 
 	const handleNavClick = () => {
@@ -183,7 +198,7 @@ export default function Navbar() {
 	}
 
 	return (
-		<header className='sticky top-0 z-50 flex h-[177px] flex-col items-center justify-between sup-md:px-0'>
+		<header className='sticky top-0 z-50 flex h-[140px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
 				<div className='flex h-[81px] items-center justify-between border-gray-100 border-b bg-white'>
 					{/* Burger menu - open mobile menu */}
@@ -326,8 +341,8 @@ export default function Navbar() {
 			<AnimatePresence initial={false}>
 				{isOpen && (
 					<motion.div
-						animate={{ height: 'calc(100vh - 163px)', opacity: 1 }}
-						className='fixed top-41 z-60 flex w-full overflow-hidden bg-white'
+						animate={{ height: 'calc(100vh - 132px)', opacity: 1 }}
+						className='fixed top-33 z-60 flex w-full overflow-hidden bg-white'
 						exit={{ height: 0, opacity: 0 }}
 						id='navbar-extended-panel'
 						initial={{ height: 0, opacity: 0 }}

@@ -60,7 +60,7 @@ export default function Cart() {
 
 	if (basket.length === 0)
 		return (
-			<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
+			<section className='mt-14 min-h-screen px-16 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>
 					Aucunes activités dans votre panier
 				</h1>
@@ -93,7 +93,7 @@ export default function Cart() {
 		)
 
 	return (
-		<section className='min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
+		<section className='mt-14 min-h-screen px-16 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Votre panier</h1>
 
 			<hr className='my-6 border-gray-100 border-t' />
