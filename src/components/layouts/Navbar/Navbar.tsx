@@ -161,16 +161,14 @@ export default function Navbar() {
 		}
 	}, [])
 
+	// Prevent scrolling when the panel is open
 	useEffect(() => {
 		if (isOpen) {
-			// Empêche totalement le scroll
 			document.body.style.overflow = 'hidden'
 		} else {
-			// Réactive le scroll
 			document.body.style.overflow = ''
 		}
 
-		// Nettoyage en cas de démontage
 		return () => {
 			document.body.style.overflow = ''
 		}
