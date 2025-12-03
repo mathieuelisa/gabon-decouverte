@@ -210,7 +210,7 @@ export default function Navbar() {
 
 					<Link
 						aria-label='Se rendre a la page daccueil'
-						className='flex items-center justify-center pl-0 sup-lg:pl-14 font-caviarDreams sup-md:text-3xl text-2xl text-black'
+						className='flex items-center justify-center pl-0 sup-lg:pl-14 font-grayson sup-md:text-3xl sup-md:text-[33px] text-2xl text-greeny-100'
 						href='/'
 					>
 						<Image
