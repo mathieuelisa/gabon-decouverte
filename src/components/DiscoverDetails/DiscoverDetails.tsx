@@ -42,7 +42,7 @@ export default function DiscoverDetails() {
 
 	return (
 		<section className='px-5 sup-md:px-40'>
-			<div className='relative mx-auto h-[250px] sup-md:h-[400px] w-full max-w-[1109px] overflow-hidden'>
+			<div className='relative mx-auto h-[250px] sup-md:h-[400px] w-full overflow-hidden'>
 				<Image
 					alt='Photo principale'
 					className='rounded-xs object-cover'
