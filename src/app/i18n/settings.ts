@@ -1,5 +1,4 @@
 import type { Resource } from 'i18next'
-import { merge, partial, spread } from 'lodash'
 
 import en from './locales/en'
 import fr from './locales/fr'
@@ -31,6 +30,22 @@ export type Translations = {
 	[nameSpace in TNameSpacesKey]: Translation
 }
 
+// 🔁 Petite fonction utilitaire pour merger les ressources sans lodash
+function mergeResources(resources: Resource[]): Resource {
+	return resources.reduce<Resource>((acc, res) => {
+		for (const [lng, namespaces] of Object.entries(res)) {
+			const lang = lng as keyof Resource
+			const existingNamespaces = (acc[lang] ?? {}) as Record<string, unknown>
+
+			acc[lang] = {
+				...existingNamespaces,
+				...(namespaces as Record<string, unknown>)
+			}
+		}
+		return acc
+	}, {} as Resource)
+}
+
 export function adaptLoadedResources(ns: Record<string, any>) {
 	const flatNameSpaces = Object.entries(ns) as [TNameSpacesKey, LoadedResources][]
 	const flatResources = flatNameSpaces.map((nameSpace) => {
@@ -43,7 +58,11 @@ export function adaptLoadedResources(ns: Record<string, any>) {
 		}, {} as Resource)
 	})
 
-	return spread(partial(merge, {}))(flatResources)
+	// Ancien code :
+	// return spread(partial(merge, {}))(flatResources)
+
+	// Nouveau code sans lodash :
+	return mergeResources(flatResources)
 }
 
 export type RecursiveKeyOf<TObj extends Record<string, unknown>> = {
