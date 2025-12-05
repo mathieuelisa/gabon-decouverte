@@ -47,9 +47,6 @@ importers:
       jotai:
         specifier: ^2.15.0
         version: 2.15.1(@types/react@19.2.2)(react@19.1.0)
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       lucide-react:
         specifier: ^0.553.0
         version: 0.553.0(react@19.1.0)
@@ -1076,9 +1073,6 @@ packages:
 
   lodash.curry@4.1.1:
     resolution: {integrity: sha512-/u14pXGviLaweY5JI0IUzgzF2J6Ne8INyzAZjImcryjgkZ+ebruBxy2/JaOOkTqScddcYtakjhSaeemV8lR0tA==}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   lucide-react@0.553.0:
     resolution: {integrity: sha512-BRgX5zrWmNy/lkVAe0dXBgd7XQdZ3HTf+Hwe3c9WK6dqgnj9h+hxV+MDncM88xDWlCq27+TKvHGE70ViODNILw==}
@@ -2158,8 +2152,6 @@ snapshots:
       lightningcss-win32-x64-msvc: 1.30.2
 
   lodash.curry@4.1.1: {}
-
-  lodash@4.17.21: {}
 
   lucide-react@0.553.0(react@19.1.0):
     dependencies:
