@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 
 import ActivityExplorer from '@/components/ActivityExplorer'
 
@@ -28,5 +29,9 @@ export const metadata: Metadata = {
 }
 
 export default function ActivityPage() {
-	return <ActivityExplorer />
+	return (
+		<Suspense fallback={<div>Chargement des activités...</div>}>
+			<ActivityExplorer />
+		</Suspense>
+	)
 }
