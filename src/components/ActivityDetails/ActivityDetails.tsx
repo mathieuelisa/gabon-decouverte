@@ -46,7 +46,7 @@ export default function ActivityDetails() {
 				<Image alt={title} className='rounded-md object-cover' height={60} src={img} width={60} />
 				<Link className='flex flex-col' href='/panier'>
 					<p className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</p>
-					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs uppercase'>
+					<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-greeny-100 uppercase'>
 						Voir votre panier
 					</p>
 				</Link>
@@ -96,10 +96,14 @@ export default function ActivityDetails() {
 	// const activityAlreadySelected = basket.some((element) => element.id === id)
 
 	return (
-		<section className='mx-auto my-14 max-w-7xl px-5 sup-md:px-40'>
-			<div className='flex items-center justify-between'>
-				<h1 className='mb-3 font-caviarDreams-bold text-2xl text-greeny-100 uppercase'>{ACTIVITY_ID?.title}</h1>
-				<p className='font-caviarDreams-bold text-greeny-100'>{ACTIVITY_ID?.price_eur} € / par personne</p>
+		<section className='mx-auto mt-0 sup-md:mt-14 mb-14 max-w-7xl px-5 sup-md:px-40'>
+			<div className='flex items-center justify-between gap-5'>
+				<h1 className='mb-3 font-caviarDreams-bold sup-md:text-2xl text-greeny-100 text-lg uppercase'>
+					{ACTIVITY_ID?.title}
+				</h1>
+				<p className='text-end font-caviarDreams-bold text-base text-greeny-100'>
+					{ACTIVITY_ID?.price_eur} € / par personne
+				</p>
 			</div>
 			{/* Main grid: 1 mobile column */}
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-3'>

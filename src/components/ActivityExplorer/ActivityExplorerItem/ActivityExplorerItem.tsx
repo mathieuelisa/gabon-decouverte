@@ -60,7 +60,7 @@ export default function ActivityExplorerItem({
 				<Image alt={title} className='rounded-md object-cover' height={60} src={imgSrc} width={60} />
 				<Link className='flex flex-col' href='/favoris'>
 					<p className='font-caviarDreams-bold'>Ajouté à vos favoris ❤️</p>
-					<p className='mt-2 text-end font-caviarDreams-bold text-greeny-100 text-xs uppercase'>
+					<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-greeny-100 uppercase'>
 						Voir vos favoris
 					</p>
 				</Link>
@@ -132,8 +132,8 @@ export default function ActivityExplorerItem({
 				</div>
 			</div>
 
-			<p className='my-3 sup-md:text-lg text-base'>{description}</p>
-			<p className='my-3 text-end font-caviarDreams-bold text-greeny-100 text-sm'>{price} € / par personne</p>
+			<p className='my-3 text-justify sup-md:text-lg text-base'>{description}</p>
+			<p className='my-3 text-end font-caviarDreams text-greeny-100 text-sm'>{price} € / par personne</p>
 		</section>
 	)
 }

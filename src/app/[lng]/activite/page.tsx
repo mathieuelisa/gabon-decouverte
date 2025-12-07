@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { Suspense } from 'react'
 
 import ActivityExplorer from '@/components/ActivityExplorer'
@@ -30,7 +31,21 @@ export const metadata: Metadata = {
 
 export default function ActivityPage() {
 	return (
-		<Suspense fallback={<div>Chargement des activités...</div>}>
+		<Suspense
+			fallback={
+				<section className='flex h-[calc(100vh-180px)] flex-col items-center justify-center px-5 sup-md:px-40'>
+					<Image
+						alt='logo_background'
+						className='-z-1 opacity-60'
+						height={100}
+						priority
+						src='/assets/images/logo_grey.png'
+						width={200}
+					/>
+					<p className='font-caviarDreams text-gray-400 text-lg'>Chargement des activités...</p>
+				</section>
+			}
+		>
 			<ActivityExplorer />
 		</Suspense>
 	)

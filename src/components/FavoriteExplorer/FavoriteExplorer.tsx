@@ -76,12 +76,12 @@ export default function FavoriteExplorer() {
 
 	if (hasFavorites && items === null) {
 		return (
-			<section className='mt-14 min-h-screen px-16 sup-xl:px-40 pb-32 sup-lg:pb-0'>
+			<section className='mt-0 sup-md:mt-14 min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Vos favoris</h1>
 
 				<hr className='my-6 border-gray-100 border-t' />
 
-				<div className='grid grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
+				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
 					{Array.from({ length: 4 }).map((_, i) => (
 						<div className='flex justify-center' key={i}>
 							<ActivityExplorerSkeleton />
@@ -103,13 +103,13 @@ export default function FavoriteExplorer() {
 	}
 
 	return (
-		<section className='mt-14 min-h-screen px-16 sup-xl:px-40 pb-32 sup-lg:pb-0'>
+		<section className='mt-0 sup-md:mt-14 min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Vos favoris</h1>
 
 			<hr className='my-6 border-gray-100 border-t' />
 
 			{/* Grid des favoris */}
-			<div className='grid grid-cols-1 gap-6 px-12 sm:grid-cols-2 lg:grid-cols-4'>
+			<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
 				{items?.map((fav) => (
 					<motion.div
 						className='transform-gpu will-change-transform'

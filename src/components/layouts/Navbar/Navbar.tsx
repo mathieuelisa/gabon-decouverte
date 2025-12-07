@@ -216,10 +216,10 @@ export default function Navbar() {
 						<Image
 							alt='logo gabon decouverte'
 							className='relative'
-							height={60}
+							height={50}
 							priority
 							src='/assets/images/logo.png'
-							width={60}
+							width={50}
 						/>
 						GABON DECOUVERTE
 					</Link>

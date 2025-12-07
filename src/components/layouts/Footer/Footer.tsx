@@ -42,12 +42,11 @@ export default function Footer() {
 				<div className='flex gap-16'>
 					<div className='text-center'>
 						<h3 className='mb-6 font-caviarDreams text-lg text-white uppercase'>
-							{' '}
 							{FOOTER_DESTINATION_CONTENT.title}
 						</h3>
 						<ul>
 							{FOOTER_DESTINATION_CONTENT.links.map((element) => (
-								<li className='mb-4' key={element.title}>
+								<li className='mb-2' key={element.title}>
 									<Link
 										className='font-caviarDreams sup-md:text-base text-sm text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
 										href={element.href}
@@ -79,7 +78,7 @@ export default function Footer() {
 
 				{/* blcok Fomulaire */}
 				<div className='flex min-w-[350px] max-w-[400px] flex-col text-white'>
-					<label className='text-center font-caviarDreams text-lg uppercase' htmlFor='newsletter'>
+					<label className='mb-6 text-center font-caviarDreams text-lg uppercase' htmlFor='newsletter'>
 						Newsletter
 					</label>
 					<p className='mb-3 text-center sup-md:text-base text-sm'>
@@ -100,7 +99,7 @@ export default function Footer() {
 								'min-w-32 cursor-pointer rounded px-4 py-2',
 								loading
 									? 'bg-white text-black opacity-60'
-									: 'min-w-32 cursor-pointer rounded bg-white p-2 text-black hover:bg-white'
+									: 'min-w-32 cursor-pointer rounded bg-white p-2 text-greeny-100 hover:bg-white'
 							)}
 							disabled={loading}
 							type='submit'

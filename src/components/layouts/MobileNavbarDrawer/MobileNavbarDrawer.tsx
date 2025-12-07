@@ -57,7 +57,7 @@ export default function MobileNavbarDrawer({
 							className='px-8 data-[state=open]:border-greeny-100 dark:data-[state=open]:border-greeny-50'
 							value='item-1'
 						>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide"'>
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide"'>
 								{t('navbar.activities')}
 							</AccordionTrigger>
 
@@ -91,7 +91,7 @@ export default function MobileNavbarDrawer({
 							className='px-8 data-[state=open]:border-greeny-100 dark:data-[state=open]:border-greeny-50'
 							value='item-2'
 						>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide'>
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide'>
 								{t('navbar.discovery')}
 							</AccordionTrigger>
 
@@ -130,7 +130,7 @@ export default function MobileNavbarDrawer({
 						{/* CONTACT */}
 						<div className='px-8 py-4'>
 							<Link
-								className='block cursor-pointer font-caviarDreams text-2xl no-underline hover:no-underline'
+								className='block cursor-pointer font-caviarDreams text-xl no-underline hover:no-underline'
 								href='/contact'
 								onClick={() => onOpenChange(false)}
 							>
