@@ -18,8 +18,8 @@ export default function AboutUs() {
 	const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1])
 
 	return (
-		<section className='flex min-h-[600px] items-center px-5 sup-md:px-40 text-center font-caviarDreams-bold'>
-			<h2 className='font-caviarDreams sup-md:text-4xl text-2xl text-greeny-100'>
+		<section className='flex min-h-[400px] sup-md:min-h-[600px] items-center px-5 sup-md:px-40 text-center font-caviarDreams-bold'>
+			<h2 className='font-caviarDreams sup-md:text-4xl text-greeny-100 text-xl'>
 				{t('landing.discoverGabon')}
 				<br />
 				<br /> {t('landing.diveIntoTurquoiseWater')}

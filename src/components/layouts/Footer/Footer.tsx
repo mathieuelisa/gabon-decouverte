@@ -32,12 +32,12 @@ export default function Footer() {
 						src='/assets/images/logo_grey.png'
 						width={100}
 					/>
-					<h2 className='font-caviarDreams text-white text-xl opacity-60'>GABON DECOUVERTE</h2>
+					<h2 className='font-caviarDreams sup-md:text-xl text-lg text-white opacity-60'>GABON DECOUVERTE</h2>
 				</div>
 				<div className='h-px w-full bg-white opacity-20' />
 			</div>
 
-			<section className='mt-14 flex sup-md:flex-row flex-col sup-md:items-start items-center justify-between gap-16 sup-md:px-40'>
+			<section className='mt-14 flex sup-lg:flex-row flex-col sup-lg:items-start items-center justify-between gap-16 sup-md:px-40'>
 				{/* Deux blocks footer */}
 				<div className='flex gap-16'>
 					<div className='text-center'>
@@ -49,7 +49,7 @@ export default function Footer() {
 							{FOOTER_DESTINATION_CONTENT.links.map((element) => (
 								<li className='mb-4' key={element.title}>
 									<Link
-										className='font-caviarDreams text-base text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
+										className='font-caviarDreams sup-md:text-base text-sm text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
 										href={element.href}
 									>
 										{element.title}
@@ -66,7 +66,7 @@ export default function Footer() {
 							{FOOTER_LEGALES_INFORMATIONS_CONTENT.links.map((element) => (
 								<li className='mb-2' key={element.title}>
 									<Link
-										className='font-caviarDreams text-base text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
+										className='font-caviarDreams sup-md:text-base text-sm text-white transition-all duration-300 ease-in-out hover:scale-[1.03] hover:opacity-80'
 										href={element.href}
 									>
 										{element.title}
@@ -82,7 +82,7 @@ export default function Footer() {
 					<label className='text-center font-caviarDreams text-lg uppercase' htmlFor='newsletter'>
 						Newsletter
 					</label>
-					<p className='mb-3 text-center'>
+					<p className='mb-3 text-center sup-md:text-base text-sm'>
 						En saisissant votre adresse e-mail ci-dessous, vous acceptez de recevoir notre newsletter.
 					</p>
 

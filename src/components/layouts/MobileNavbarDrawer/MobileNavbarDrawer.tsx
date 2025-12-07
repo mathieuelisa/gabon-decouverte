@@ -54,7 +54,7 @@ export default function MobileNavbarDrawer({
 					<Accordion className='relative z-10 w-full' collapsible defaultValue='item-1' type='single'>
 						{/* ACTIVITÉ */}
 						<AccordionItem
-							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
+							className='px-8 data-[state=open]:border-greeny-100 dark:data-[state=open]:border-greeny-50'
 							value='item-1'
 						>
 							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide"'>
@@ -63,21 +63,21 @@ export default function MobileNavbarDrawer({
 
 							<AccordionContent className='flex flex-col gap-4'>
 								<Link
-									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=art-et-culture'
 									onClick={() => onOpenChange(false)}
 								>
 									Art & Culture
 								</Link>
 								<Link
-									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=ecotourisme-et-balneaire'
 									onClick={() => onOpenChange(false)}
 								>
 									{t('navbar.ecotourismSeaside')}
 								</Link>
 								<Link
-									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/activite?type=nature-et-decouverte'
 									onClick={() => onOpenChange(false)}
 								>
@@ -88,7 +88,7 @@ export default function MobileNavbarDrawer({
 
 						{/* DÉCOUVERTE */}
 						<AccordionItem
-							className='px-8 data-[state=open]:border-greeny-100 data-[state=open]:border-b-2 dark:data-[state=open]:border-greeny-50'
+							className='px-8 data-[state=open]:border-greeny-100 dark:data-[state=open]:border-greeny-50'
 							value='item-2'
 						>
 							<AccordionTrigger className='cursor-pointer font-caviarDreams text-2xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1.05] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide'>
@@ -97,28 +97,28 @@ export default function MobileNavbarDrawer({
 
 							<AccordionContent className='flex flex-col gap-4'>
 								<Link
-									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/libreville'
 									onClick={() => onOpenChange(false)}
 								>
 									Libreville
 								</Link>
 								<Link
-									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/lambarene'
 									onClick={() => onOpenChange(false)}
 								>
 									Lambaréné
 								</Link>
 								<Link
-									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/mayumba'
 									onClick={() => onOpenChange(false)}
 								>
 									Mayumba
 								</Link>
 								<Link
-									className='font-caviarDreams text-lg transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
 									href='/voyage-decouverte/oyem'
 									onClick={() => onOpenChange(false)}
 								>
