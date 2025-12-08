@@ -53,10 +53,7 @@ export default function MobileNavbarDrawer({
 					{/* Accordion content above the background image */}
 					<Accordion className='relative z-10 w-full' collapsible defaultValue='item-1' type='single'>
 						{/* ACTIVITÉ */}
-						<AccordionItem
-							className='px-8 data-[state=open]:border-greeny-100 dark:data-[state=open]:border-greeny-50'
-							value='item-1'
-						>
+						<AccordionItem className='px-8' value='item-1'>
 							<AccordionTrigger className='cursor-pointer font-caviarDreams text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide"'>
 								{t('navbar.activities')}
 							</AccordionTrigger>
@@ -87,10 +84,7 @@ export default function MobileNavbarDrawer({
 						</AccordionItem>
 
 						{/* DÉCOUVERTE */}
-						<AccordionItem
-							className='px-8 data-[state=open]:border-greeny-100 dark:data-[state=open]:border-greeny-50'
-							value='item-2'
-						>
+						<AccordionItem className='px-8' value='item-2'>
 							<AccordionTrigger className='cursor-pointer font-caviarDreams text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-greeny-100 data-[state=open]:tracking-wide'>
 								{t('navbar.discovery')}
 							</AccordionTrigger>

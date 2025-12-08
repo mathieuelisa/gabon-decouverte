@@ -13,7 +13,7 @@ function Accordion({ ...props }: React.ComponentProps<typeof AccordionPrimitive.
 function AccordionItem({ className, ...props }: React.ComponentProps<typeof AccordionPrimitive.Item>) {
 	return (
 		<AccordionPrimitive.Item
-			className={cn('border-b last:border-b-0', className)}
+			className={cn('border-gray-200 border-b last:border-b-0', className)}
 			data-slot='accordion-item'
 			{...props}
 		/>
