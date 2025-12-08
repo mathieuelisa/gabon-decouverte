@@ -124,15 +124,15 @@ export default function ActivityExplorerItem({
 				)}
 			</button>
 
-			<div className='mt-2 flex items-center justify-between'>
+			<div className='mt-2 flex justify-between'>
 				<h2 className='font-caviarDreams-bold sup-md:text-lg text-base text-greeny-100'>{title}</h2>
-				<div className='flex items-center gap-1'>
+				<div className='flex items-start gap-1'>
 					<MdOutlineStar className='text-greeny-100' />
 					<p className='font-caviarDreams-bold text-greeny-100 text-sm'>{rating}</p>
 				</div>
 			</div>
 
-			<p className='my-3 text-justify sup-md:text-lg text-base'>{description}</p>
+			<p className='my-3 min-h-[175px] text-justify sup-md:text-lg text-base'>{description}</p>
 			<p className='my-3 text-end font-caviarDreams text-greeny-100 text-sm'>{price} € / par personne</p>
 		</section>
 	)
