@@ -3,7 +3,7 @@ import type { THighlight } from '@/types/common'
 export const HIGHLIGHTS_DATA: THighlight[] = [
 	{
 		description:
-			'Plateforme 100% en ligne qui vous propose des activités authentiques à la rencontre d’un peuple ouvert et accueillan',
+			'Plateforme 100% en ligne qui vous propose des activités authentiques à la rencontre d’un peuple ouvert et accueillant',
 		id: 1,
 		title: 'Des visites à portée de main'
 	},

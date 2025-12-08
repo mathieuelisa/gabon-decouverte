@@ -41,7 +41,7 @@ export default function Footer() {
 				{/* Deux blocks footer */}
 				<div className='flex gap-16'>
 					<div className='text-center'>
-						<h3 className='mb-6 font-caviarDreams text-lg text-white uppercase'>
+						<h3 className='mb-6 font-caviarDreams text-base text-white uppercase'>
 							{FOOTER_DESTINATION_CONTENT.title}
 						</h3>
 						<ul>
@@ -58,7 +58,7 @@ export default function Footer() {
 						</ul>
 					</div>
 					<div className='text-center'>
-						<h3 className='mb-6 font-caviarDreams text-lg text-white uppercase'>
+						<h3 className='mb-6 font-caviarDreams text-base text-white uppercase'>
 							{FOOTER_LEGALES_INFORMATIONS_CONTENT.title}
 						</h3>
 						<ul>

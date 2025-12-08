@@ -199,33 +199,36 @@ export default function Navbar() {
 		<header className='sticky top-0 z-50 flex h-[140px] flex-col items-center justify-between sup-md:px-0'>
 			<section className='w-full'>
 				<div className='flex h-[81px] items-center justify-between border-gray-100 border-b bg-white'>
-					{/* Burger menu - open mobile menu */}
-					<button
-						className='ml-4 flex sup-md:hidden cursor-pointer flex-col'
-						onClick={() => setIsMobileMenuOpen(true)}
-						type='button'
-					>
-						<CiMenuBurger aria-label='Ouvrir le menu mobile' className='h-5 w-5' />
-					</button>
+					{/* Bloc gauche : burger + logo */}
+					<div className='flex items-center gap-3'>
+						{/* Burger menu - open mobile menu */}
+						<button
+							className='ml-4 flex sup-md:hidden cursor-pointer flex-col'
+							onClick={() => setIsMobileMenuOpen(true)}
+							type='button'
+						>
+							<CiMenuBurger aria-label='Ouvrir le menu mobile' className='h-5 w-5' />
+						</button>
 
-					<Link
-						aria-label='Se rendre a la page daccueil'
-						className='flex items-center justify-center pl-0 sup-lg:pl-14 font-grayson sup-md:text-3xl sup-md:text-[33px] text-2xl text-greeny-100'
-						href='/'
-					>
-						<Image
-							alt='logo gabon decouverte'
-							className='relative'
-							height={50}
-							priority
-							src='/assets/images/logo.png'
-							width={50}
-						/>
-						GABON DECOUVERTE
-					</Link>
+						<Link
+							aria-label='Se rendre a la page daccueil'
+							className='flex items-center pl-0 sup-lg:pl-14 font-grayson sup-md:text-3xl sup-md:text-[33px] text-2xl text-greeny-100'
+							href='/'
+						>
+							<Image
+								alt='logo gabon decouverte'
+								className='relative'
+								height={50}
+								priority
+								src='/assets/images/logo.png'
+								width={50}
+							/>
+							<span className='sup-lg:inline hidden'>GABON DECOUVERTE</span>
+						</Link>
+					</div>
 
+					{/* Bloc droit : user + panier */}
 					<section className='relative flex items-center gap-5 pr-3.5 text-black' ref={accountAreaRef}>
-						{/* Button that opens the small dialog / popover box */}
 						<button
 							aria-expanded={isOpenDialog}
 							aria-haspopup='dialog'
@@ -236,7 +239,6 @@ export default function Navbar() {
 							<SlUser className='h-4 w-4' />
 						</button>
 
-						{/* small dialog component / popover */}
 						<AccountPopover
 							isOpen={isOpenDialog}
 							language={i18n.language}
@@ -245,7 +247,6 @@ export default function Navbar() {
 							onToggleLanguage={handleSwitchLanguageClick}
 						/>
 
-						{/* Basket icon */}
 						<Link
 							className='relative flex items-center justify-between gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
 							href='/panier'
