@@ -18,11 +18,11 @@ export default function BecomePartner() {
 				<section className='relative flex sup-lg:w-2/5 w-full flex-col justify-between gap-12 sup-lg:gap-0 px-5 sup-lg:px-0'>
 					<Image
 						alt='logo_background'
-						className='-z-1 absolute opacity-20'
-						height={600}
+						className='-z-1 absolute w-11/12 opacity-20'
+						height={500}
 						priority
 						src='/assets/images/logo_grey.png'
-						width={900}
+						width={600}
 					/>
 					<div className='flex flex-col items-center gap-5'>
 						<h1 className='text-center sup-lg:text-start text-4xl'>

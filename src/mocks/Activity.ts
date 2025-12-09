@@ -59,7 +59,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		proposed_by: 'Katherine Keita',
 		rating: 3,
 		short_description:
-			'À la croisée de la forêt et de la mer, le Parc National de Pongara offre une expérience unique d’écotourisme au cœur d’une nature préservée, entre plages sauvages, mangroves et animaux emblématiques du Gabon.',
+			'À la croisée de la forêt et de la mer, le Parc National de Pongara offre une expérience unique d’écotourisme au cœur d’une nature préservée, entre plages et mangroves.',
 		slug: 'parc-national-de-pongara',
 		title: 'Parc National de Pongara',
 		type: 'nature-et-decouverte'
@@ -103,7 +103,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		short_description:
 			'Découvrez l’histoire émouvante de l’Hôpital Albert Schweitzer à Lambaréné, symbole d’humanisme et de médecine solidaire au cœur du Gabon.',
 		slug: 'visite-de-l-hopital-albert-schweitzer',
-		title: 'Visite de l’Hôpital Albert Schweitzer',
+		title: 'Hôpital Albert Sch.',
 		type: 'art-et-culture'
 	},
 	{
@@ -143,7 +143,7 @@ export const ACTVITY_MOCK_DATA: TActivity[] = [
 		proposed_by: 'Bassem brahim',
 		rating: 4,
 		short_description:
-			'Profitez d’une balade paisible sur le lac Oguemoué et découvrez la beauté naturelle du Gabon entre eaux calmes, faune sauvage et coucher de soleil enchanteur.',
+			'Profitez d’une balade sur le lac Oguemoué et découvrez la beauté naturelle du Gabon entre eaux calmes et faune sauvage.',
 		slug: 'balade-sur-le-lac-oguemoue',
 		title: 'Balade sur le lac Oguemoué',
 		type: 'nature-et-decouverte'

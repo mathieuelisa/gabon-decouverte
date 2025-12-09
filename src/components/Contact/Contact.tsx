@@ -71,7 +71,7 @@ export default function Contact() {
 	}
 
 	return (
-		<section className='relative z-10 mx-auto flex flex-col items-start justify-center gap-5 overflow-hidden p-5 sup-md:px-28 pt-14 sup-md:pt-14'>
+		<section className='relative z-10 mx-auto flex flex-col items-start justify-center gap-5 overflow-hidden p-5 sup-md:px-28 pt-0 sup-lg:pt-14 sup-md:pt-14'>
 			<div className='relative z-10 flex w-full flex-col gap-5'>
 				<h1 className='font-caviarDreams-bold sup-md:text-4xl text-2xl text-greeny-100'>
 					UNE QUESTION ? UN BESOIN PARTICULIER ?

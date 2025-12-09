@@ -97,11 +97,11 @@ export default function ActivityDetails() {
 
 	return (
 		<section className='mx-auto mt-0 sup-md:mt-14 mb-14 max-w-7xl px-5 sup-md:px-40'>
-			<div className='flex items-center justify-between gap-5'>
+			<div className='flex justify-between gap-5'>
 				<h1 className='mb-3 font-caviarDreams-bold sup-md:text-2xl text-greeny-100 text-lg uppercase'>
 					{ACTIVITY_ID?.title}
 				</h1>
-				<p className='text-end font-caviarDreams-bold text-base text-greeny-100'>
+				<p className='text-end font-caviarDreams-bold text-greeny-100 text-sm'>
 					{ACTIVITY_ID?.price_eur} € / par personne
 				</p>
 			</div>
@@ -146,7 +146,7 @@ export default function ActivityDetails() {
 
 			{/* Activity description */}
 			<section>
-				<h3 className='mb-2 font-caviarDreams-bold text-lg'>Description de l'activité</h3>
+				<h3 className='mb-2 font-caviarDreams-bold text-greeny-100 text-lg'>Description de l'activité</h3>
 				<p className='sup-md:text-lg text-base'>{ACTIVITY_ID?.long_description}</p>
 			</section>
 
@@ -154,23 +154,23 @@ export default function ActivityDetails() {
 
 			{/* Organizer informations */}
 			<section>
-				<h3 className='mb-2 font-caviarDreams-bold text-lg'>Présentation de l'organisateur</h3>
+				<h3 className='mb-2 font-caviarDreams-bold text-greeny-100 text-lg'>Présentation de l'organisateur</h3>
 				<div className='min-w-60 rounded-lg border border-gray-100 p-4 shadow-lg'>
 					<div className='flex flex-col gap-4'>
-						<div className='flex gap-2'>
-							<h4 className='text-lg'>Nom de l'organisateur: </h4>
+						<div className='flex items-center gap-2'>
+							<h4 className='text-base'>Nom de l'organisateur: </h4>
 							<Image
 								alt='icone personne'
 								className='h-5 w-5'
-								height={8}
+								height={6}
 								priority
 								src={`/assets/images/icon-${ACTIVITY_ID?.gender === 'female' ? 'woman' : 'man'}.png`}
-								width={8}
+								width={6}
 							/>
-							<h4 className='text-lg'>{ACTIVITY_ID?.proposed_by}</h4>
+							<h4 className='text-sm'>{ACTIVITY_ID?.proposed_by}</h4>
 						</div>
-						<div className='flex gap-2'>
-							<p className='sup-md:text-lg text-base'>{ACTIVITY_ID?.presentation_organizer}</p>
+						<div className='flex items-center gap-2'>
+							<p className='sup-md:text-lg text-sm'>{ACTIVITY_ID?.presentation_organizer}</p>
 						</div>
 					</div>
 				</div>
