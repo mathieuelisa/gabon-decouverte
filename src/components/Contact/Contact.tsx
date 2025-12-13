@@ -22,7 +22,7 @@ export default function Contact() {
 
 	const notify = () =>
 		toast.success('Votre message a bien été envoyé.', {
-			autoClose: 7000,
+			autoClose: 4000,
 			position: 'bottom-right'
 		})
 
@@ -92,7 +92,7 @@ export default function Contact() {
 						<input
 							id='lastname'
 							{...register('lastname')}
-							className={`h-11 border pl-2 text-sm placeholder:text-gray-600 ${
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 text-sm placeholder:text-gray-600 ${
 								errors.lastname && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Nom*'
@@ -105,7 +105,7 @@ export default function Contact() {
 						<input
 							id='firstname'
 							{...register('firstname')}
-							className={`h-11 border pl-2 text-sm placeholder:text-gray-600 ${
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 text-sm placeholder:text-gray-600 ${
 								errors.lastname && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Prénom*'
@@ -118,7 +118,7 @@ export default function Contact() {
 						<input
 							id='email'
 							{...register('email')}
-							className={`h-11 border pl-2 text-sm placeholder:text-gray-600 ${
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 text-sm placeholder:text-gray-600 ${
 								errors.email && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Email*'
@@ -131,7 +131,7 @@ export default function Contact() {
 						<input
 							id='phone'
 							{...register('phone')}
-							className={`h-11 border pl-2 text-sm placeholder:text-gray-600 ${
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 text-sm placeholder:text-gray-600 ${
 								errors.phone && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Téléphone'
@@ -161,7 +161,7 @@ export default function Contact() {
 						<textarea
 							id='message'
 							{...register('message')}
-							className={`min-h-[300px] w-full border border-b p-4 text-sm placeholder:text-gray-600 ${
+							className={`min-h-[310px] w-full rounded-sm border border-greeny-100 border-b p-4 text-sm placeholder:text-gray-600 ${
 								errors.message && 'border-red-500-50 placeholder:text-gray-200'
 							}`}
 							placeholder='Message*'

@@ -80,7 +80,7 @@ export default function Cart() {
 						<div className='mt-6 flex justify-end'>
 							<Link href='/activite'>
 								<button
-									className='cursor-pointer rounded-md bg-greeny-100 p-2 font-caviarDreams-bold text-base text-white'
+									className='cursor-pointer rounded-md bg-greeny-100 p-2 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 									type='button'
 								>
 									EXPLORER LES ACTIVITES

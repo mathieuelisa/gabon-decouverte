@@ -40,22 +40,55 @@ export default function ActivityDetails() {
 	}, [id])
 
 	// Toast with image
+	// const notifyWithImage = (title: string, img: string) => {
+	// 	toast.success(
+	// 		<div className='flex items-center gap-3'>
+	// 			<Image alt={title} className='rounded-md object-cover' height={60} src={img} width={60} />
+	// 			<Link className='flex flex-col' href='/panier'>
+	// 				<p className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</p>
+	// 				<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-greeny-100 uppercase'>
+	// 					Voir votre panier
+	// 				</p>
+	// 			</Link>
+	// 		</div>,
+	// 		{
+	// 			autoClose: 3000,
+	// 			hideProgressBar: true,
+	// 			icon: false,
+	// 			position: 'bottom-left'
+	// 		}
+	// 	)
+	// }
+
 	const notifyWithImage = (title: string, img: string) => {
 		toast.success(
-			<div className='flex items-center gap-3'>
-				<Image alt={title} className='rounded-md object-cover' height={60} src={img} width={60} />
-				<Link className='flex flex-col' href='/panier'>
+			<div
+				className='group relative h-[90px] overflow-hidden rounded-md bg-greeny-100'
+				style={{
+					backgroundImage: `url(${img})`,
+					backgroundPosition: 'center',
+					backgroundSize: 'cover'
+				}}
+			>
+				<div className='absolute inset-0 bg-black/50 transition-all duration-400 ease-in-out group-hover:bg-black/40' />
+
+				<Link className='relative z-10 flex h-full flex-col justify-between p-3 text-white' href='/panier'>
 					<p className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</p>
-					<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-greeny-100 uppercase'>
+
+					<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-white uppercase'>
 						Voir votre panier
 					</p>
 				</Link>
 			</div>,
 			{
 				autoClose: 3000,
+				closeButton: false,
 				hideProgressBar: true,
 				icon: false,
-				position: 'bottom-left'
+				position: 'bottom-left',
+				style: {
+					padding: '3px'
+				}
 			}
 		)
 	}
@@ -247,7 +280,7 @@ export default function ActivityDetails() {
 							<p className='text-sm'>Taxes et frais compris</p>
 						</div>
 						<button
-							className='cursor-pointer rounded-md bg-greeny-50 p-4 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-100'
+							className='cursor-pointer rounded-md bg-greeny-100 p-4 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 							onClick={handleAddBasketClick}
 							type='button'
 						>
@@ -261,7 +294,7 @@ export default function ActivityDetails() {
 
 			{/* This section allows you to choose 3 activities at random. */}
 			<section>
-				<h3 className='mb-6 text-center font-caviarDreams-bold text-xl'>
+				<h3 className='mb-6 text-center font-caviarDreams-bold text-greeny-100 text-xl'>
 					Explorez d’autres univers tout aussi captivants
 				</h3>
 

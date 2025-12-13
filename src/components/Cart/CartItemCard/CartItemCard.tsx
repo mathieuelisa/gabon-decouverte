@@ -28,7 +28,7 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 			<div className='flex w-full flex-col justify-between'>
 				<section className='flex justify-between'>
 					<div className='ml-3 flex flex-col'>
-						<h2 className='max-w-[300px] font-caviarDreams-bold text-xl'>{item?.title}</h2>
+						<h2 className='max-w-[300px] font-caviarDreams-bold text-greeny-100 text-xl'>{item?.title}</h2>
 						<p className='mt-3 max-w-[300px] text-base'>{item?.short_description}</p>
 						{/* Participant */}
 						<div className='mt-8 flex items-center gap-2'>
@@ -50,7 +50,7 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 					</div>
 					{/* Price */}
 					<div className='flex flex-col items-end'>
-						<p className='font-caviarDreams-bold text-lg'>{item.total_eur} € </p>
+						<p className='font-caviarDreams-bold text-greeny-100 text-lg'>{item.total_eur} € </p>
 						<p className='text-gray-600 text-sm'>{item.total_cfa} CFA</p>
 					</div>
 				</section>

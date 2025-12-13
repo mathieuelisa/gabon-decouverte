@@ -212,7 +212,7 @@ export default function Navbar() {
 
 						<Link
 							aria-label='Se rendre a la page daccueil'
-							className='flex items-center pl-0 sup-lg:pl-14 font-grayson sup-md:text-3xl sup-md:text-[33px] text-2xl text-greeny-100'
+							className='flex items-center pl-0 sup-lg:pl-14 font-candelize sup-md:text-3xl sup-md:text-[33px] text-2xl text-greeny-100'
 							href='/'
 						>
 							<Image
@@ -223,7 +223,7 @@ export default function Navbar() {
 								src='/assets/images/logo.png'
 								width={50}
 							/>
-							<span className='sup-lg:inline hidden'>GABON DECOUVERTE</span>
+							<span className='mt-2 sup-lg:inline hidden'>GABON DECOUVERTE</span>
 						</Link>
 					</div>
 

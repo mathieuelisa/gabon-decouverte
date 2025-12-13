@@ -56,20 +56,33 @@ export default function ActivityExplorerItem({
 
 	const notifyMessage = () => {
 		toast.success(
-			<div className='flex items-center gap-3'>
-				<Image alt={title} className='rounded-md object-cover' height={60} src={imgSrc} width={60} />
-				<Link className='flex flex-col' href='/favoris'>
-					<p className='font-caviarDreams-bold'>Ajouté à vos favoris ❤️</p>
-					<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-greeny-100 uppercase'>
+			<div
+				className='group relative h-[90px] overflow-hidden rounded-md bg-greeny-100'
+				style={{
+					backgroundImage: `url(${imgSrc})`,
+					backgroundPosition: 'center',
+					backgroundSize: 'cover'
+				}}
+			>
+				<div className='absolute inset-0 bg-black/50 transition-all duration-400 ease-in-out group-hover:bg-black/40' />
+
+				<Link className='relative z-10 flex h-full flex-col justify-between p-3 text-white' href='/favoris'>
+					<p className='font-caviarDreams-bold'>{title} a été ajouté à vos favoris ❤️</p>
+
+					<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-white uppercase'>
 						Voir vos favoris
 					</p>
 				</Link>
 			</div>,
 			{
-				autoClose: 4000,
+				autoClose: 3000,
+				closeButton: false,
 				hideProgressBar: true,
 				icon: false,
-				position: 'bottom-left'
+				position: 'bottom-left',
+				style: {
+					padding: '3px'
+				}
 			}
 		)
 	}
