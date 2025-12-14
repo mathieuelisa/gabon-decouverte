@@ -54,7 +54,7 @@ export default function AccountPopover({
 
 					<div className='flex flex-col gap-3 text-sm'>
 						{/* Langue */}
-						<div className='flex items-center justify-center gap-3 rounded-full border px-3 py-1.5 transition-all hover:bg-gray-50'>
+						<div className='flex items-center justify-center gap-3 rounded-full border border-gray-300 px-3 py-1.5 transition-all hover:bg-gray-50'>
 							<div className='relative flex items-center gap-1'>
 								{/* FR */}
 								<button
@@ -88,7 +88,7 @@ export default function AccountPopover({
 							href='/devenir-prestataire'
 							onClick={handleLinkClick}
 						>
-							<LiaHandshake className='h-4 w-4' />
+							<LiaHandshake className='h-5 w-5' />
 							<span>{t('popover.becomePartner')}</span>
 						</Link>
 

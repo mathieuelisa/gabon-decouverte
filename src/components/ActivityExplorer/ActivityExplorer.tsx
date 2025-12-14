@@ -101,7 +101,7 @@ export default function ActivityExplorer() {
 			</div>
 
 			{/* CONTENU ANIMÉ */}
-			<div className='mt-6 mb-11 min-h-[120px] px-12'>
+			<div className='sup-md:max-w[300px] mt-6 mb-11 min-h-[120px] px-5'>
 				<AnimatePresence mode='wait'>
 					<motion.div
 						animate={{ opacity: 1, y: 0 }}
