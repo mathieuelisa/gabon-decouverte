@@ -110,7 +110,14 @@ export default function ActivityExplorer() {
 						key={activeLink}
 						transition={{ duration: 0.18 }}
 					>
-						<h3 className='mb-5 text-center sup-lg:text-start sup-md:text-lg text-base'>{currentTitle}</h3>
+						<motion.h3
+							animate={{ opacity: 1 }}
+							className='mb-5 text-center sup-lg:text-start sup-md:text-lg text-base'
+							initial={{ opacity: 0 }}
+							transition={{ delay: 0.5, duration: 0.6 }}
+						>
+							{currentTitle}
+						</motion.h3>
 
 						<div className='grid grid-cols-1 sup-lg:grid-cols-3 sup-sm:grid-cols-2 sup-xl:grid-cols-4 gap-6'>
 							{items.map((el) => (

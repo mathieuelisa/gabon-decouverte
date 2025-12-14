@@ -70,8 +70,7 @@ export default function Banner() {
 
 			{/* Animated text */}
 			<motion.h1
-				// animate={{ color: '#000000', opacity: 0.7, y: 0 }}
-				animate={{ color: '#000', opacity: 0.7, y: finalY }}
+				animate={{ color: '#212529', opacity: 0.7, y: finalY }}
 				className='-translate-x-1/2 absolute bottom-[220px] sup-lg:bottom-[420px] sup-md:bottom-80 sup-sm:bottom-[300px] sup-xl:bottom-[480px] left-1/2 text-center font-bold font-caviarDreams sup-lg:text-6xl sup-md:text-5xl sup-sm:text-4xl text-3xl tracking-wide'
 				initial={{ color: '#ffffff', opacity: 0, y: 340 }}
 				transition={{ duration: 2.2, ease: 'easeOut' }}

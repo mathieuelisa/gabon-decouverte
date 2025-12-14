@@ -112,7 +112,7 @@ export default function ActivityExplorerItem({
 	}
 
 	return (
-		<section className='relative min-h-[420px] min-w-[200px] cursor-pointer rounded-lg border border-gray-100 p-3'>
+		<section className='relative min-h-[420px] min-w-[200px] max-w-[400px] cursor-pointer rounded-lg border border-gray-100 p-3'>
 			<Image
 				alt='Balade sur le lac Oguemoué'
 				className='h-[200px] rounded-t-md object-cover'

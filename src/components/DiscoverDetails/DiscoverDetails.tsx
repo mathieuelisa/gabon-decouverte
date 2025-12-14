@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -58,9 +59,17 @@ export default function DiscoverDetails() {
 			</div>
 
 			<section className='flex flex-col justify-center'>
-				<h1 className='mt-10 mb-6 text-center font-caviarDreams text-3xl text-greeny-100 uppercase'>
+				<motion.h1
+					animate={{ opacity: 1 }}
+					className='mt-10 mb-6 text-center font-caviarDreams text-3xl text-greeny-100 uppercase'
+					initial={{ opacity: 0 }}
+					transition={{
+						delay: 0.4,
+						duration: 0.8
+					}}
+				>
 					{discoverItem?.title}
-				</h1>
+				</motion.h1>
 				<div className='my-7 flex flex-col gap-9 lg:flex-row lg:items-center'>
 					{/* Image part */}
 					<section className='relative h-[220px] w-full lg:h-[200px] lg:w-[30%]'>
