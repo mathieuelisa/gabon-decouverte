@@ -141,7 +141,7 @@ export default function MobileNavbarDrawer({
 								{/* FR */}
 								<button
 									className={`flex h-6 w-10 cursor-pointer items-center justify-center rounded-full font-caviarDreams-bold text-xs transition-all ${
-										language === 'fr' ? 'bg-gray-200 text-greeny-100' : 'text-shadow-neutral-700'
+										language === 'fr' ? 'bg-gray-200 text-greeny-100' : 'text-white'
 									}`}
 									onClick={() => {
 										onToggleLanguage('fr')
@@ -154,7 +154,7 @@ export default function MobileNavbarDrawer({
 								{/* EN */}
 								<button
 									className={`flex h-6 w-10 cursor-pointer items-center justify-center rounded-full font-caviarDreams-bold text-xs transition-all ${
-										language === 'en' ? 'bg-gray-200 text-greeny-100' : 'text-shadow-neutral-700'
+										language === 'en' ? 'bg-gray-200 text-greeny-100' : 'text-white'
 									}`}
 									onClick={() => {
 										onToggleLanguage('en')
