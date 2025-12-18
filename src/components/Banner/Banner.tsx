@@ -60,7 +60,7 @@ export default function Banner() {
 					src='/assets/images/savane_africa.avif'
 					style={{
 						transform: `scale(${scale})`,
-						transition: 'transform 0.15s ease-out'
+						transition: 'transform 0.1s ease-out'
 					}}
 				/>
 			</div>

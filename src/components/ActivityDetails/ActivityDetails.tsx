@@ -223,39 +223,39 @@ export default function ActivityDetails() {
 				{/* modal of reservation */}
 				<DialogContent className='sup-sm:max-w-[425px] p-9'>
 					<DialogHeader>
-						<DialogTitle className='font-caviarDreams-bold text-xl'>{ACTIVITY_ID?.title}</DialogTitle>
+						<DialogTitle className='font-caviarDreams-bold text-greeny-100 text-xl'>
+							{ACTIVITY_ID?.title}
+						</DialogTitle>
 					</DialogHeader>
 
 					<div className='grid gap-4'>
-						<div className='flex items-center justify-between'>
-							<div className='flex items-center gap-2'>
-								<TbClockHour7 className='h-5 w-5' />
-								<p>{ACTIVITY_ID?.duration}</p>
-							</div>
+						<div className='flex items-center sup-sm:justify-end justify-center'>
+							<div className='flex flex-col items-center'>
+								<small>A partir de</small>
 
-							<div className='flex flex-col'>
-								<p>A partir de:</p>
-
-								<p className='font-caviarDreams-bold'>
-									{ACTIVITY_ID?.price_eur} €{' '}
-									<span className='text-xs'>/ {ACTIVITY_ID?.price_cfa} CFA</span>{' '}
-									<small className='font-caviarDreams'>par personne</small>
-								</p>
+								<div className='text-center'>
+									<p className='text-center font-caviarDreams-bold'>
+										{ACTIVITY_ID?.price_eur} € par personne
+									</p>
+									<small className='text-gray-600 text-xs'>
+										{ACTIVITY_ID?.price_cfa} CFA par personne
+									</small>
+								</div>
 							</div>
 						</div>
 
-						<hr className='my-2 border-gray-100 border-t' />
+						<hr className='border-gray-100 border-t' />
 
-						<div className='flex items-center justify-between'>
-							<p className='font-caviarDreams-bold'>Participants :</p>
+						<div className='flex sup-sm:flex-row flex-col items-center justify-between'>
+							<p className='font-caviarDreams-bold'>Participants</p>
 
 							<Counter count={participate} setCount={setParticipate} />
 						</div>
 
-						<hr className='my-2 border-gray-100 border-t' />
+						<hr className='border-gray-100 border-t' />
 
-						<div className='flex items-start justify-between'>
-							<p className='font-caviarDreams-bold'>Date :</p>
+						<div className='flex sup-sm:flex-row flex-col items-center justify-between'>
+							<p className='font-caviarDreams-bold'>Date</p>
 							<Calendar
 								captionLayout='dropdown'
 								className='rounded-md border shadow-sm [&_.rdp-caption_label]:cursor-pointer [&_.rdp-day]:cursor-pointer [&_.rdp-dropdown]:cursor-pointer [&_.rdp-nav_button]:cursor-pointer'
@@ -266,11 +266,11 @@ export default function ActivityDetails() {
 							/>
 						</div>
 
-						<hr className='my-2 border-gray-100 border-t' />
+						<hr className='border-gray-100 border-t' />
 					</div>
 
-					<section className='flex items-center justify-between'>
-						<div className='px-0'>
+					<section className='flex sup-sm:flex-row flex-col items-center justify-between'>
+						<div className='px-0 text-center'>
 							<p className='font-caviarDreams-bold text-2xl'>{getTotalPrice(price_eur, participate)} €</p>
 							<p className='text-gray-600 text-sm'>{getTotalPrice(price_cfa, participate)} CFA</p>
 
@@ -280,7 +280,7 @@ export default function ActivityDetails() {
 							<p className='text-sm'>Taxes et frais compris</p>
 						</div>
 						<button
-							className='cursor-pointer rounded-md bg-greeny-100 p-4 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+							className='mt-2 sup-sm:mt-0 w-full sup-sm:max-w-56 cursor-pointer rounded-md bg-greeny-100 p-4 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 							onClick={handleAddBasketClick}
 							type='button'
 						>
