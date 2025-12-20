@@ -34,7 +34,7 @@ export default function MobileNavbarDrawer({
 					{/* Background image */}
 					<Image
 						alt='logo_background'
-						className='-z-10 pointer-events-none absolute top-1/2 left-1/2 h-full w-full object-contain opacity-20'
+						className='-z-10 pointer-events-none absolute top-1/2 left-1/2 h-full w-full object-contain opacity-5'
 						fill
 						src='/assets/images/logo_grey.png'
 					/>
@@ -54,7 +54,7 @@ export default function MobileNavbarDrawer({
 					<Accordion className='relative z-10 w-full' collapsible defaultValue='item-1' type='single'>
 						{/* ACTIVITÉ */}
 						<AccordionItem className='px-8' value='item-1'>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-white text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-gray-50 data-[state=open]:tracking-wide"'>
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-white text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-gray-50 data-[state=open]:tracking-wide" [&>svg]:text-gray-200'>
 								{t('navbar.activities')}
 							</AccordionTrigger>
 
@@ -85,7 +85,7 @@ export default function MobileNavbarDrawer({
 
 						{/* DÉCOUVERTE */}
 						<AccordionItem className='px-8' value='item-2'>
-							<AccordionTrigger className='cursor-pointer font-caviarDreams text-white text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-gray-50 data-[state=open]:tracking-wide'>
+							<AccordionTrigger className='cursor-pointer font-caviarDreams text-white text-xl uppercase no-underline transition-all duration-300 ease-in-out hover:no-underline data-[state=open]:scale-[1] data-[state=open]:text-gray-50 data-[state=open]:tracking-wide [&>svg]:text-gray-200'>
 								{t('navbar.discovery')}
 							</AccordionTrigger>
 
