@@ -229,21 +229,6 @@ export default function ActivityDetails() {
 					</DialogHeader>
 
 					<div className='grid gap-4'>
-						<div className='flex items-center sup-sm:justify-end justify-center'>
-							<div className='flex flex-col items-center'>
-								<small>A partir de</small>
-
-								<div className='text-center'>
-									<p className='text-center font-caviarDreams-bold'>
-										{ACTIVITY_ID?.price_eur} € par personne
-									</p>
-									<small className='text-gray-600 text-xs'>
-										{ACTIVITY_ID?.price_cfa} CFA par personne
-									</small>
-								</div>
-							</div>
-						</div>
-
 						<hr className='border-gray-100 border-t' />
 
 						<div className='flex sup-sm:flex-row flex-col items-center justify-between'>
@@ -271,8 +256,12 @@ export default function ActivityDetails() {
 
 					<section className='flex sup-sm:flex-row flex-col items-center justify-between'>
 						<div className='px-0 text-center'>
-							<p className='font-caviarDreams-bold text-2xl'>{getTotalPrice(price_eur, participate)} €</p>
-							<p className='text-gray-600 text-sm'>{getTotalPrice(price_cfa, participate)} CFA</p>
+							<p className='font-caviarDreams-bold text-2xl'>
+								{getTotalPrice(price_eur, participate)} €{' '}
+								<span className='text-gray-400 text-sm'>
+									{getTotalPrice(price_cfa, participate)} CFA
+								</span>
+							</p>
 
 							<p className='mt-2 text-sm'>
 								{participate} Adultes x {ACTIVITY_ID?.price_eur} €
