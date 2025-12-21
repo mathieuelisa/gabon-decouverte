@@ -39,27 +39,6 @@ export default function ActivityDetails() {
 		return shuffled.slice(0, 3)
 	}, [id])
 
-	// Toast with image
-	// const notifyWithImage = (title: string, img: string) => {
-	// 	toast.success(
-	// 		<div className='flex items-center gap-3'>
-	// 			<Image alt={title} className='rounded-md object-cover' height={60} src={img} width={60} />
-	// 			<Link className='flex flex-col' href='/panier'>
-	// 				<p className='font-caviarDreams-bold'>{title} a été ajouté à votre panier</p>
-	// 				<p className='mt-2 text-end font-caviarDreams-bold text-[10px] text-greeny-100 uppercase'>
-	// 					Voir votre panier
-	// 				</p>
-	// 			</Link>
-	// 		</div>,
-	// 		{
-	// 			autoClose: 3000,
-	// 			hideProgressBar: true,
-	// 			icon: false,
-	// 			position: 'bottom-left'
-	// 		}
-	// 	)
-	// }
-
 	const notifyWithImage = (title: string, img: string) => {
 		toast.success(
 			<div
