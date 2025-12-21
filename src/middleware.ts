@@ -7,69 +7,85 @@ import { cookieName, fallbackLng, headerName, languages } from './app/i18n/setti
 acceptLanguage.languages(languages as unknown as string[])
 
 export function middleware(req: NextRequest) {
-	const { pathname } = req.nextUrl
+	const pathname = req.nextUrl.pathname
 
-	/* =========================
-     1️⃣ MODE MAINTENANCE
-     ========================= */
-	if (process.env.MAINTENANCE === 'true' && !pathname.startsWith('/maintenance') && !pathname.startsWith('/_next')) {
-		const url = req.nextUrl.clone()
-		url.pathname = '/maintenance'
-		return NextResponse.rewrite(url)
-	}
-
-	/* =========================
-     2️⃣ IGNORE CERTAINS PATHS
-     ========================= */
+	// Ignore paths with "icon" or "chrome"
 	if (pathname.includes('icon') || pathname.includes('chrome')) {
 		return NextResponse.next()
 	}
 
-	/* =========================
-     3️⃣ I18N LOGIC (TON CODE)
-     ========================= */
-	let lng: string | undefined
-
-	if (req.cookies.has(cookieName)) {
-		lng = acceptLanguage.get(req.cookies.get(cookieName)?.value)
-	}
-
-	if (!lng) {
-		lng = acceptLanguage.get(req.headers.get('Accept-Language'))
-	}
-
-	if (!lng) {
-		lng = fallbackLng
-	}
-
+	/**
+	 * 1) Détecte la langue depuis l'URL si présente (prioritaire).
+	 *    Sinon via cookie / header / fallback.
+	 */
 	const lngInPath = languages.find((loc) => pathname.startsWith(`/${loc}`))
 
-	const headers = new Headers(req.headers)
-	headers.set(headerName, lngInPath || lng)
+	let lng: string | undefined = lngInPath
 
-	if (!lngInPath && !pathname.startsWith('/_next')) {
-		return NextResponse.redirect(new URL(`/${lng}${pathname}${req.nextUrl.search}`, req.url))
+	if (!lng && req.cookies.has(cookieName)) {
+		const cookieVal = req.cookies.get(cookieName)?.value
+		if (cookieVal) lng = acceptLanguage.get(cookieVal)
 	}
 
-	const referer = req.headers.get('referer')
+	if (!lng) {
+		const headerVal = req.headers.get('Accept-Language')
+		if (headerVal) lng = acceptLanguage.get(headerVal)
+	}
 
-	if (referer) {
-		const refererUrl = new URL(referer)
-		const lngInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
+	if (!lng) lng = fallbackLng
 
-		const response = NextResponse.next({ headers })
-		if (lngInReferer) {
-			response.cookies.set(cookieName, lngInReferer)
+	const currentLng = lngInPath || lng
+
+	/**
+	 * 2) MODE MAINTENANCE (prioritaire)
+	 *    - Redirige tout vers /{lng}/maintenance
+	 *    - Laisse passer la page maintenance elle-même
+	 */
+	if (process.env.MAINTENANCE === 'true') {
+		const maintenancePath = `/${currentLng}/maintenance`
+
+		// autoriser la maintenance + les assets next
+		if (!pathname.startsWith(maintenancePath) && !pathname.startsWith('/_next')) {
+			const url = req.nextUrl.clone()
+			url.pathname = maintenancePath
+			return NextResponse.rewrite(url)
 		}
-		return response
+	}
+
+	/**
+	 * 3) Ajoute le header langue (ton code)
+	 */
+	const headers = new Headers(req.headers)
+	headers.set(headerName, currentLng)
+
+	/**
+	 * 4) Si la langue n'est pas dans l'URL -> redirect vers /{lng}/...
+	 */
+	if (!lngInPath && !pathname.startsWith('/_next')) {
+		return NextResponse.redirect(new URL(`/${currentLng}${pathname}${req.nextUrl.search}`, req.url))
+	}
+
+	/**
+	 * 5) Si referer présent -> détecte langue et set cookie (ton code, sans "!")
+	 */
+	const referer = req.headers.get('referer')
+	if (referer) {
+		try {
+			const refererUrl = new URL(referer)
+			const lngInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
+
+			const response = NextResponse.next({ headers })
+			if (lngInReferer) response.cookies.set(cookieName, lngInReferer)
+			return response
+		} catch {
+			// referer invalide -> on ignore
+		}
 	}
 
 	return NextResponse.next({ headers })
 }
 
-/* =========================
-   4️⃣ MATCHER UNIQUE
-   ========================= */
 export const config = {
+	// Avoid matching for static files, API routes, etc.
 	matcher: ['/((?!api|_next/static|_next/image|assets|fonts|favicon.ico|sw.js|site.webmanifest).*)']
 }
