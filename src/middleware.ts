@@ -1,46 +1,75 @@
 import acceptLanguage from 'accept-language'
+import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 import { cookieName, fallbackLng, headerName, languages } from './app/i18n/settings'
 
 acceptLanguage.languages(languages as unknown as string[])
 
-export const config = {
-	// Avoid matching for static files, API routes, etc.
-	matcher: ['/((?!api|_next/static|_next/image|assets|fonts|favicon.ico|sw.js|site.webmanifest).*)']
-}
+export function middleware(req: NextRequest) {
+	const { pathname } = req.nextUrl
 
-export function middleware(req) {
-	// Ignore paths with "icon" or "chrome"
-	if (req.nextUrl.pathname.indexOf('icon') > -1 || req.nextUrl.pathname.indexOf('chrome') > -1)
+	/* =========================
+     1️⃣ MODE MAINTENANCE
+     ========================= */
+	if (process.env.MAINTENANCE === 'true' && !pathname.startsWith('/maintenance') && !pathname.startsWith('/_next')) {
+		const url = req.nextUrl.clone()
+		url.pathname = '/maintenance'
+		return NextResponse.rewrite(url)
+	}
+
+	/* =========================
+     2️⃣ IGNORE CERTAINS PATHS
+     ========================= */
+	if (pathname.includes('icon') || pathname.includes('chrome')) {
 		return NextResponse.next()
+	}
 
-	let lng: string
-	// Try to get language from cookie
-	if (req.cookies.has(cookieName)) lng = acceptLanguage.get(req.cookies.get(cookieName).value)
-	// If no cookie, check the Accept-Language header
-	if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
-	// Default to fallback language if still undefined
-	if (!lng) lng = fallbackLng
+	/* =========================
+     3️⃣ I18N LOGIC (TON CODE)
+     ========================= */
+	let lng: string | undefined
 
-	// Check if the language is already in the path
-	const lngInPath = languages.find((loc) => req.nextUrl.pathname.startsWith(`/${loc}`))
+	if (req.cookies.has(cookieName)) {
+		lng = acceptLanguage.get(req.cookies.get(cookieName)?.value)
+	}
+
+	if (!lng) {
+		lng = acceptLanguage.get(req.headers.get('Accept-Language'))
+	}
+
+	if (!lng) {
+		lng = fallbackLng
+	}
+
+	const lngInPath = languages.find((loc) => pathname.startsWith(`/${loc}`))
+
 	const headers = new Headers(req.headers)
 	headers.set(headerName, lngInPath || lng)
 
-	// If the language is not in the path, redirect to include it
-	if (!lngInPath && !req.nextUrl.pathname.startsWith('/_next')) {
-		return NextResponse.redirect(new URL(`/${lng}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url))
+	if (!lngInPath && !pathname.startsWith('/_next')) {
+		return NextResponse.redirect(new URL(`/${lng}${pathname}${req.nextUrl.search}`, req.url))
 	}
 
-	// If a referer exists, try to detect the language from there and set the cookie accordingly
-	if (req.headers.has('referer')) {
-		const refererUrl = new URL(req.headers.get('referer'))
+	const referer = req.headers.get('referer')
+
+	if (referer) {
+		const refererUrl = new URL(referer)
 		const lngInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
+
 		const response = NextResponse.next({ headers })
-		if (lngInReferer) response.cookies.set(cookieName, lngInReferer)
+		if (lngInReferer) {
+			response.cookies.set(cookieName, lngInReferer)
+		}
 		return response
 	}
 
 	return NextResponse.next({ headers })
+}
+
+/* =========================
+   4️⃣ MATCHER UNIQUE
+   ========================= */
+export const config = {
+	matcher: ['/((?!api|_next/static|_next/image|assets|fonts|favicon.ico|sw.js|site.webmanifest).*)']
 }
