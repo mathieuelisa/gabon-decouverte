@@ -1,11 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { IoClose } from 'react-icons/io5'
 
 import { useTranslation } from '@/app/i18n/client'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import Link from '@/components/ui/Link'
 import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader } from '../../ui/drawer'
 
 type MobileNavbarDrawerProps = {

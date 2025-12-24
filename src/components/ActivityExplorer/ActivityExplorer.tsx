@@ -2,11 +2,11 @@
 
 import type { Transition } from 'framer-motion'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
 
+import Link from '@/components/ui/Link'
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
 import ActivityExplorerItem from './ActivityExplorerItem'
 

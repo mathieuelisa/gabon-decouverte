@@ -1,13 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { LuMapPin } from 'react-icons/lu'
 import { TbClockHour7 } from 'react-icons/tb'
 import { ToastContainer, toast } from 'react-toastify'
 
+import Link from '@/components/ui/Link'
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
 import { useBasketAtom } from '@/stores/useBasket.atom'
 import ActivityExplorerItem from '../ActivityExplorer/ActivityExplorerItem'

@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { BsChevronCompactDown } from 'react-icons/bs'
@@ -12,6 +11,7 @@ import { twJoin, twMerge } from 'tailwind-merge'
 
 import { useTranslation } from '@/app/i18n/client'
 import MobileNavbarDrawer from '@/components/layouts/MobileNavbarDrawer'
+import Link from '@/components/ui/Link'
 import { useBasketAtom } from '@/stores/useBasket.atom'
 import type { TActiviteKey, TDecouverteKey, TPanelKey } from '@/types/common'
 import AccountPopover from '../AccountPopover'

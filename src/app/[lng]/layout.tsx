@@ -6,6 +6,7 @@ import Base from '@/components/layouts/Base'
 import '@/styles/index.css'
 import 'jotai-devtools/styles.css'
 
+import { use } from 'react'
 import { ToastContainer } from 'react-toastify'
 
 export async function generateStaticParams() {
@@ -20,7 +21,10 @@ export async function generateMetadata() {
 		title: t('common:login')
 	}
 }
-export default function RootLayout({ children, params: { lng } }) {
+
+export default function RootLayout({ children, params }) {
+	const { lng } = use(params) as { lng: string }
+
 	return (
 		<html data-lt-installed='true' lang={lng} suppressHydrationWarning>
 			<body className='font-louisGeorgeCafe-light antialiased' suppressHydrationWarning>

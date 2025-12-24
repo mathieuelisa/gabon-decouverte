@@ -1,12 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io'
 import { MdOutlineStar } from 'react-icons/md'
 import { toast } from 'react-toastify'
 
+import Link from '@/components/ui/Link'
 import type { TFavorite } from '@/types/common'
 
 type TActivityExplorerItemProps = {

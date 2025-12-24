@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+import Link from '@/components/ui/Link'
 import type { TFavorite } from '@/types/common'
 import ActivityExplorerItem from '../ActivityExplorer/ActivityExplorerItem'
 import ActivityExplorerSkeleton from '../ActivityExplorer/ActivityExplorerSkeleton'

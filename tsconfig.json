@@ -19,7 +19,7 @@
 		"module": "ESNext",
 		"moduleResolution": "node",
 		"moduleDetection": "auto",
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		// Paths
 		"baseUrl": ".",
 		"paths": {
@@ -49,6 +49,6 @@
 		"incremental": true,
 		"tsBuildInfoFile": "./reports/tsconfig.tsbuildinfo"
 	},
-	"include": ["@types", "next-env.d.ts", "src", ".next/types/**/*.ts"],
+	"include": ["@types", "next-env.d.ts", "src", ".next/types/**/*.ts", ".next/dev/types/**/*.ts"],
 	"exclude": ["node_modules", ".next"]
 }

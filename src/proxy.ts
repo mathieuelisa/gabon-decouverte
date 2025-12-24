@@ -7,7 +7,7 @@ import { cookieName, fallbackLng, headerName, languages } from './app/i18n/setti
 // Configure supported languages for accept-language
 acceptLanguage.languages(languages as unknown as string[])
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
 	const pathname = req.nextUrl.pathname
 
 	// Ignore paths containing "icon" or "chrome"

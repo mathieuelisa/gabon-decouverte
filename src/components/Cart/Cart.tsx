@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+import Link from '@/components/ui/Link'
 import { useBasketAtom } from '@/stores/useBasket.atom'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 import CartBenefits from './CartBenefits'

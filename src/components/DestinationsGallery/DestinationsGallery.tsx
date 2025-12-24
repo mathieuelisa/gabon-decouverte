@@ -1,8 +1,7 @@
 'use client'
 
-import Link from 'next/link'
-
 import { useTranslation } from '@/app/i18n/client'
+import Link from '@/components/ui/Link'
 import { GALLERIES } from '@/data/DestinationsGalleryData'
 
 export default function DestinationsGallery() {

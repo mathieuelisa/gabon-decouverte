@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
+import Link from '@/components/ui/Link'
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
 import { DISCOVER_MOCK_DATA } from '@/mocks/Discover'
 import ActivityExplorerItem from '../ActivityExplorer/ActivityExplorerItem'

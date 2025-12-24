@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import Link from '@/components/ui/Link'
 import { FOOTER_DESTINATION_CONTENT, FOOTER_LEGALES_INFORMATIONS_CONTENT } from './Footer.data'
 
 export default function Footer() {

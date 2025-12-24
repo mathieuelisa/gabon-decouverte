@@ -1,13 +1,13 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import Link from 'next/link'
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { LiaHandshake } from 'react-icons/lia'
 import { SlUser } from 'react-icons/sl'
 import { twMerge } from 'tailwind-merge'
 
 import { useTranslation } from '@/app/i18n/client'
+import Link from '@/components/ui/Link'
 
 type AccountPopoverProps = {
 	isOpen: boolean
