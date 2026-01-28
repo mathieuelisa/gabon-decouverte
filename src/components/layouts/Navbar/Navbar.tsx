@@ -265,7 +265,7 @@ export default function Navbar() {
 									)}
 								</div>
 
-								<span className='sup-md:block hidden'>{t('cart')}</span>
+								<span className='sup-md:block hidden font-caviarDreams'>{t('cart')}</span>
 							</div>
 						</Link>
 					</section>
@@ -363,13 +363,13 @@ export default function Navbar() {
 							>
 								{activePanel === 'activité' ? (
 									<>
-										<div className='flex w-[30%] flex-col gap-14 px-4 sup-md:px-12 py-4'>
+										<div className='flex w-[30%] flex-col gap-14 px-4 sup-md:px-10 py-4'>
 											<ul className='flex flex-col gap-4'>
 												<li>
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/art-et-culture'),
-															'text-lg'
+															'font-caviarDreams text-lg'
 														)}
 														href={{
 															pathname: '/activite',
@@ -386,7 +386,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/ecotourisme-et-balneaire'),
-															'text-lg'
+															'font-caviarDreams text-lg'
 														)}
 														href={{
 															pathname: '/activite',
@@ -403,7 +403,7 @@ export default function Navbar() {
 													<Link
 														className={twJoin(
 															panelLinkClass('/activité/nature-et-decouverte'),
-															'text-lg'
+															'font-caviarDreams text-lg'
 														)}
 														href={{
 															pathname: '/activite',
@@ -466,7 +466,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/libreville'),
-																'text-lg'
+																'font-caviarDreams text-lg'
 															)}
 															href='/voyage-decouverte/libreville'
 															onClick={handleNavClick}
@@ -480,7 +480,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/lambarene'),
-																'text-lg'
+																'font-caviarDreams text-lg'
 															)}
 															href='/voyage-decouverte/lambarene'
 															onClick={handleNavClick}
@@ -495,7 +495,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/mayumba'),
-																'text-lg'
+																'font-caviarDreams text-lg'
 															)}
 															href='/voyage-decouverte/mayumba'
 															onClick={handleNavClick}
@@ -509,7 +509,7 @@ export default function Navbar() {
 														<Link
 															className={twJoin(
 																panelLinkClass('/voyage-decouverte/oyem'),
-																'text-lg'
+																'font-caviarDreams text-lg'
 															)}
 															href='/voyage-decouverte/oyem'
 															onClick={handleNavClick}

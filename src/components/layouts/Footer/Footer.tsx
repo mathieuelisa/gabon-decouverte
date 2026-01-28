@@ -41,7 +41,7 @@ export default function Footer() {
 				{/* Deux blocks footer */}
 				<div className='flex gap-16'>
 					<div className='text-center'>
-						<h3 className='mb-6 font-caviarDreams text-base text-white uppercase'>
+						<h3 className='mb-6 font-caviarDreams-bold text-base text-white uppercase'>
 							{FOOTER_DESTINATION_CONTENT.title}
 						</h3>
 						<ul>
@@ -58,7 +58,7 @@ export default function Footer() {
 						</ul>
 					</div>
 					<div className='text-center'>
-						<h3 className='mb-6 font-caviarDreams text-base text-white uppercase'>
+						<h3 className='mb-6 font-caviarDreams-bold text-base text-white uppercase'>
 							{FOOTER_LEGALES_INFORMATIONS_CONTENT.title}
 						</h3>
 						<ul>
@@ -78,17 +78,17 @@ export default function Footer() {
 
 				{/* blcok Fomulaire */}
 				<div className='flex min-w-[350px] max-w-[400px] flex-col text-white'>
-					<label className='mb-6 text-center font-caviarDreams text-lg uppercase' htmlFor='newsletter'>
+					<label className='mb-6 text-center font-caviarDreams-bold text-lg uppercase' htmlFor='newsletter'>
 						Newsletter
 					</label>
-					<p className='mb-3 text-center sup-md:text-base text-sm'>
+					<p className='mb-3 text-center font-caviarDreams sup-md:text-base text-sm'>
 						En saisissant votre adresse e-mail ci-dessous, vous acceptez de recevoir notre newsletter.
 					</p>
 
 					<form className='flex items-end gap-2' id='newsletter' onSubmit={handleSubmit}>
 						<input
 							aria-label='Recevoir la newsletter'
-							className='w-full max-w-xs rounded border border-white px-3 py-2 text-sm placeholder:text-xs'
+							className='w-full max-w-xs rounded border border-white px-3 py-2 text-sm placeholder:text-base'
 							id='email'
 							onChange={handleEmailChange}
 							placeholder='Votre adresse email'
@@ -96,7 +96,7 @@ export default function Footer() {
 						/>
 						<button
 							className={twMerge(
-								'min-w-32 cursor-pointer rounded px-4 py-2',
+								'min-w-32 cursor-pointer rounded px-4 py-2 font-caviarDreams-bold',
 								loading
 									? 'bg-white text-black opacity-60'
 									: 'min-w-32 cursor-pointer rounded bg-white p-2 text-greeny-100 hover:bg-white'

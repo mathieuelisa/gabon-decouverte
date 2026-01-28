@@ -15,7 +15,7 @@ export default function DestinationsGallery() {
 			<div className='mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
 				{GALLERIES.map((item) => (
 					<Link
-						className='relative h-40 cursor-pointer overflow-hidden rounded-xl shadow-lg'
+						className='relative h-40 cursor-pointer overflow-hidden rounded-sm shadow-lg'
 						href={item.link}
 						key={item.id}
 					>

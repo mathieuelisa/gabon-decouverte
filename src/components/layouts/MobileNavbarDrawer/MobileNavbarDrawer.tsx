@@ -60,21 +60,21 @@ export default function MobileNavbarDrawer({
 
 							<AccordionContent className='flex flex-col gap-4'>
 								<Link
-									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1'
 									href='/activite?type=art-et-culture'
 									onClick={() => onOpenChange(false)}
 								>
 									Art & Culture
 								</Link>
 								<Link
-									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1'
 									href='/activite?type=ecotourisme-et-balneaire'
 									onClick={() => onOpenChange(false)}
 								>
 									{t('navbar.ecotourismSeaside')}
 								</Link>
 								<Link
-									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1'
 									href='/activite?type=nature-et-decouverte'
 									onClick={() => onOpenChange(false)}
 								>
@@ -91,28 +91,28 @@ export default function MobileNavbarDrawer({
 
 							<AccordionContent className='flex flex-col gap-4'>
 								<Link
-									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1'
 									href='/voyage-decouverte/libreville'
 									onClick={() => onOpenChange(false)}
 								>
 									Libreville
 								</Link>
 								<Link
-									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1'
 									href='/voyage-decouverte/lambarene'
 									onClick={() => onOpenChange(false)}
 								>
 									Lambaréné
 								</Link>
 								<Link
-									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1'
 									href='/voyage-decouverte/mayumba'
 									onClick={() => onOpenChange(false)}
 								>
 									Mayumba
 								</Link>
 								<Link
-									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1 hover:text-greeny-100'
+									className='font-caviarDreams text-base text-gray-200 transition-all duration-200 hover:translate-x-1'
 									href='/voyage-decouverte/oyem'
 									onClick={() => onOpenChange(false)}
 								>

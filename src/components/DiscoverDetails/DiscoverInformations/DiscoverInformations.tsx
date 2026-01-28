@@ -3,8 +3,8 @@ import { CiCloudSun } from 'react-icons/ci'
 
 export default function DiscoverInformations({ discoverItem }) {
 	return (
-		<section className='mt-4 flex w-full flex-col gap-3 lg:mt-0 lg:w-[70%]'>
-			<h2 className='font-caviarDreams text-greeny-100 text-xl'>Votre séjour</h2>
+		<section className='mt-4 flex w-full flex-col gap-3 font-caviarDreams lg:mt-0 lg:w-[70%]'>
+			<h2 className='text-greeny-100 text-xl'>Votre séjour</h2>
 			<p className='text-justify sup-md:text-lg text-base'>{discoverItem?.long_description}</p>
 
 			<div className='mt-4 grid sup-md:w-[480px] w-full grid-cols-1 gap-3 self-end rounded-md border border-gray-300 p-3 sm:grid-cols-2'>

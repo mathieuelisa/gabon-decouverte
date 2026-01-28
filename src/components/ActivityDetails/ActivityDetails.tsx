@@ -109,7 +109,7 @@ export default function ActivityDetails() {
 
 	return (
 		<section className='mx-auto mt-0 sup-md:mt-14 mb-14 max-w-7xl px-5 sup-md:px-40'>
-			<div className='flex justify-between gap-5'>
+			<div className='flex items-center justify-between gap-5'>
 				<h1 className='mb-3 font-caviarDreams-bold sup-md:text-2xl text-greeny-100 text-lg uppercase'>
 					{ACTIVITY_ID?.title}
 				</h1>
@@ -120,7 +120,7 @@ export default function ActivityDetails() {
 			{/* Main grid: 1 mobile column */}
 			<div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
 				{/* Large pictures (left column, covering 2/3 of the width)*/}
-				<div className='relative overflow-hidden rounded-2xl md:col-span-2'>
+				<div className='relative overflow-hidden rounded-sm md:col-span-2'>
 					<div className='relative aspect-4/3 h-full w-full'>
 						<Image alt='Photo principale' className='object-cover' fill priority src={photos[0]} />
 					</div>
@@ -129,7 +129,7 @@ export default function ActivityDetails() {
 				{/* 4 small pictures on the right */}
 				<div className='grid grid-cols-1 grid-rows-2 gap-4'>
 					{photos.slice(1).map((photo, index) => (
-						<div className='relative overflow-hidden rounded-2xl' key={index}>
+						<div className='relative overflow-hidden rounded-sm' key={index}>
 							<div className='relative aspect-square'>
 								<Image alt={`Photo ${index + 2}`} className='object-cover' fill src={photo} />
 							</div>
@@ -139,7 +139,7 @@ export default function ActivityDetails() {
 			</div>
 
 			{/* Location part */}
-			<section className='mt-5 flex justify-between'>
+			<section className='mt-5 flex justify-between font-caviarDreams'>
 				<div className='flex items-center gap-3'>
 					<LuMapPin className='h-6 w-6' />
 					<p className='text-lg'>{ACTIVITY_ID?.city}</p>
@@ -159,7 +159,9 @@ export default function ActivityDetails() {
 			{/* Activity description */}
 			<section>
 				<h3 className='mb-2 font-caviarDreams-bold text-greeny-100 text-lg'>Description de l'activité</h3>
-				<p className='sup-md:text-lg text-base'>{ACTIVITY_ID?.long_description}</p>
+				<p className='text-justify font-caviarDreams sup-md:text-lg text-base'>
+					{ACTIVITY_ID?.long_description}
+				</p>
 			</section>
 
 			<hr className='my-6 border-gray-100 border-t' />
@@ -182,7 +184,9 @@ export default function ActivityDetails() {
 							<h4 className='text-sm'>{ACTIVITY_ID?.proposed_by}</h4>
 						</div>
 						<div className='flex items-center gap-2'>
-							<p className='sup-md:text-lg text-sm'>{ACTIVITY_ID?.presentation_organizer}</p>
+							<p className='text-justify font-caviarDreams sup-md:text-lg text-sm'>
+								{ACTIVITY_ID?.presentation_organizer}
+							</p>
 						</div>
 					</div>
 				</div>
@@ -192,7 +196,7 @@ export default function ActivityDetails() {
 			<Dialog onOpenChange={setOpen} open={open}>
 				<DialogTrigger asChild>
 					<button
-						className='mt-6 w-full cursor-pointer rounded-md bg-red-700 p-3 font-caviarDreams-bold text-base text-white transition-all duration-200 ease-in-out hover:bg-red-800'
+						className='mt-6 w-full cursor-pointer rounded-xs bg-red-700 p-3 font-caviarDreams-bold text-base text-white transition-all duration-200 ease-in-out hover:bg-red-800'
 						type='button'
 					>
 						DEMANDE DE RESERVATION

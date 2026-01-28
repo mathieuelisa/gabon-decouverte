@@ -40,7 +40,7 @@ export default function ActivityExplorer() {
 
 	// Styles de base des boutons
 	const btnBase = 'relative min-w-[200px] px-1 py-2 rounded-4xl cursor-pointer select-none'
-	const btnText = 'relative z-10 text-lg'
+	const btnText = 'relative z-10 text-base font-caviarDreams'
 
 	// Transition de la "pill" verte
 	const pillTransition: Transition = prefersReduced
@@ -112,7 +112,7 @@ export default function ActivityExplorer() {
 					>
 						<motion.h3
 							animate={{ opacity: 1 }}
-							className='mb-5 text-center sup-lg:text-start sup-md:text-lg text-base'
+							className='mb-5 text-center sup-lg:text-start font-caviarDreams text-base'
 							initial={{ opacity: 0 }}
 							transition={{ delay: 0.5, duration: 0.6 }}
 						>

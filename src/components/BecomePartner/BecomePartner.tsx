@@ -40,7 +40,7 @@ export default function BecomePartner() {
 
 					<section className='flex w-full sup-lg:justify-end justify-center'>
 						<Link
-							className='mr-0 cursor-pointer justify-center rounded-sm bg-greeny-100 p-3 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+							className='mr-0 cursor-pointer justify-center rounded-xs bg-greeny-100 p-3 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 							href={'/contact'}
 							type='button'
 						>

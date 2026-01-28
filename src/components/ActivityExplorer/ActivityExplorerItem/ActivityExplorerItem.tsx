@@ -115,7 +115,7 @@ export default function ActivityExplorerItem({
 		<section className='relative min-h-[420px] min-w-[200px] max-w-[400px] cursor-pointer rounded-lg border border-gray-100 p-3'>
 			<Image
 				alt='Balade sur le lac Oguemoué'
-				className='h-[200px] rounded-t-md object-cover'
+				className='h-[200px] rounded-t-sm object-cover'
 				height={300}
 				src={imgSrc}
 				width={400}
@@ -145,8 +145,8 @@ export default function ActivityExplorerItem({
 				</div>
 			</div>
 
-			<p className='my-3 min-h-[175px] text-justify sup-md:text-lg text-base'>{description}</p>
-			<p className='my-3 text-end font-caviarDreams text-greeny-100 text-sm'>{price} € / par personne</p>
+			<p className='my-3 min-h-[175px] text-justify font-caviarDreams text-base'>{description}</p>
+			<p className='my-3 text-end font-caviarDreams text-base text-greeny-100'>{price} € / par personne</p>
 		</section>
 	)
 }

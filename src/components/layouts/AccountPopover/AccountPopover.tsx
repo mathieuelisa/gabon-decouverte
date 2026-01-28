@@ -44,7 +44,7 @@ export default function AccountPopover({
 					transition={{ duration: 0.2 }}
 				>
 					<button
-						className='mb-4 flex cursor-pointer items-center gap-2 border-gray-100 border-b pb-3'
+						className='mb-4 flex cursor-pointer items-center gap-2 border-gray-100 border-b pb-3 font-caviarDreams'
 						onClick={() => alert('ADMIN ROUTE')}
 						type='button'
 					>
@@ -84,7 +84,7 @@ export default function AccountPopover({
 
 						{/* Prestataire */}
 						<Link
-							className='flex items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+							className='flex items-center gap-2 rounded-md px-2 py-1 font-caviarDreams hover:bg-gray-50'
 							href='/devenir-prestataire'
 							onClick={handleLinkClick}
 						>
@@ -94,7 +94,7 @@ export default function AccountPopover({
 
 						{/* Favoris */}
 						<Link
-							className='flex items-center gap-2 rounded-md px-2 py-1 hover:bg-gray-50'
+							className='flex items-center gap-2 rounded-md px-2 py-1 font-caviarDreams hover:bg-gray-50'
 							href='/favoris'
 							onClick={handleLinkClick}
 						>

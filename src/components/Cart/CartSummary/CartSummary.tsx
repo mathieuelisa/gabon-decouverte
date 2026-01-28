@@ -24,7 +24,7 @@ export default function CartSummary() {
 			</div>
 
 			<button
-				className='cursor-pointer rounded-md bg-greeny-100 py-2 font-caviarDreams-bold text-white transition-all duration-300 ease-in-out hover:bg-greeny-50'
+				className='cursor-pointer rounded-xs bg-greeny-100 py-2 font-caviarDreams-bold text-white transition-all duration-300 ease-in-out hover:bg-greeny-50'
 				onClick={() => alert('DIRECTION PAYPAL')}
 				type='button'
 			>
