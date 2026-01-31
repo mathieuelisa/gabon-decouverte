@@ -16,6 +16,7 @@ const OPTIONS = [
 	{ id: 'nature-et-decouverte', label: 'Nature & découverte' },
 	{ id: 'toutes-nos-activites', label: 'Toutes nos activités' }
 ] as const
+
 // Title text displayed for each activity category
 const TITLES = {
 	'art-et-culture': 'Explorez l’essence de l’art et de la culture à travers des expériences inspirantes.',
@@ -41,10 +42,6 @@ export default function ActivityExplorer() {
 		router.push(`?${params.toString()}`, { scroll: false })
 	}
 
-	// Styles de base des boutons
-	const btnBase = 'relative min-w-[200px] px-1 py-2 rounded-4xl cursor-pointer select-none'
-	const btnText = 'relative z-10 text-base font-caviarDreams'
-
 	// Transition de la "pill" verte
 	const pillTransition: Transition = prefersReduced
 		? { duration: 0, type: 'tween' }
@@ -53,6 +50,7 @@ export default function ActivityExplorer() {
 	// Items filtrés selon la catégorie active
 	const items = useMemo(() => {
 		if (!activeLink || activeLink === 'toutes-nos-activites') return ACTVITY_MOCK_DATA
+
 		return ACTVITY_MOCK_DATA.filter((e) => e.type === activeLink)
 	}, [activeLink])
 
@@ -67,8 +65,7 @@ export default function ActivityExplorer() {
 					{OPTIONS.map((opt) => (
 						<button
 							className={twJoin(
-								btnBase,
-								'flex-1 text-center',
+								'relative min-w-[200px] flex-1 cursor-pointer select-none rounded-4xl px-1 py-2 text-center',
 								activeLink === opt.id ? 'text-white' : 'text-gray-700'
 							)}
 							key={opt.id}
@@ -82,7 +79,7 @@ export default function ActivityExplorer() {
 									transition={pillTransition}
 								/>
 							)}
-							<span className={btnText}>{opt.label}</span>
+							<span className='relative z-10 font-caviarDreams text-base'>{opt.label}</span>
 						</button>
 					))}
 				</div>

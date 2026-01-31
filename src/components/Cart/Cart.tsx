@@ -1,5 +1,6 @@
 'use client'
 
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -60,30 +61,36 @@ export default function Cart() {
 
 	if (basket.length === 0)
 		return (
-			<section className='mt-0 sup-md:mt-14 min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
+			<section className='mt-0 sup-md:mt-14 min-h-screen px-5 sup-md:px-24 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>
 					Aucunes activités dans votre panier
 				</h1>
 
 				<Dialog onOpenChange={setOpen} open={open}>
-					<DialogContent className='p-6 [&>button]:cursor-pointer'>
+					<DialogContent className='p-14 [&>button]:cursor-pointer'>
 						<DialogHeader>
-							<DialogTitle className='font-caviarDreams-bold uppercase'>
+							<DialogTitle className='text-center font-caviarDreams-bold text-2xl text-greeny-100 uppercase'>
 								Votre panier est vide
 							</DialogTitle>
 						</DialogHeader>
 
-						<p className='mt-3 sup-md:text-lg text-base'>
+						<DotLottieReact
+							autoplay
+							loop
+							src='https://lottie.host/bc7f03c5-658b-41a9-b054-7631b12ea378/61sf3kW147.lottie'
+						/>
+
+						<p className='text-center sup-md:text-lg text-base'>
 							Il n'y a actuellement aucune activité dans votre panier.
 						</p>
 
-						<div className='mt-6 flex justify-end'>
+						<div className='mt-6 flex justify-center'>
 							<Link href='/activite'>
 								<button
-									className='cursor-pointer rounded-md bg-greeny-100 p-2 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+									className='cursor-pointer rounded-xs bg-greeny-100 p-2 px-7 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 									type='button'
 								>
-									EXPLORER LES ACTIVITES
+									EXPLORER NOS ACTIVITES
 								</button>
 							</Link>
 						</div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -8,11 +9,13 @@ import Link from '@/components/ui/Link'
 import type { TFavorite } from '@/types/common'
 import ActivityExplorerItem from '../ActivityExplorer/ActivityExplorerItem'
 import ActivityExplorerSkeleton from '../ActivityExplorer/ActivityExplorerSkeleton'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 
 export default function FavoriteExplorer() {
 	const [items, setItems] = useState<TFavorite[] | null>(null)
 	const [hasFavorites, setHasFavorites] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
+	const [open, setOpen] = useState(false)
 
 	useEffect(() => {
 		setIsMounted(true)
@@ -58,6 +61,14 @@ export default function FavoriteExplorer() {
 		}
 	}, [isMounted])
 
+	useEffect(() => {
+		if (items?.length === 0) {
+			setOpen(true)
+		} else {
+			setOpen(false)
+		}
+	}, [items?.length, isMounted])
+
 	if (!isMounted) {
 		return (
 			<section className='flex h-[calc(100vh-180px)] flex-col items-center justify-center px-5 sup-md:px-40'>
@@ -94,10 +105,41 @@ export default function FavoriteExplorer() {
 
 	if (items && items.length === 0) {
 		return (
-			<section className='mt-14 h-screen px-16 sup-md:px-24'>
+			<section className='mt-0 sup-md:mt-14 min-h-screen px-5 sup-md:px-24 sup-xl:px-40 pb-32 sup-lg:pb-0'>
 				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>
 					Aucun favori pour le moment
 				</h1>
+
+				<Dialog onOpenChange={setOpen} open={open}>
+					<DialogContent className='p-14 [&>button]:cursor-pointer'>
+						<DialogHeader>
+							<DialogTitle className='text-center font-caviarDreams-bold text-2xl text-greeny-100 uppercase'>
+								Aucun favori pour le moment
+							</DialogTitle>
+						</DialogHeader>
+
+						<DotLottieReact
+							autoplay
+							loop
+							src='https://lottie.host/7dde5a8d-9d2e-4d91-9781-b0750a1253cf/oAFZZeP34D.lottie'
+						/>
+
+						<p className='text-center sup-md:text-lg text-base'>
+							Ajoutez des activités à vos favoris en cliquant sur le cœur.
+						</p>
+
+						<div className='mt-6 flex justify-center'>
+							<Link href='/activite'>
+								<button
+									className='cursor-pointer rounded-xs bg-greeny-100 p-2 px-7 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
+									type='button'
+								>
+									EXPLORER NOS ACTIVITES
+								</button>
+							</Link>
+						</div>
+					</DialogContent>
+				</Dialog>
 			</section>
 		)
 	}

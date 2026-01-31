@@ -19,7 +19,7 @@
 		"module": "ESNext",
 		"moduleResolution": "node",
 		"moduleDetection": "auto",
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		// Paths
 		"baseUrl": ".",
 		"paths": {
