@@ -31,27 +31,27 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 				<section className='flex justify-between'>
 					<div className='ml-3 flex flex-col'>
 						<h2 className='max-w-[300px] font-caviarDreams-bold text-greeny-100 text-xl'>{item?.title}</h2>
-						<p className='mt-3 max-w-[300px] text-base'>{item?.short_description}</p>
+						<p className='mt-3 max-w-[300px] font-caviarDreams text-base'>{item?.short_description}</p>
 						{/* Participant */}
 						<div className='mt-8 flex items-center gap-2'>
 							{item?.participate === 1 ? <FiUser className='h-5 w-5' /> : <FiUsers className='h-5 w-5' />}
-							<p>
+							<p className='font-caviarDreams'>
 								{item?.participate} participant{item?.participate > 1 ? 's' : ''}
 							</p>
 						</div>
 						{/* Duration */}
 						<div className='mt-4 flex items-center gap-2'>
 							<TbClockHour7 className='h-5 w-5' />
-							<p>{item?.duration}</p>
+							<p className='font-caviarDreams'>{item?.duration}</p>
 						</div>
 						{/* Date */}
 						<div className='mt-4 flex items-center gap-2'>
 							<IoCalendarNumberOutline className='h-5 w-5' />
-							<p>le {formatted}</p>
+							<p className='font-caviarDreams'>le {formatted}</p>
 						</div>
 					</div>
 					{/* Price */}
-					<div className='flex flex-col items-end'>
+					<div className='flex flex-col items-end font-caviarDreams'>
 						<p className='font-caviarDreams-bold text-greeny-100 text-lg'>{item.total_eur} € </p>
 						<p className='text-gray-600 text-sm'>{item.total_cfa} CFA</p>
 					</div>
@@ -64,7 +64,7 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 						type='button'
 					>
 						<BsTrash3 className='h-4 w-4' />
-						<p className='text-sm group-hover:underline'>Supprimer</p>
+						<p className='font-caviarDreams text-sm group-hover:underline'>Supprimer</p>
 					</button>
 				</section>
 			</div>

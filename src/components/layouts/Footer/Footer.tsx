@@ -32,7 +32,9 @@ export default function Footer() {
 						src='/assets/images/logo_grey.png'
 						width={100}
 					/>
-					<h2 className='font-caviarDreams sup-md:text-xl text-lg text-white opacity-60'>GABON DECOUVERTE</h2>
+					<h2 className='font-caviarDreams-bold sup-md:text-xl text-lg text-white opacity-60'>
+						GABON DECOUVERTE
+					</h2>
 				</div>
 				<div className='h-px w-full bg-white opacity-20' />
 			</div>
@@ -88,7 +90,7 @@ export default function Footer() {
 					<form className='flex items-end gap-2' id='newsletter' onSubmit={handleSubmit}>
 						<input
 							aria-label='Recevoir la newsletter'
-							className='w-full max-w-xs rounded border border-white px-3 py-2 text-sm placeholder:text-base'
+							className='w-full max-w-xs rounded border border-white px-3 py-2 font-caviarDreams-bold text-sm placeholder:text-base'
 							id='email'
 							onChange={handleEmailChange}
 							placeholder='Votre adresse email'

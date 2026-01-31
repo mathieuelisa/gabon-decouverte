@@ -42,8 +42,9 @@ export default function Contact() {
 		resolver: zodResolver(Contactchema)
 	})
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: ReservationSchemaType) => {
 		setLoading(true)
+
 		try {
 			const res = await fetch('/api/contact', {
 				body: JSON.stringify(data),
@@ -71,8 +72,8 @@ export default function Contact() {
 	}
 
 	return (
-		<section className='relative z-10 mx-auto flex flex-col items-start justify-center gap-5 overflow-hidden p-5 sup-md:px-28 pt-0 sup-lg:pt-14 sup-md:pt-14'>
-			<div className='relative z-10 flex w-full flex-col gap-5'>
+		<main className='relative z-10 mx-auto flex flex-col items-start justify-center gap-5 overflow-hidden p-5 sup-md:px-28 pt-0 sup-lg:pt-14 sup-md:pt-14'>
+			<section className='relative z-10 flex w-full flex-col gap-5'>
 				<h1 className='font-caviarDreams-bold sup-md:text-4xl text-2xl text-greeny-100'>
 					UNE QUESTION ? UN BESOIN PARTICULIER ?
 				</h1>
@@ -92,27 +93,33 @@ export default function Contact() {
 						<input
 							id='lastname'
 							{...register('lastname')}
-							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams text-base placeholder:text-gray-600 ${
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams-bold text-base text-greeny-100 placeholder:font-caviarDreams placeholder:text-gray-600 ${
 								errors.lastname && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Nom*'
 							type='text'
 						/>
-						{errors.lastname && <span className='text-base text-red-800'>{errors.lastname?.message}</span>}
+						{errors.lastname && (
+							<span className='font-caviarDreams-bold text-base text-red-800'>
+								{errors.lastname?.message}
+							</span>
+						)}
 						<label className='sr-only' htmlFor='firstname'>
 							Prenom
 						</label>
 						<input
 							id='firstname'
 							{...register('firstname')}
-							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams text-base placeholder:text-gray-600 ${
-								errors.lastname && 'border-gray-400 placeholder:text-gray-200'
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams-bold text-base text-greeny-100 placeholder:font-caviarDreams placeholder:text-gray-600 ${
+								errors.firstname && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Prénom*'
 							type='text'
 						/>
 						{errors.firstname && (
-							<span className='text-base text-red-800'>{errors.firstname?.message}</span>
+							<span className='font-caviarDreams-bold text-base text-red-800'>
+								{errors.firstname?.message}
+							</span>
 						)}
 						<label className='sr-only' htmlFor='email'>
 							Email
@@ -120,26 +127,34 @@ export default function Contact() {
 						<input
 							id='email'
 							{...register('email')}
-							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams text-base placeholder:text-gray-600 ${
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams-bold text-base text-greeny-100 placeholder:font-caviarDreams placeholder:text-gray-600 ${
 								errors.email && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Email*'
 							type='email'
 						/>
-						{errors.email && <span className='text-base text-red-800'>{errors.email?.message}</span>}
+						{errors.email && (
+							<span className='font-caviarDreams-bold text-base text-red-800'>
+								{errors.email?.message}
+							</span>
+						)}
 						<label className='sr-only' htmlFor='phone'>
 							Telephone
 						</label>
 						<input
 							id='phone'
 							{...register('phone')}
-							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams text-base placeholder:text-gray-600 ${
+							className={`h-11 rounded-sm border border-greeny-100 pl-2 font-caviarDreams-bold text-base text-greeny-100 placeholder:font-caviarDreams placeholder:text-gray-600 ${
 								errors.phone && 'border-gray-400 placeholder:text-gray-200'
 							}`}
 							placeholder='Téléphone'
-							type='phone'
+							type='tel'
 						/>
-						{errors.phone && <span className='text-base text-red-800'>{errors.phone?.message}</span>}
+						{errors.phone && (
+							<span className='font-caviarDreams-bold text-base text-red-800'>
+								{errors.phone?.message}
+							</span>
+						)}
 
 						<div className='mt-4'>
 							<button
@@ -163,17 +178,21 @@ export default function Contact() {
 						<textarea
 							id='message'
 							{...register('message')}
-							className={`min-h-[310px] w-full rounded-sm border border-greeny-100 border-b p-4 font-caviarDreams text-base placeholder:text-gray-600 ${
+							className={`min-h-[310px] w-full rounded-sm border border-greeny-100 border-b p-4 font-caviarDreams-bold text-base placeholder:font-caviarDreams placeholder:text-gray-600 ${
 								errors.message && 'border-red-500-50 placeholder:text-gray-200'
 							}`}
 							placeholder='Message*'
 						/>
-						{errors.message && <span className='text-base text-red-800'>{errors.message?.message}</span>}
+						{errors.message && (
+							<span className='font-caviarDreams-bold text-base text-red-800'>
+								{errors.message?.message}
+							</span>
+						)}
 					</div>
 				</form>
 				<small className='flex w-full justify-end'>* Champs requis</small>
 				<ToastContainer />
-			</div>
-		</section>
+			</section>
+		</main>
 	)
 }

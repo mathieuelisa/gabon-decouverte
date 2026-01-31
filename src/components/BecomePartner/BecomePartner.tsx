@@ -4,31 +4,33 @@ import Link from '@/components/ui/Link'
 
 export default function BecomePartner() {
 	return (
-		<section className='min-h-[722px] sup-lg:px-28'>
+		<main className='min-h-[722px] sup-lg:px-28'>
 			<section className='flex sup-lg:flex-row flex-col gap-10 pt-32'>
 				<div className='relative sup-lg:block hidden h-[400px] w-3/5 border border-shark-200'>
 					<Image
-						alt='savane africaine'
+						alt='Poignée de main symbolisant un partenariat'
 						className='relative object-cover'
 						fill
 						priority
+						sizes='(min-width: 1024px) 60vw, 100vw'
 						src='/assets/images/handshake.avif'
 					/>
 				</div>
 
 				<section className='relative flex sup-lg:w-2/5 w-full flex-col justify-between gap-12 sup-lg:gap-0 px-5 sup-lg:px-0'>
 					<Image
-						alt='logo_background'
+						alt=''
+						aria-hidden='true'
 						className='-z-1 absolute w-11/12 opacity-20'
 						height={500}
-						priority
 						src='/assets/images/logo_grey.png'
 						width={600}
 					/>
-					<div className='flex flex-col items-center gap-5'>
+					<div className='flex flex-col items-center gap-5 font-caviarDreams'>
 						<h1 className='text-center sup-lg:text-start text-4xl'>
 							Ensemble, construisons un partenariat durable
 						</h1>
+						<h2 className='sr-only'>Devenir partenaire de Gabon Découverte</h2>
 						<p className='w-full text-center sup-lg:text-start sup-md:text-lg text-base'>
 							Gabon Découverte grandit et souhaite collaborer avec de nouveaux partenaires : hôtels,
 							chambres d’hôtes, artisans, restaurateurs et prestataires d’activités.
@@ -42,13 +44,12 @@ export default function BecomePartner() {
 						<Link
 							className='mr-0 cursor-pointer justify-center rounded-xs bg-greeny-100 p-3 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 							href={'/contact'}
-							type='button'
 						>
 							REJOIGNEZ-NOUS
 						</Link>
 					</section>
 				</section>
 			</section>
-		</section>
+		</main>
 	)
 }

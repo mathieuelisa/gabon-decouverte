@@ -10,7 +10,7 @@ export default function CartBenefits() {
 			{CART_BENEFITS_DATA.map((item) => (
 				<section className='flex items-center gap-3' key={item.id}>
 					<GrValidate className='h-5 w-5 text-greeny-100' />
-					<p>{item.title}</p>
+					<p className='font-caviarDreams'>{item.title}</p>
 				</section>
 			))}
 		</div>

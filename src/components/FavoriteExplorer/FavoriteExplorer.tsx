@@ -114,7 +114,7 @@ export default function FavoriteExplorer() {
 					<DialogContent className='p-14 [&>button]:cursor-pointer'>
 						<DialogHeader>
 							<DialogTitle className='text-center font-caviarDreams-bold text-2xl text-greeny-100 uppercase'>
-								Aucun favori pour le moment
+								Aucun favori
 							</DialogTitle>
 						</DialogHeader>
 
@@ -125,7 +125,7 @@ export default function FavoriteExplorer() {
 						/>
 
 						<p className='text-center sup-md:text-lg text-base'>
-							Ajoutez des activités à vos favoris en cliquant sur le cœur.
+							Ajoutez des activités à vos favoris en cliquant sur le cœur
 						</p>
 
 						<div className='mt-6 flex justify-center'>
@@ -134,7 +134,7 @@ export default function FavoriteExplorer() {
 									className='cursor-pointer rounded-xs bg-greeny-100 p-2 px-7 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 									type='button'
 								>
-									EXPLORER NOS ACTIVITES
+									EXPLORER NOS ACTIVITÉS
 								</button>
 							</Link>
 						</div>

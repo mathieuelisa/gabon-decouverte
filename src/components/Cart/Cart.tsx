@@ -81,7 +81,7 @@ export default function Cart() {
 						/>
 
 						<p className='text-center sup-md:text-lg text-base'>
-							Il n'y a actuellement aucune activité dans votre panier.
+							Il n'y a actuellement aucune activité dans votre panier
 						</p>
 
 						<div className='mt-6 flex justify-center'>
@@ -90,7 +90,7 @@ export default function Cart() {
 									className='cursor-pointer rounded-xs bg-greeny-100 p-2 px-7 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
 									type='button'
 								>
-									EXPLORER NOS ACTIVITES
+									EXPLORER NOS ACTIVITÉS
 								</button>
 							</Link>
 						</div>

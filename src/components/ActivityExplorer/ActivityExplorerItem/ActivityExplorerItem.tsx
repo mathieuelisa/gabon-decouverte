@@ -56,7 +56,7 @@ export default function ActivityExplorerItem({
 
 	const notifyMessage = () => {
 		toast.success(
-			<div
+			<section
 				className='group relative h-[90px] overflow-hidden rounded-md bg-greeny-100'
 				style={{
 					backgroundImage: `url(${imgSrc})`,
@@ -73,7 +73,7 @@ export default function ActivityExplorerItem({
 						Voir vos favoris
 					</p>
 				</Link>
-			</div>,
+			</section>,
 			{
 				autoClose: 3000,
 				closeButton: false,
@@ -112,14 +112,19 @@ export default function ActivityExplorerItem({
 	}
 
 	return (
-		<section className='relative min-h-[420px] min-w-[200px] max-w-[400px] cursor-pointer rounded-lg border border-gray-100 p-3'>
-			<Image
-				alt='Balade sur le lac Oguemoué'
-				className='h-[200px] rounded-t-sm object-cover'
-				height={300}
-				src={imgSrc}
-				width={400}
-			/>
+		<section className='group hover:-translate-y-1 focus-within:-translate-y-1 relative min-h-[420px] min-w-[200px] max-w-[400px] cursor-pointer rounded-lg border border-gray-100 p-3 transition-all duration-300 ease-out focus-within:shadow-lg hover:border-greeny-100/30 hover:shadow-lg'>
+			{/* Image wrapper */}
+			<div className='relative h-[200px] overflow-hidden rounded-t-sm'>
+				<Image
+					alt={title}
+					className='h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]'
+					height={300}
+					src={imgSrc}
+					width={400}
+				/>
+				{/* optional small sail for better “differentiation” when hovering */}
+				<div className='pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10' />
+			</div>
 
 			<button
 				aria-label='Ajouter aux favoris'
