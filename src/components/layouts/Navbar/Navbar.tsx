@@ -178,6 +178,7 @@ export default function Navbar() {
 
 	const handleNavClick = () => {
 		closePanel()
+		router.refresh()
 	}
 
 	const handleSwitchLanguageClick = (lng) => {
@@ -375,7 +376,11 @@ export default function Navbar() {
 															pathname: '/activite',
 															query: { type: 'art-et-culture' }
 														}}
-														onClick={handleNavClick}
+														// onClick={handleNavClick}
+														onClick={() => {
+															closePanel()
+															router.refresh()
+														}}
 														onFocus={() => setSelectedActivite('art')}
 														onMouseEnter={() => setSelectedActivite('art')}
 													>
@@ -392,7 +397,11 @@ export default function Navbar() {
 															pathname: '/activite',
 															query: { type: 'ecotourisme-et-balneaire' }
 														}}
-														onClick={handleNavClick}
+														// onClick={handleNavClick}
+														onClick={() => {
+															closePanel()
+															router.refresh()
+														}}
 														onFocus={() => setSelectedActivite('eco')}
 														onMouseEnter={() => setSelectedActivite('eco')}
 													>
@@ -409,7 +418,11 @@ export default function Navbar() {
 															pathname: '/activite',
 															query: { type: 'nature-et-decouverte' }
 														}}
-														onClick={handleNavClick}
+														onClick={() => {
+															closePanel()
+															router.refresh()
+														}}
+														// onClick={handleNavClick}
 														onFocus={() => setSelectedActivite('nature')}
 														onMouseEnter={() => setSelectedActivite('nature')}
 													>

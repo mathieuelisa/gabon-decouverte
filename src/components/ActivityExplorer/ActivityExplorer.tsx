@@ -2,8 +2,8 @@
 
 import type { Transition } from 'framer-motion'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { useSearchParams } from 'next/navigation'
-import { useMemo, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useMemo } from 'react'
 import { twJoin } from 'tailwind-merge'
 
 import Link from '@/components/ui/Link'
@@ -27,15 +27,18 @@ const TITLES = {
 
 export default function ActivityExplorer() {
 	const searchParams = useSearchParams()
-	const typeFromUrl = searchParams.get('type')
 	const prefersReduced = useReducedMotion()
 
+	const router = useRouter()
+
 	// Valeur par défaut si aucun type dans l'URL
-	const [activeLink, setActiveLink] = useState<string>(typeFromUrl ?? 'toutes-nos-activites')
+	const activeLink = searchParams.get('type') ?? 'toutes-nos-activites'
 
 	// Mise à jour du type sélectionné
 	const handleSelectType = (type: string) => {
-		setActiveLink(type)
+		const params = new URLSearchParams(searchParams.toString())
+		params.set('type', type)
+		router.push(`?${params.toString()}`, { scroll: false })
 	}
 
 	// Styles de base des boutons
