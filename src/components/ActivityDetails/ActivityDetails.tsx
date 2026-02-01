@@ -36,6 +36,7 @@ export default function ActivityDetails() {
 		const pool = ACTVITY_MOCK_DATA.filter((el) => el.slug !== id)
 
 		const shuffled = [...pool].sort(() => Math.random() - 0.5)
+
 		return shuffled.slice(0, 3)
 	}, [id])
 
@@ -104,8 +105,6 @@ export default function ActivityDetails() {
 
 	const totalEur = useMemo(() => getTotalPrice(price_eur, participate), [price_eur, participate])
 	const totalCfa = useMemo(() => getTotalPrice(price_cfa, participate), [price_cfa, participate])
-
-	// const activityAlreadySelected = basket.some((element) => element.id === id)
 
 	return (
 		<section className='mx-auto mt-0 sup-md:mt-14 mb-14 max-w-7xl px-5 sup-md:px-40'>
