@@ -6,12 +6,14 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import Link from '@/components/ui/Link'
+import { useFavoritesAtom } from '@/stores/useFavorites.atom'
 import type { TFavorite } from '@/types/common'
 import ActivityExplorerItem from '../ActivityExplorer/ActivityExplorerItem'
 import ActivityExplorerSkeleton from '../ActivityExplorer/ActivityExplorerSkeleton'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 
 export default function FavoriteExplorer() {
+	const [favorites] = useFavoritesAtom()
 	const [items, setItems] = useState<TFavorite[] | null>(null)
 	const [hasFavorites, setHasFavorites] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
@@ -21,44 +23,21 @@ export default function FavoriteExplorer() {
 		setIsMounted(true)
 	}, [])
 
+	// Read the shared favorites once on mount. A short delay keeps the skeleton
+	// visible briefly; subsequent removals are applied optimistically via onToggleFav below.
 	useEffect(() => {
-		if (!isMounted) return
+		if (!isMounted) return undefined
 
-		try {
-			const raw = localStorage.getItem('favorites') || '[]'
-			const parsed = JSON.parse(raw)
-
-			const normalized: TFavorite[] =
-				Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === 'string'
-					? parsed.map((t: string) => ({
-							description: '',
-							imgSrc: '',
-							key: t,
-							price: '',
-							rating: '',
-							slug: '',
-							title: t
-						}))
-					: (parsed ?? [])
-
-			// 👉 first determine whether there are favorites.
-			if (normalized.length === 0) {
-				setHasFavorites(false)
-				setItems([]) // no skeleton in this case
-			} else {
-				setHasFavorites(true)
-				// 🔥 here you can decide to display a skeleton before showing the actual cards
-				// If you want the skeleton to remain visible for a minimum amount of time, you can simulate a “loading”
-				setItems(null)
-				// Example: small delay so the skeleton is visible (optional)
-				setTimeout(() => {
-					setItems(normalized)
-				}, 300)
-			}
-		} catch {
+		if (favorites.length === 0) {
 			setHasFavorites(false)
-			setItems([])
+			setItems([]) // no skeleton in this case
+			return undefined
 		}
+
+		setHasFavorites(true)
+		setItems(null)
+		const timeout = setTimeout(() => setItems(favorites), 300)
+		return () => clearTimeout(timeout)
 	}, [isMounted])
 
 	useEffect(() => {
@@ -92,7 +71,7 @@ export default function FavoriteExplorer() {
 
 				<hr className='my-6 border-gray-100 border-t' />
 
-				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+				<div className='grid grid-cols-1 gap-6 pb-12 sm:grid-cols-2 lg:grid-cols-4'>
 					{Array.from({ length: 4 }).map((_, i) => (
 						<div className='flex justify-center' key={i}>
 							<ActivityExplorerSkeleton />
@@ -151,7 +130,7 @@ export default function FavoriteExplorer() {
 			<hr className='my-6 border-gray-100 border-t' />
 
 			{/* Grid des favoris */}
-			<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+			<div className='grid grid-cols-1 gap-6 pb-12 sm:grid-cols-2 lg:grid-cols-4'>
 				{items?.map((fav) => (
 					<motion.div
 						className='transform-gpu will-change-transform'

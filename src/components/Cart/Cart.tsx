@@ -20,14 +20,6 @@ export default function Cart() {
 		setIsMounted(true)
 	}, [])
 
-	// Removes an item from the shopping basket
-	// by filtering out the entry matching the given ID
-	// then updates the basket state
-	// const handleRemoveFromBasket = (id: string) => {
-	// 	const updateBasket = basket.filter((item) => item.id !== id)
-	// 	setBasket(updateBasket)
-	// }
-
 	const handleRemoveFromBasket = (basketItemId: string) => {
 		const updateBasket = basket.filter((item) => item.basketItemId !== basketItemId)
 		setBasket(updateBasket)
@@ -100,31 +92,40 @@ export default function Cart() {
 		)
 
 	return (
-		<section className='mt-0 sup-md:mt-14 min-h-screen px-5 sup-xl:px-40 pb-32 sup-lg:pb-0'>
-			<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Votre panier</h1>
+		<section className='mt-0 sup-md:mt-14 min-h-screen px-5 sup-xl:px-40 pb-28 sup-lg:pb-0'>
+			<div className='flex items-baseline justify-between gap-3'>
+				<h1 className='font-caviarDreams-bold text-3xl text-greeny-100 uppercase'>Votre panier</h1>
+				<p className='font-caviarDreams text-shark-400 text-sm'>
+					{basket.length} {basket.length > 1 ? 'activités' : 'activité'}
+				</p>
+			</div>
 
-			<hr className='my-6 border-gray-100 border-t' />
+			<hr className='my-6 border-shark-100 border-t' />
 
-			<div className='my-9 grid grid-cols-1 sup-lg:grid-cols-[minmax(0,1fr)_auto] gap-6'>
+			<div className='my-9 grid grid-cols-1 sup-lg:grid-cols-[minmax(0,1fr)_320px] items-start gap-6'>
 				{/* Colonne 1 */}
-				<div className='flex min-w-[60%] flex-col gap-4'>
+				<div className='flex min-w-0 flex-col gap-4'>
 					{basket.map((item) => (
 						<CartItemCard item={item} key={item.basketItemId} onRemove={handleRemoveFromBasket} />
 					))}
+
+					{/* Avantages affichés une fois dans le flux, en dessous de la liste (mobile) */}
+					<div className='sup-lg:hidden'>
+						<CartBenefits />
+					</div>
 				</div>
 
-				{/* Colonne 2 */}
-				<div className='sup-lg:flex hidden flex-col gap-4'>
+				{/* Colonne 2 (desktop) - reste visible au scroll */}
+				<div className='sup-lg:sticky sup-lg:top-[156px] sup-lg:flex hidden flex-col gap-4'>
 					<CartSummary />
 					<CartBenefits />
 				</div>
 			</div>
 
-			{/* Sticky footer mobile */}
-			<div className='sticky inset-x-0 bottom-0 z-40 sup-lg:hidden bg-white shadow-lg'>
-				<div className='mx-auto flex max-w-[1200px] flex-col gap-3 bg-white px-5 py-3'>
-					<CartSummary />
-					<CartBenefits />
+			{/* Sticky footer mobile : total + CTA uniquement */}
+			<div className='sticky inset-x-0 bottom-0 z-40 sup-lg:hidden border-shark-100 border-t bg-white/95 shadow-[0_-8px_24px_rgba(0,0,0,0.06)] backdrop-blur-md'>
+				<div className='mx-auto max-w-[1200px] px-5 py-3'>
+					<CartSummary compact />
 				</div>
 			</div>
 		</section>

@@ -19,54 +19,68 @@ export default function CartItemCard({ item, onRemove }: TcartItemCard) {
 	const formatted = date.toLocaleDateString('fr-FR')
 
 	return (
-		<section
-			className='flex min-w-[60%] sup-md:flex-row flex-col gap-2 rounded-md border border-gray-100 p-3'
-			key={item.id}
-		>
-			{item.img ? (
-				<Image alt='img' className='w-full rounded-sm' height={300} src={item.img} width={300} />
-			) : null}
+		<section className='flex sup-md:flex-row flex-col gap-4 rounded-2xl border border-shark-100 bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md'>
+			<div className='relative h-44 sup-md:h-auto sup-md:w-44 w-full shrink-0 overflow-hidden rounded-xl'>
+				{item.img ? (
+					<Image
+						alt={item?.title ?? 'Activité'}
+						className='object-cover'
+						fill
+						sizes='(max-width: 768px) 100vw, 176px'
+						src={item.img}
+					/>
+				) : null}
+			</div>
 
-			<div className='flex w-full flex-col justify-between'>
-				<section className='flex justify-between'>
-					<div className='ml-3 flex flex-col'>
-						<h2 className='max-w-[300px] font-caviarDreams-bold text-greeny-100 text-xl'>{item?.title}</h2>
-						<p className='mt-3 max-w-[300px] font-caviarDreams text-base'>{item?.short_description}</p>
-						{/* Participant */}
-						<div className='mt-8 flex items-center gap-2'>
-							{item?.participate === 1 ? <FiUser className='h-5 w-5' /> : <FiUsers className='h-5 w-5' />}
-							<p className='font-caviarDreams'>
-								{item?.participate} participant{item?.participate > 1 ? 's' : ''}
-							</p>
-						</div>
-						{/* Duration */}
-						<div className='mt-4 flex items-center gap-2'>
-							<TbClockHour7 className='h-5 w-5' />
-							<p className='font-caviarDreams'>{item?.duration}</p>
-						</div>
-						{/* Date */}
-						<div className='mt-4 flex items-center gap-2'>
-							<IoCalendarNumberOutline className='h-5 w-5' />
-							<p className='font-caviarDreams'>le {formatted}</p>
-						</div>
+			<div className='flex w-full flex-col justify-between gap-3'>
+				<div className='flex items-start justify-between gap-3'>
+					<div>
+						<h2 className='font-caviarDreams-bold sup-md:text-xl text-greeny-100 text-lg'>{item?.title}</h2>
+						<p className='mt-1 line-clamp-2 font-caviarDreams text-shark-900 text-sm'>
+							{item?.short_description}
+						</p>
 					</div>
-					{/* Price */}
-					<div className='flex flex-col items-end font-caviarDreams'>
-						<p className='font-caviarDreams-bold text-greeny-100 text-lg'>{item.total_eur} € </p>
-						<p className='text-gray-600 text-sm'>{item.total_cfa} CFA</p>
-					</div>
-				</section>
 
-				<section className='flex justify-end'>
 					<button
-						className='group flex cursor-pointer items-center gap-2'
+						aria-label='Supprimer du panier'
+						className='flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-shark-400 transition-colors duration-200 hover:bg-red-50 hover:text-red-600'
 						onClick={() => onRemove(item.basketItemId)}
 						type='button'
 					>
 						<BsTrash3 className='h-4 w-4' />
-						<p className='font-caviarDreams text-sm group-hover:underline'>Supprimer</p>
 					</button>
-				</section>
+				</div>
+
+				<div className='flex flex-wrap items-center gap-2'>
+					<span className='flex items-center gap-1.5 rounded-full bg-shark-50 px-3 py-1 font-caviarDreams text-shark-900 text-xs'>
+						{item?.participate === 1 ? (
+							<FiUser className='h-3.5 w-3.5' />
+						) : (
+							<FiUsers className='h-3.5 w-3.5' />
+						)}
+						{item?.participate} participant{item?.participate > 1 ? 's' : ''}
+					</span>
+
+					<span className='flex items-center gap-1.5 rounded-full bg-shark-50 px-3 py-1 font-caviarDreams text-shark-900 text-xs'>
+						<TbClockHour7 className='h-3.5 w-3.5' />
+						{item?.duration}
+					</span>
+
+					<span className='flex items-center gap-1.5 rounded-full bg-shark-50 px-3 py-1 font-caviarDreams text-shark-900 text-xs'>
+						<IoCalendarNumberOutline className='h-3.5 w-3.5' />
+						le {formatted}
+					</span>
+				</div>
+
+				<div className='flex items-end justify-between gap-3 border-shark-100 border-t pt-3'>
+					<span className='font-caviarDreams text-shark-400 text-xs'>Prix total</span>
+					<div className='text-end'>
+						<p className='font-caviarDreams-bold text-greeny-100 text-lg'>{item.total_eur} €</p>
+						<p className='font-caviarDreams text-shark-400 text-xs'>
+							{item.total_cfa.toLocaleString('fr-FR')} CFA
+						</p>
+					</div>
+				</div>
 			</div>
 		</section>
 	)

@@ -4,6 +4,7 @@ import type { Transition } from 'framer-motion'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
+import { MdOutlineBeachAccess, MdOutlineExplore, MdOutlineGridView, MdOutlinePalette } from 'react-icons/md'
 import { twJoin } from 'tailwind-merge'
 
 import Link from '@/components/ui/Link'
@@ -11,10 +12,10 @@ import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
 import ActivityExplorerItem from './ActivityExplorerItem'
 
 const OPTIONS = [
-	{ id: 'art-et-culture', label: 'Art & culture' },
-	{ id: 'ecotourisme-et-balneaire', label: 'Ecotourisme & balnéaire' },
-	{ id: 'nature-et-decouverte', label: 'Nature & découverte' },
-	{ id: 'toutes-nos-activites', label: 'Toutes nos activités' }
+	{ icon: MdOutlinePalette, id: 'art-et-culture', label: 'Art & culture' },
+	{ icon: MdOutlineBeachAccess, id: 'ecotourisme-et-balneaire', label: 'Ecotourisme & balnéaire' },
+	{ icon: MdOutlineExplore, id: 'nature-et-decouverte', label: 'Nature & découverte' },
+	{ icon: MdOutlineGridView, id: 'toutes-nos-activites', label: 'Toutes nos activités' }
 ] as const
 
 // Title text displayed for each activity category
@@ -61,27 +62,41 @@ export default function ActivityExplorer() {
 			{/* WRAPPER FILTRES : centré + responsive */}
 			<div className='mx-auto flex w-full max-w-[960px] flex-col items-center px-4 sup-md:px-12'>
 				{/* VERSION BOUTONS (desktop / sup-md et +) */}
-				<div className='sup-lg:flex hidden w-full items-center justify-between gap-4'>
-					{OPTIONS.map((opt) => (
-						<button
-							className={twJoin(
-								'relative min-w-[200px] flex-1 cursor-pointer select-none rounded-4xl px-1 py-2 text-center',
-								activeLink === opt.id ? 'text-white' : 'text-gray-700'
-							)}
-							key={opt.id}
-							onClick={() => handleSelectType(opt.id)}
-							type='button'
-						>
-							{activeLink === opt.id && (
-								<motion.span
-									className='absolute inset-0 rounded-4xl bg-greeny-100'
-									layoutId='active-pill'
-									transition={pillTransition}
+				<div className='sup-lg:flex hidden w-full items-center gap-1.5 rounded-2xl border border-shark-100 bg-shark-50/60 p-1.5 shadow-sm'>
+					{OPTIONS.map((opt) => {
+						const isActive = activeLink === opt.id
+						const Icon = opt.icon
+
+						return (
+							<motion.button
+								className={twJoin(
+									'group relative flex flex-1 cursor-pointer select-none items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-center transition-colors duration-200',
+									isActive ? 'text-white' : 'text-shark-900 hover:text-greeny-100'
+								)}
+								key={opt.id}
+								onClick={() => handleSelectType(opt.id)}
+								type='button'
+								whileTap={{ scale: 0.96 }}
+							>
+								{isActive && (
+									<motion.span
+										className='absolute inset-0 rounded-xl bg-greeny-100 shadow-greeny-100/30 shadow-md'
+										layoutId='active-pill'
+										transition={pillTransition}
+									/>
+								)}
+								<Icon
+									className={twJoin(
+										'relative z-10 h-4 w-4 shrink-0 transition-transform duration-200',
+										isActive ? 'scale-110' : 'group-hover:scale-110'
+									)}
 								/>
-							)}
-							<span className='relative z-10 font-caviarDreams text-base'>{opt.label}</span>
-						</button>
-					))}
+								<span className='relative z-10 whitespace-nowrap font-caviarDreams text-sm'>
+									{opt.label}
+								</span>
+							</motion.button>
+						)
+					})}
 				</div>
 
 				{/* VERSION MENU DÉROULANT (mobile / en dessous de sup-md) */}

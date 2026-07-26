@@ -22,8 +22,6 @@
 		"@radix-ui/react-slot": "^1.2.4",
 		"accept-language": "^3.0.20",
 		"class-variance-authority": "^0.7.1",
-		"cookies-next": "^6.1.1",
-		"date-fns": "^4.1.0",
 		"framer-motion": "^12.23.24",
 		"i18next": "^25.6.0",
 		"i18next-browser-languagedetector": "^8.2.0",

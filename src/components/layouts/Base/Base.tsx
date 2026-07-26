@@ -9,7 +9,6 @@ import i18n from '@/app/i18n/i18next'
 import Footer from '../Footer'
 import Navbar from '../Navbar/Navbar'
 
-// biome-ignore lint/suspicious/noRedeclare: <explanation>
 let DevTools: ComponentType<DevToolsProps> | null = null
 
 if (process.env.NODE_ENV !== 'production') {

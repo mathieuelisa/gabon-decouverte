@@ -3,9 +3,10 @@
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
-import { LuMapPin } from 'react-icons/lu'
+import { IoArrowForward } from 'react-icons/io5'
+import { LuBadgeCheck, LuCalendarDays, LuMapPin, LuUsers } from 'react-icons/lu'
 import { TbClockHour7 } from 'react-icons/tb'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 import Link from '@/components/ui/Link'
 import { ACTVITY_MOCK_DATA } from '@/mocks/Activity'
@@ -203,61 +204,102 @@ export default function ActivityDetails() {
 				</DialogTrigger>
 
 				{/* modal of reservation */}
-				<DialogContent className='sup-sm:max-w-[425px] p-9'>
-					<DialogHeader>
-						<DialogTitle className='font-caviarDreams-bold text-greeny-100 text-xl'>
-							{ACTIVITY_ID?.title}
-						</DialogTitle>
-					</DialogHeader>
+				<DialogContent className='sup-sm:max-w-md gap-0 overflow-hidden p-0'>
+					<div className='flex max-h-[85vh] flex-col overflow-y-auto'>
+						<DialogHeader className='gap-1 border-shark-100 border-b px-6 pt-6 pr-10 pb-4 text-left'>
+							<p className='font-caviarDreams text-shark-400 text-xs uppercase tracking-wide'>
+								Demande de réservation
+							</p>
+							<DialogTitle className='font-caviarDreams-bold text-greeny-100 text-xl'>
+								{ACTIVITY_ID?.title}
+							</DialogTitle>
+						</DialogHeader>
 
-					<div className='grid gap-4'>
-						<hr className='border-gray-100 border-t' />
+						<div className='flex flex-col gap-5 px-6 py-5'>
+							<div className='flex flex-col gap-3'>
+								{/* Participants */}
+								<div className='flex flex-wrap items-center justify-between gap-3 rounded-xl border border-shark-100 p-4'>
+									<div className='flex items-center gap-2.5'>
+										<span className='flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-greeny-100/10 text-greeny-100'>
+											<LuUsers className='h-4 w-4' />
+										</span>
+										<p className='font-caviarDreams-bold text-sm'>Participants</p>
+									</div>
 
-						<div className='flex sup-sm:flex-row flex-col items-center justify-between'>
-							<p className='font-caviarDreams-bold'>Participants</p>
+									<Counter count={participate} setCount={setParticipate} />
+								</div>
 
-							<Counter count={participate} setCount={setParticipate} />
+								{/* Date */}
+								<div className='rounded-xl border border-shark-100 p-4'>
+									<div className='mb-3 flex flex-wrap items-center justify-between gap-2'>
+										<div className='flex items-center gap-2.5'>
+											<span className='flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-greeny-100/10 text-greeny-100'>
+												<LuCalendarDays className='h-4 w-4' />
+											</span>
+											<p className='font-caviarDreams-bold text-sm'>Date</p>
+										</div>
+
+										{date && (
+											<span className='rounded-full bg-greeny-100/10 px-3 py-1 font-caviarDreams-bold text-greeny-100 text-xs capitalize'>
+												{date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
+											</span>
+										)}
+									</div>
+
+									<div className='flex justify-center'>
+										<Calendar
+											captionLayout='dropdown'
+											className='border-0 p-0 shadow-none [&_.rdp-caption_label]:cursor-pointer [&_.rdp-day]:cursor-pointer [&_.rdp-dropdown]:cursor-pointer [&_.rdp-nav_button]:cursor-pointer'
+											classNames={{
+												day_button:
+													'data-[selected-single=true]:bg-greeny-100 data-[selected-single=true]:text-white'
+											}}
+											disabled={(day) => day < new Date(new Date().setHours(0, 0, 0, 0))}
+											mode='single'
+											onSelect={setDate}
+											selected={date}
+										/>
+									</div>
+								</div>
+							</div>
+
+							{/* Price summary + CTA */}
+							<div className='flex flex-col gap-4'>
+								<div className='rounded-xl border border-greeny-100/15 bg-greeny-100/5 p-5'>
+									<div className='flex flex-wrap items-end justify-between gap-2'>
+										<div>
+											<p className='text-shark-400 text-xs uppercase tracking-wide'>
+												Total à payer
+											</p>
+											<p className='font-caviarDreams-bold text-3xl text-greeny-100'>
+												{totalEur} €
+											</p>
+										</div>
+										<p className='text-shark-400 text-sm'>{totalCfa.toLocaleString('fr-FR')} CFA</p>
+									</div>
+
+									<hr className='my-3 border-greeny-100/15 border-t' />
+
+									<p className='text-sm'>
+										{participate} adulte{participate > 1 ? 's' : ''} × {ACTIVITY_ID?.price_eur} €
+									</p>
+									<p className='mt-1 flex items-center gap-1.5 text-shark-400 text-xs'>
+										<LuBadgeCheck className='h-3.5 w-3.5 text-greeny-100' />
+										Taxes et frais compris
+									</p>
+								</div>
+
+								<button
+									className='group flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-greeny-100 p-4 font-caviarDreams-bold text-base text-white transition-all duration-300 ease-in-out hover:bg-greeny-50 active:scale-[0.98]'
+									onClick={handleAddBasketClick}
+									type='button'
+								>
+									AJOUTER AU PANIER
+									<IoArrowForward className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' />
+								</button>
+							</div>
 						</div>
-
-						<hr className='border-gray-100 border-t' />
-
-						<div className='flex sup-sm:flex-row flex-col items-center justify-between'>
-							<p className='font-caviarDreams-bold'>Date</p>
-							<Calendar
-								captionLayout='dropdown'
-								className='rounded-md border shadow-sm [&_.rdp-caption_label]:cursor-pointer [&_.rdp-day]:cursor-pointer [&_.rdp-dropdown]:cursor-pointer [&_.rdp-nav_button]:cursor-pointer'
-								disabled={(day) => day < new Date(new Date().setHours(0, 0, 0, 0))}
-								mode='single'
-								onSelect={setDate}
-								selected={date}
-							/>
-						</div>
-
-						<hr className='border-gray-100 border-t' />
 					</div>
-
-					<section className='flex sup-sm:flex-row flex-col items-center justify-between'>
-						<div className='px-0 text-center'>
-							<p className='font-caviarDreams-bold text-2xl'>
-								{getTotalPrice(price_eur, participate)} €{' '}
-								<span className='text-gray-400 text-sm'>
-									{getTotalPrice(price_cfa, participate)} CFA
-								</span>
-							</p>
-
-							<p className='mt-2 text-sm'>
-								{participate} Adultes x {ACTIVITY_ID?.price_eur} €
-							</p>
-							<p className='text-sm'>Taxes et frais compris</p>
-						</div>
-						<button
-							className='mt-2 sup-sm:mt-0 w-full sup-sm:max-w-56 cursor-pointer rounded-md bg-greeny-100 p-4 font-caviarDreams-bold text-base text-white transition-all duration-400 ease-in-out hover:bg-greeny-50'
-							onClick={handleAddBasketClick}
-							type='button'
-						>
-							AJOUTER AU PANIER
-						</button>
-					</section>
 				</DialogContent>
 			</Dialog>
 
@@ -284,17 +326,6 @@ export default function ActivityDetails() {
 					))}
 				</div>
 			</section>
-
-			<ToastContainer
-				autoClose={2000}
-				hideProgressBar={true}
-				icon={false}
-				toastStyle={{
-					borderRadius: '10px',
-					boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
-					color: '#121212'
-				}}
-			/>
 		</section>
 	)
 }
