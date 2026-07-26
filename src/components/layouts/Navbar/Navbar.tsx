@@ -233,6 +233,7 @@ export default function Navbar() {
 						<button
 							aria-expanded={isOpenDialog}
 							aria-haspopup='dialog'
+							aria-label='Ouvrir le menu du compte'
 							className='flex cursor-pointer items-center gap-2 rounded-md border border-gray-100 bg-white px-3 py-2 text-sm transition-all duration-300 ease-in-out hover:bg-gray-50'
 							onClick={toggleDialog}
 							type='button'
