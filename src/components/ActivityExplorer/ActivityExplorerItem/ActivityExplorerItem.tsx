@@ -170,24 +170,34 @@ export default function ActivityExplorerItem({
 			</button>
 
 			{/* Frosted glass panel carrying title, rating, description, price & CTA */}
-			<div className='absolute inset-x-0 bottom-0 bg-linear-to-t from-black/85 via-black/60 to-transparent px-4 pt-10 pb-4 backdrop-blur-md backdrop-saturate-150'>
-				<div className='flex items-start justify-between gap-2'>
-					<h2 className='min-w-0 truncate font-caviarDreams-bold text-lg text-white'>{title}</h2>
-					<div className='flex shrink-0 items-center gap-1 pt-0.5'>
-						<MdOutlineStar className='h-4 w-4 text-yellow-400' />
-						<span className='font-caviarDreams-bold text-sm text-white'>{rating}</span>
-					</div>
+			<div className='absolute inset-x-0 bottom-0 px-4 pt-10 pb-4'>
+				{/* Blur fades out towards the top so the photo stays crisp above the panel.
+				    Mask lives on this wrapper and the blur on its own child — Safari fails to
+				    render backdrop-filter when mask-image sits on the same element. */}
+				<div className='mask-[linear-gradient(to_top,black,transparent)] pointer-events-none absolute inset-0 overflow-hidden [-webkit-mask-image:linear-gradient(to_top,black,transparent)]'>
+					<div className='absolute inset-0 backdrop-blur-xl backdrop-saturate-150' />
 				</div>
+				<div className='pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 via-black/30 to-transparent' />
 
-				<p className='mt-1.5 line-clamp-2 font-caviarDreams-bold text-sm text-white/75'>{description}</p>
+				<div className='relative'>
+					<div className='flex items-start justify-between gap-2'>
+						<h2 className='min-w-0 truncate font-caviarDreams-bold text-lg text-white'>{title}</h2>
+						<div className='flex shrink-0 items-center gap-1 pt-0.5'>
+							<MdOutlineStar className='h-4 w-4 text-yellow-400' />
+							<span className='font-caviarDreams-bold text-sm text-white'>{rating}</span>
+						</div>
+					</div>
 
-				<div className='mt-3 flex items-center justify-between rounded-full bg-white/15 px-4 py-2.5 ring-1 ring-white/20 transition-colors duration-300 group-hover:bg-white/25'>
-					<span className='font-caviarDreams-bold text-sm text-white'>
-						{price} € <span className='font-caviarDreams text-white/70 text-xs'>/ pers.</span>
-					</span>
-					<span className='flex h-7 w-7 items-center justify-center rounded-full bg-white text-greeny-100 transition-transform duration-300 group-hover:translate-x-0.5'>
-						<IoArrowForward className='h-3.5 w-3.5' />
-					</span>
+					<p className='mt-1.5 line-clamp-2 font-caviarDreams-bold text-sm text-white/75'>{description}</p>
+
+					<div className='mt-3 flex items-center justify-between rounded-full bg-white/15 px-4 py-2.5 ring-1 ring-white/20 transition-colors duration-300 group-hover:bg-white/45'>
+						<span className='font-caviarDreams-bold text-sm text-white'>
+							{price} € <span className='font-caviarDreams text-white/70 text-xs'>/ pers.</span>
+						</span>
+						<span className='flex h-7 w-7 items-center justify-center rounded-full bg-white text-greeny-100 transition-transform duration-300 group-hover:translate-x-0.5'>
+							<IoArrowForward className='h-3.5 w-3.5' />
+						</span>
+					</div>
 				</div>
 			</div>
 		</section>
